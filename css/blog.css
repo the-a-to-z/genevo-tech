@@ -6,7 +6,7 @@
 .blog-classic {
     margin-bottom: 70px;
     padding-bottom: 70px;
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid #dfdfdf;
 }
 
 .blog-classic .date {
@@ -423,8 +423,8 @@ comments-list
     padding: 30px 0;
     text-align: center;
     text-transform: uppercase;
-    border-top: 1px solid #efefef;
-    border-bottom: 1px solid #efefef;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
     margin-bottom: 60px;
 }
 
