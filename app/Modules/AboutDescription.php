@@ -19,6 +19,9 @@ class AboutDescription extends Authenticatable
         'title', 'description', 'hide_title'
     ];
 
+    /**
+     * @return mixed
+     */
     public function viewData()
     {
         return DB::table($this->table)->first();

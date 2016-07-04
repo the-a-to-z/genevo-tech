@@ -39,7 +39,7 @@
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>
-                                            {{ $page->name }}
+                                            {{ $page->display_name }}
                                         </td>
                                         <td>{{ $page->description }}</td>
                                         <td class="text-right">

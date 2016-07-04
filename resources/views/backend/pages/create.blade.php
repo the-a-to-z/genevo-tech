@@ -16,23 +16,22 @@
                             {!! openFormCreate('menus') !!}
 
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input type="text"
                                                    name="slug"
                                                    class="form-control text-lowercase"
                                                    autofocus
+                                                   readonly
                                                    value="{{ (old('slug') ? old('slug') : '') }}"
                                             >
 
                                             <div class="input-error-message">{{ $errors->first('name') }}&nbsp;</div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Display Name</label>
                                             <input type="text"

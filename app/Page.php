@@ -16,7 +16,7 @@ class Page extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'url', 'created_by', 'updated_by', 'active'
+        'name', 'display_name', 'description', 'url', 'created_by', 'updated_by', 'active'
     ];
 
     public function menu()

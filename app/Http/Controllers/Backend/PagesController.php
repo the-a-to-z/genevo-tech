@@ -152,7 +152,7 @@ class PagesController extends BackendController
         $input = $request->all();
 
         $page->fill([
-            'name' => ucfirst($input['name']),
+            'display_name' => ucfirst($input['display_name']),
             'description' => $input['description'],
         ])->save();
 

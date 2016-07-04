@@ -16,17 +16,32 @@
                         <div class="content">
 
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input type="text"
                                                name="name"
                                                class="form-control"
                                                autofocus
+                                               readonly
                                                value="{{ ($errors->has('name') ? old('name') : $page->name) }}"
                                         >
 
                                         <div class="input-error-message">{{ $errors->first('name') }}&nbsp;</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Display Name</label>
+                                        <input type="text"
+                                               name="display_name"
+                                               class="form-control"
+                                               autofocus
+                                               value="{{ ($errors->has('display_name') ? old('display_name') : $page->display_name) }}"
+                                        >
+
+                                        <div class="input-error-message">{{ $errors->first('display_name') }}&nbsp;</div>
                                     </div>
                                 </div>
                             </div>
