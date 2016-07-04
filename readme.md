@@ -116,5 +116,7 @@ I name my table **module_hello_world**
  Next step, we need to choose what page are we going to add this module to. 
  
  -> go to backend -> Pages -> page you want to add module to -> edit -> drag and drop modules -> Update
+ 
+ ![Mockup for feature A](https://raw.githubusercontent.com/thunder-phoenix/genevo-tech/master/docs/pages-manage.png)
 
 ### 
