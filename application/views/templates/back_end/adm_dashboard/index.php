@@ -1,1 +1,0 @@
-<h1>Wellcome to admin dashboard page</h1>

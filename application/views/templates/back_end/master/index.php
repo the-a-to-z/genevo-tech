@@ -1,1 +1,0 @@
-<h1>Wellcome to KS services admin page</h1>
