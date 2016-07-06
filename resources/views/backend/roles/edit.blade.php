@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row">
 
-                {!! Form::model($role, ['method' => 'PATCH', 'action' => ['Backend\RolesController@update', $role->id], 'id' => 'formEditRole']) !!}
+                {!! openFormEdit('roles', $role->id) !!}
 
                 <div class="col-md-6">
                     <div class="card">
@@ -123,17 +123,7 @@
 
         <div class="clearfix"></div>
 
-        <footer class="form-fixed-footer">
-            <div class="container-fluid">
-                <button type="submit"
-                        class="btn btn-info btn-fill pull-right m-left-5"
-                        id="btnSubmit">Update
-                </button>
-
-                <a href="{{ url(config('constants.backend-url') . 'roles') }}"
-                   class="btn btn-danger btn-fill pull-right">Cancel</a>
-            </div>
-        </footer>
+        {!! formEditFooter('roles') !!}
 
         {!! Form::close() !!}
 
@@ -150,10 +140,8 @@
         <script src="{{ url('js/jquery.confirm-action.js') }}"></script>
         <script>
             $(document).ready(function () {
-                var currentUserRole = "{{ $loggedInUser->role_id }}";
-
                 $('input[name="permission_id[]"]').change(function () {
-                    $('#btnSubmit').confirmAction({
+                    $('#{!! btnSubmitEditHtmlId() !!}').confirmAction({
                         title: {
                             text: 'Attention!!'
                         },
@@ -164,7 +152,7 @@
                             confirm: {
                                 text: 'Continue',
                                 callback: function (confirm, cancel) {
-                                    $('#formEditRole').submit();
+                                    $('#{!! formEditHtmlId() !!}').submit();
                                 }
                             }
                         }

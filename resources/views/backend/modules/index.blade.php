@@ -15,7 +15,7 @@
 
                                 @if(hasPermission('create-modules', $permissions))
                                     <div class="col-md-6">
-                                        {!! btnToCreate('modules/create', 'New Module') !!}
+                                        {!! btnToCreate('modules', 'New Module') !!}
                                     </div>
                                 @endif
 

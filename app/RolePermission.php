@@ -91,16 +91,25 @@ class RolePermission extends Authenticatable
     /**
      * @param $permission_id
      */
-    public function addPermissionForRoot($permission_id)
+    public function replacePermissionForRoot($permission_id)
     {
         $role = new Role();
 
         $rootRole = $role->findRoot();
-    
-        $this->insert([
+
+        $permissionExists = $this->where([
             'role_id' => $rootRole->id,
             'permission_id' => $permission_id
-        ]);
+        ])->get();
+
+        if(count($permissionExists) == 0) {
+            $this->insert([
+                'role_id' => $rootRole->id,
+                'permission_id' => $permission_id
+            ]);
+        }
+
+        return true;
     }
     
 }

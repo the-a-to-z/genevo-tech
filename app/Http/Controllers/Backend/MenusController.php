@@ -83,15 +83,16 @@ class MenusController extends BackendController
             'css_icon_class' => $input['css_icon_class'],
             'menu_position_id' => $input['menu_position_id'],
             'menu_site_id' => $input['menu_site_id'],
-            'permission_id' => $input['permission_id']
+            'permission_id' => (isset($input['permission_id']) ? $input['permission_id'] : null)
         ])->save();
 
         $menuSite = MenuSite::find($input['menu_site_id']);
 
         if($menuSite->name == 'backend') {
             //always add new permission for root
+
             $permission = new RolePermission();
-            $permission->addPermissionForRoot($input['permission_id']);
+            $permission->replacePermissionForRoot($input['permission_id']);
         }
 
         Session::flash('flash_message', 'Menu has been created!');
@@ -120,9 +121,14 @@ class MenusController extends BackendController
     {
         $this->registerPermissionAs('edit-menu');
 
-        $permission = Permission::find($id);
+        $menu = Menu::find($id);
 
-        return view('backend.permissions.edit')->with('permission', $permission);
+        return view('backend.menus.edit')->with([
+            'menu' => $menu,
+            'allPermissions' => Permission::all(),
+            'allMenuSites' => MenuSite::all(),
+            'allMenuPositions' => MenuPosition::all(),
+        ]);
     }
 
     /**
@@ -134,24 +140,39 @@ class MenusController extends BackendController
      */
     public function update(Request $request, $id)
     {
-        $this->registerPermissionAs('edit-permission');
-
-        $permission = Permission::findOrFail($id);
+        $this->registerPermissionAs('edit-menu');
 
         $this->validate($request, [
-            'name' => 'required|unique:permission,name,'. $id,
-            'display_name' => 'required'
+            'slug' => 'required|unique:menus',
+            'name' => 'required',
+            'menu_position_id' => 'required',
+            'menu_site_id' => 'required',
         ]);
 
         $input = $request->all();
 
-        $permission->fill([
-            'name' => $input['name'],
-            'display_name' => ucfirst($input['display_name']),
+        $menu = new Menu();
+
+        $menu->fill([
+            'slug' => strtolower($input['slug']),
+            'name' => ucfirst($input['name']),
             'description' => $input['description'],
+            'css_icon_class' => $input['css_icon_class'],
+            'menu_position_id' => $input['menu_position_id'],
+            'menu_site_id' => $input['menu_site_id'],
+            'permission_id' => (isset($input['permission_id']) ? $input['permission_id'] : null)
         ])->save();
 
-        Session::flash('flash_message', 'Permission has been saved!');
+        $menuSite = MenuSite::find($input['menu_site_id']);
+
+        if($menuSite->name == 'backend') {
+            //always add new permission for root
+
+            $permission = new RolePermission();
+            $permission->replacePermissionForRoot($input['permission_id']);
+        }
+
+        Session::flash('flash_message', 'Menu has been saved!');
 
         return redirect()->back();
     }
@@ -164,13 +185,13 @@ class MenusController extends BackendController
      */
     public function destroy($id)
     {
-        $this->registerPermissionAs('delete-permission');
+        $this->registerPermissionAs('delete-menu');
 
-        $permission = Permission::findOrFail($id);
-        $permission->delete();
+        $menu = Menu::findOrFail($id);
+        $menu->delete();
 
         Session::flash('flash_message_type', 'warning');
-        Session::flash('flash_message', 'Permission has been deleted!');
+        Session::flash('flash_message', 'Menu has been deleted!');
 
         return redirect()->back();
     }

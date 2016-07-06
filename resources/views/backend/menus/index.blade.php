@@ -15,7 +15,7 @@
 
                                 @if(hasPermission('create-menu', $permissions))
                                     <div class="col-md-6">
-                                        {!! btnToCreate('menus/create', 'New Menu') !!}
+                                        {!! btnToCreate('menus', 'New Menu') !!}
                                     </div>
                                 @endif
 
@@ -45,15 +45,12 @@
                                         <td>{{ $menu->menuSite->display_name }}</td>
                                         <td>{{ $menu->description }}</td>
                                         <td class="text-right">
-
                                             @if( hasPermission('edit-menu', $permissions) )
-                                            <a href="{{ url( config('constants.backend-url') . 'permissions/' . $menu->id . '/edit') }}" class="btn btn-primary btn-mini">
-                                                <i class="fa fa-wrench"></i>
-                                            </a>
+                                                {!! btnToEdit('menus', $menu->id) !!}
                                             @endif
 
                                             @if( hasPermission('delete-menu', $permissions) )
-                                            {!! btnDelete('menus', $menu->id) !!}
+                                                {!! btnDelete('menus', $menu->id) !!}
                                             @endif
                                         </td>
                                     </tr>
@@ -78,12 +75,12 @@
     <script src="{{ url('js/jquery.confirm-action.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('.btnSubmitDelete').confirmAction({
+            $('.{!! btnDeleteHtmlClass() !!}').confirmAction({
                 title: {
                     text: 'Deletion confirm!!'
                 },
                 message: {
-                    html: 'You are about to delete a permission.<br><br> Are you sure?'
+                    html: 'You are about to delete a menu.<br><br> Are you sure?'
                 }
             });
         });

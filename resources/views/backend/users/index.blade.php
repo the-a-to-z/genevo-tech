@@ -15,9 +15,7 @@
 
                                 @if(hasPermission('create-user', $permissions))
                                     <div class="col-md-6">
-                                        <a href="{{ URL::to(config('constants.backend-url') . 'users/create') }}" class="btn btn-primary btn-with-icon pull-right">
-                                            <i class="pe-7s-add-user"></i> <p>New User</p>
-                                        </a>
+                                        {!! btnToCreate('users', 'New user') !!}
                                     </div>
                                 @endif
 
@@ -48,9 +46,7 @@
 
                                         @if($user->role->name != 'root')
                                             @if( hasPermission('edit-user', $permissions) )
-                                                <a href="{{ url( config('constants.backend-url') . 'users/' . $user->id . '/edit') }}" class="btn btn-primary btn-mini">
-                                                    <i class="fa fa-wrench"></i>
-                                                </a>
+                                                {!! btnToEdit('users', $user->id) !!}
                                             @endif
 
                                             @if( hasPermission('delete-user', $permissions))
@@ -81,7 +77,7 @@
     <script src="{{ url('js/jquery.confirm-action.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('.btnSubmitDelete').confirmAction({
+            $('.{!! btnDeleteHtmlClass() !!}').confirmAction({
                 title: {
                     text: 'Deletion confirm!!'
                 },

@@ -76,15 +76,16 @@ class BackendController extends BaseController
     public function registerPermissionAs($permission)
     {
         if($this->hasPermission($permission) == false) {
-            Auth::logout();
-
-            return Redirect::to('login')->send();
+            $this->actionLogout();
         }
     }
 
     public function checkActionOnHimself($permission, $loggedInUserData, $actionTargetData)
     {
-        return ($loggedInUserData == $actionTargetData && $this->hasPermission($permission));
+        if(($loggedInUserData != $actionTargetData)) {
+            return true;
+        }
+        return $this->hasPermission($permission);
     }
 
     public function runFailCheckActionOnHimself($permission, $loggedInUserData, $actionTargetData)

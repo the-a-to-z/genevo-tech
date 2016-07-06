@@ -15,7 +15,7 @@
 
                                 @if(hasPermission('create-pages', $permissions))
                                     <div class="col-md-6">
-                                        {!! btnToCreate('pages/create', 'New Page') !!}
+                                        {!! btnToCreate('pages', 'New Page') !!}
                                     </div>
                                 @endif
 

@@ -6,9 +6,7 @@
         <div class="container-fluid">
             <div class="row">
 
-                <form role="form" method="POST" action="{{ url(config('constants.backend-url') . 'roles') }}">
-
-                    {{ csrf_field() }}
+                {!! openFormCreate('roles') !!}
 
                     <div class="col-md-6">
                         <div class="card">
@@ -27,8 +25,7 @@
                                                    autofocus
                                             >
 
-                                            <div class="input-error-message">{{ $errors->first('name') }}
-                                                &nbsp;</div>
+                                            {!! formError($errors->first('name')) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -40,8 +37,7 @@
                                                    name="display_name"
                                                    class="form-control">
 
-                                            <div class="input-error-message">{{ $errors->first('display_name') }}
-                                                &nbsp;</div>
+                                            {!! formError($errors->first('display_name')) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -49,9 +45,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">
-                                                Description
-                                                <span class="input-error-message">{{ $errors->first('description') }}
-                                                    &nbsp;</span>
+                                                Description {!! $errors->first('description') !!}
                                             </label>
 
                                             <textarea name="description" rows="5" class="form-control"
@@ -118,22 +112,11 @@
 
                     </div>
 
-
                     <div class="clearfix"></div>
 
-                    <footer class="form-fixed-footer">
-                        <div class="container-fluid">
-                            <button type="submit"
-                                    class="btn btn-info btn-fill pull-right m-left-5 confirmChangeRole"
-                                    id="btnSubmit">Save
-                            </button>
+                    {!! formCreateFooter('roles') !!}
 
-                            <a href="{{ url(config('constants.backend-url') . 'roles') }}"
-                               class="btn btn-danger btn-fill pull-right">Cancel</a>
-                        </div>
-                    </footer>
-
-                </form>
+                {!! closeForm() !!}
 
             </div>
         </div>

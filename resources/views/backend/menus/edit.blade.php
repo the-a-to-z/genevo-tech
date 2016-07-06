@@ -5,85 +5,212 @@
     <div class="content">
         <div class="container-fluid">
 
+            {!! openFormEdit('menus', $menu->id) !!}
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">Edit permission {{ $permission->display_name }}</h4>
+                            <h4 class="title">New menu</h4>
                         </div>
                         <div class="content">
 
-                            {!! Form::model($permission, ['method' => 'PATCH', 'action' => ['Backend\PermissionsController@update', $permission->id]]) !!}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text"
+                                               name="slug"
+                                               class="form-control text-lowercase"
+                                               autofocus
+                                               value="{{ (old('slug') ? old('slug') : $menu->slug) }}"
+                                        >
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Name</label>
-                                            <input type="text"
-                                                   name="name"
-                                                   class="form-control"
-                                                   autofocus
-                                                   value="{{ ($errors->has('name') ? old('name') : $permission->name) }}"
-                                                   readonly
-                                            >
-
-                                            <div class="input-error-message">{{ $errors->first('name') }}&nbsp;</div>
-                                        </div>
+                                        {!! formError($errors->first('name')) !!}
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Display Name</label>
-                                            <input type="display_name"
-                                                   name="display_name"
-                                                   class="form-control"
-                                                   value="{{ ($errors->has('display_name') ? old('display_name') : $permission->display_name) }}"
-                                            >
+                            </div>
 
-                                            <div class="input-error-message">{{ $errors->first('display_name') }}
-                                                &nbsp;</div>
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Display Name</label>
+                                        <input type="text"
+                                               name="name"
+                                               class="form-control"
+                                               value="{{ (old('name') ? old('name') : $menu->name) }}"
+                                        >
+
+                                        {!! formError($errors->first('name')) !!}
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Description</label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Icon</label>
 
-                                            <textarea rows="5" class="form-control" name="description">{{ ($errors->has('description') ? old('description') : $permission->description) }}</textarea>
+                                        {!! buttonChooseIcon('css_icon_class', (old('css_icon_class') ? old('css_icon_class') : $menu->css_icon_class)) !!}
 
-                                            <div class="input-error-message">{{ $errors->first('description') }}
-                                                &nbsp;
-                                            </div>
-                                        </div>
+                                        {!! formError($errors->first('css_icon_class')) !!}
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Choose Menu Position</label>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button type="submit"
-                                                class="btn btn-info btn-fill pull-right m-left-5"
-                                                id="btnSubmit">Save
-                                        </button>
+                                        <select name="menu_position_id" class="form-control">
+                                            <option></option>
 
-                                        <a href="{{ url(config('constants.backend-url') . 'users') }}"
-                                           class="btn btn-danger btn-fill pull-right">Cancel</a>
+                                            @foreach($allMenuPositions as $menuPosition)
+                                                <option {{ ((old('menu_position_id') ? old('menu_position_id')  : $menu->menu_position_id) == $menuPosition->id ? 'selected' : '') }}
+                                                        value="{{ $menuPosition->id }}">
+                                                    {{ $menuPosition->display_name }}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+
+                                        {!! formError($errors->first('menu_position_id')) !!}
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description {!! formError($errors->first('description')) !!}</label>
 
-                            {!! Form::close() !!}
+                                        <textarea rows="5" class="form-control" name="description">{{ (old('description') ? old('description') : $menu->description ) }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Permission and Site</h4>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        @foreach($allMenuSites as $menuSite)
+
+                                            <div class="radio form-inline m-right-30">
+                                                <label class="text-transform-default">
+                                                    <input type="radio"
+                                                           name="menu_site_id"
+                                                           data-toggle="radio"
+                                                           value="{{ $menuSite->id }}"
+                                                           data-name="{{ $menuSite->name }}"
+                                                            {{ (old('menu_site_id') ? old('menu_site_id') : $menu->menu_site_id ) == $menuSite->id ? ' checked' : '' }}>
+                                                    {{ $menuSite->display_name }}
+                                                </label>
+                                            </div>
+
+                                        @endforeach
+
+                                        {!! formError($errors->first('menu_site_id')) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="permissionListContainer">
+                                <div class="header">
+                                    <h4 class="title">Choose a permission for the menu</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="table-full-width" id="permissionList">
+                                        <table class="table table-checkbox">
+                                            <tbody>
+
+                                            @foreach($allPermissions as $permission)
+
+                                                <tr>
+                                                    <td class="td-only-checkbox">
+                                                        <label class="radio">
+                                                            <span class="icons">
+                                                                <span class="first-icon fa fa-circle-o"></span>
+                                                                <span class="second-icon fa fa-dot-circle-o"></span>
+                                                            </span>
+                                                            <input type="radio" name="permission_id"
+                                                                   value="{{ $permission->id }}"
+                                                                   data-toggle="radio"
+                                                                   {{ (old('permission_id') ? old('permission_id') : $menu->permission_id) == $permission->id ? ' checked' : '' }}
+                                                            >
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        {{ $permission->display_name }}
+                                                        @if($permission->description)
+                                                            (
+                                                            <span class="description">{{ $permission->display_name }}</span>
+                                                            )
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="footer">
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! btnToCreate('permissions', 'New permission') !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
+
+            {!! formEditFooter('menus') !!}
+
+            {!! closeForm() !!}
 
         </div>
     </div>
+
+@endsection
+
+@section('script')
+
+    <script>
+        $(document).ready(function () {
+            togglePermissionList();
+
+            function togglePermissionList() {
+                if($('input[name="menu_site_id"]:checked').data('name') == 'backend') {
+                    $('#permissionListContainer').slideDown();
+                } else {
+                    $('#permissionListContainer').slideUp();
+                }
+            }
+
+            $('input[name="menu_site_id"]').change(function () {
+                togglePermissionList();
+            });
+        });
+    </script>
 
 @endsection

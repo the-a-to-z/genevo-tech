@@ -15,9 +15,7 @@
 
                                 @if(hasPermission('create-permission', $permissions))
                                     <div class="col-md-6">
-                                        <a href="{{ URL::to(config('constants.backend-url') . 'permissions/create') }}" class="btn btn-primary btn-with-icon pull-right">
-                                            <i class="pe-7s-plus"></i> <p>New Permission</p>
-                                        </a>
+                                        {!! btnToCreate('permissions', 'New Permission') !!}
                                     </div>
                                 @endif
 
@@ -45,9 +43,7 @@
                                         <td class="text-right">
 
                                             @if( hasPermission('edit-permission', $permissions) )
-                                            <a href="{{ url( config('constants.backend-url') . 'permissions/' . $permission->id . '/edit') }}" class="btn btn-primary btn-mini">
-                                                <i class="fa fa-wrench"></i>
-                                            </a>
+                                                {!! btnToEdit('permissions', $permission->id) !!}
                                             @endif
 
                                             @if( hasPermission('delete-permission', $permissions) )
@@ -76,7 +72,7 @@
     <script src="{{ url('js/jquery.confirm-action.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('.btnSubmitDelete').confirmAction({
+            $('.{!! btnDeleteHtmlClass() !!}').confirmAction({
                 title: {
                     text: 'Deletion confirm!!'
                 },

@@ -79,3 +79,29 @@
 .bold {
     font-weight: 600;
 }
+
+#permissionListContainer {
+    display: none;
+}
+
+.choose-icon .icon {
+    font-size: 36px;
+    color: #007aff;
+    vertical-align: middle;
+    padding-right: 10px;
+    margin-top: -7px;
+}
+
+#iconModal .modal-content {
+    border-radius: 0;
+}
+
+#iconModal .font-icon-detail {
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    #iconModal .modal-dialog {
+        width: 90%;
+    }
+}
