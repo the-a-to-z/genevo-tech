@@ -8,6 +8,7 @@ use App\MenuSite;
 use App\Permission;
 use App\Role;
 use App\RolePermission;
+use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 
-class MenusController extends BackendController
+class SettingsController extends BackendController
 {
 
     public function __construct()
@@ -33,8 +34,8 @@ class MenusController extends BackendController
     {
         $this->registerPermissionAs('view-menus');
 
-        return view('backend.menus.index')->with([
-            'allMenus' => Menu::with('menuPosition', 'menuSite', 'permission')->get()
+        return view('backend.settings.index')->with([
+            'allSettings' => Setting::all()
         ]);
     }
 

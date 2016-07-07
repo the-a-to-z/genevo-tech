@@ -13,7 +13,7 @@
                                     <h4 class="title">Manage Pages</h4>
                                 </div>
 
-                                @if(hasPermission('create-pages', $permissions))
+                                @if(hasPermission('create-page', $permissions))
                                     <div class="col-md-6">
                                         {!! btnToCreate('pages', 'New Page') !!}
                                     </div>
@@ -74,12 +74,12 @@
     <script src="{{ url('js/jquery.confirm-action.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('.btnSubmitDelete').confirmAction({
+            $('.{!! btnDeleteHtmlClass() !!}').confirmAction({
                 title: {
                     text: 'Deletion confirm!!'
                 },
                 message: {
-                    html: 'You are about to delete a permission.<br><br> Are you sure?'
+                    html: 'You are about to delete a page. <br><br>If page is moved, the menu which links to this page will lead to 404 page.<br><br> Are you sure?'
                 }
             });
         });

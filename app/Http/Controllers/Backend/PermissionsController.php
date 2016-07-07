@@ -77,7 +77,7 @@ class PermissionsController extends BackendController
 
         //always add new permission for root
         $permission = new RolePermission();
-        $permission->addPermissionForRoot($permission_inserted_id);
+        $permission->replacePermissionForRoot($permission_inserted_id);
 
         Session::flash('flash_message', 'Permission has been created!');
 

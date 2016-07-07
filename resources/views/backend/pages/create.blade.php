@@ -5,160 +5,131 @@
     <div class="content">
         <div class="container-fluid">
 
+            {!! openFormCreate('pages') !!}
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">New menu</h4>
+                            <h4 class="title">New page</h4>
                         </div>
                         <div class="content">
 
-                            {!! openFormCreate('menus') !!}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text"
+                                               name="name"
+                                               class="form-control"
+                                               autofocus
+                                               value="{{ ($errors->has('name') ? old('name') : '') }}"
+                                        >
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Name</label>
-                                            <input type="text"
-                                                   name="slug"
-                                                   class="form-control text-lowercase"
-                                                   autofocus
-                                                   readonly
-                                                   value="{{ (old('slug') ? old('slug') : '') }}"
-                                            >
-
-                                            <div class="input-error-message">{{ $errors->first('name') }}&nbsp;</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Display Name</label>
-                                            <input type="text"
-                                                   name="name"
-                                                   class="form-control"
-                                                   value="{{ (old('name') ? old('name') : '') }}"
-                                            >
-
-                                            <div class="input-error-message">{{ $errors->first('display_name') }}
-                                                &nbsp;</div>
-                                        </div>
+                                        {!! formError($errors->first('name')) !!}
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Icon</label>
-                                            <input type="text"
-                                                   name="css_icon_class"
-                                                   class="form-control"
-                                                   value="{{ (old('css_icon_class') ? old('css_icon_class') : '') }}"
-                                            >
-                                            <div class="input-error-message">{{ $errors->first('css_icon_class') }} &nbsp;</div>
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Display Name</label>
+                                        <input type="text"
+                                               name="display_name"
+                                               class="form-control"
+                                               autofocus
+                                               value="{{ ($errors->has('display_name') ? old('display_name') : '') }}"
+                                        >
+
+                                        {!! formError($errors->first('display_name')) !!}
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Choose Menu Position</label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description {!! formErrorInline($errors->first('description')) !!}</label>
 
-                                            <select name="menu_position_id" class="form-control">
-                                                <option></option>
+                                        <textarea rows="5" class="form-control" name="description">{{ ($errors->has('description') ? old('description') : '') }}</textarea>
 
-                                                @foreach($allMenuPositions as $menuPosition)
-                                                    <option {{ (old('menu_position_id') == $menuPosition->id ? 'selected' : '') }} value="{{ $menuPosition->id }}">
-                                                        {{ $menuPosition->display_name }}
-                                                    </option>
-                                                @endforeach
-
-                                            </select>
-
-                                            <div class="input-error-message">{{ $errors->first('menu_position_id') }}
-                                                &nbsp;</div>
-                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Choose Menu Site</label>
-
-                                            <select name="menu_site_id" class="form-control">
-                                                <option></option>
-
-                                                @foreach($allMenuSites as $menuSite)
-                                                    <option {{ (old('menu_site_id') == $menuSite->id ? 'selected' : '') }} value="{{ $menuSite->id }}">{{ $menuSite->display_name }}</option>
-                                                @endforeach
-
-                                            </select>
-
-                                            <div class="input-error-message">{{ $errors->first('menu_site_id') }}
-                                                &nbsp;</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Choose Permission</label>
-
-                                            <select name="permission_id" class="form-control">
-                                                <option></option>
-
-                                                @foreach($allPermissions as $permission)
-                                                    <option {{ (old('permission_id') == $permission->id ? 'selected' : '') }} value="{{ $permission->id }}">{{ $permission->display_name }}</option>
-                                                @endforeach
-
-                                            </select>
-
-                                            <div class="input-error-message">{{ $errors->first('permission_id') }}
-                                                &nbsp;</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Description</label>
-
-                                            <textarea rows="5" class="form-control" name="description">{{ (old('description') ? old('description') : '') }}</textarea>
-
-                                            <div class="input-error-message">{{ $errors->first('description') }}
-                                                &nbsp;
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button type="submit"
-                                                class="btn btn-info btn-fill pull-right m-left-5"
-                                                id="btnSubmit">Save
-                                        </button>
-
-                                        <a href="{{ url(config('constants.backend-url') . 'users') }}"
-                                           class="btn btn-danger btn-fill pull-right">Cancel</a>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix"></div>
-
-                            {!! closeForm() !!}
-
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="content">
+
+                            <div id="fieldChooser" tabIndex="1" class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>All Modules</label>
+
+                                        <div id="sourceFields" class="field-chooser-source">
+                                            @foreach($modules as $module)
+                                                <div>
+                                                    <input type="hidden" disabled name="module_id[]" value="{{ $module->id }}">
+                                                    {{ $module->display_name }}
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Modules Selected</label>
+
+                                        <div id="destinationFields" class="field-chooser-target">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="clearfix">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {!! formCreateFooter('pages') !!}
+
+            {!! closeForm() !!}
+
         </div>
     </div>
+
+@endsection
+
+@section('style')
+    <link href="{{ url('css/jquery-ui.css') }}" rel="stylesheet"/>
+    <link href="{{ url('vendors/fieldChooser-master/style.css') }}" rel="stylesheet"/>
+@endsection
+
+@section('script')
+
+    <script src="{{ url('js/jquery-ui.js') }}"></script>
+    <script src="{{ url('vendors/fieldChooser-master/fieldChooser.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            var $sourceFields = $("#sourceFields");
+            var $destinationFields = $("#destinationFields");
+            var $chooser = $("#fieldChooser").fieldChooser(sourceFields, destinationFields);
+
+            $chooser.on('listChanged', function () {
+                $('.field-chooser-source input[type="hidden"]').attr('disabled', true);
+                $('.field-chooser-target input[type="hidden"]').attr('disabled', false);
+            })
+        });
+    </script>
 
 @endsection

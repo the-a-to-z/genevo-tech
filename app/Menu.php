@@ -46,6 +46,7 @@ class Menu extends Authenticatable
                     $join->on('role_permission.permission_id', '=', 'permission.id');
                     $join->on('role_permission.role_id', '=', DB::raw($role));
                 })
+                ->orderBy('default_order', 'menu.id')
                 ->get();
 
     }

@@ -13,7 +13,7 @@
                                     <h4 class="title">Manage Modules</h4>
                                 </div>
 
-                                @if(hasPermission('create-modules', $permissions))
+                                @if(hasPermission('create-module', $permissions))
                                     <div class="col-md-6">
                                         {!! btnToCreate('modules', 'New Module') !!}
                                     </div>
@@ -53,7 +53,7 @@
                                             @endif
 
                                             @if( hasPermission('delete-module', $permissions) )
-                                            {!! btnDelete('pages', $page->id) !!}
+                                                {!! btnDelete('modules', $module->id) !!}
                                             @endif
                                         </td>
                                     </tr>
@@ -78,12 +78,12 @@
     <script src="{{ url('js/jquery.confirm-action.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('.btnSubmitDelete').confirmAction({
+            $('.{!! btnDeleteHtmlClass() !!}').confirmAction({
                 title: {
                     text: 'Deletion confirm!!'
                 },
                 message: {
-                    html: 'You are about to delete a module.<br><br> Are you sure?'
+                    html: 'You are about to delete a module.<br><br>This module will also be deleted from any page. <br><br> Are you sure?'
                 }
             });
         });

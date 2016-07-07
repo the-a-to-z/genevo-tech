@@ -110,18 +110,7 @@
                 </div>
             </div>
 
-
-            <footer class="form-fixed-footer">
-                <div class="container-fluid">
-                    <button type="submit"
-                            class="btn btn-info btn-fill pull-right m-left-5"
-                            id="btnSubmit">Update
-                    </button>
-
-                    <a href="{{ url(config('constants.backend-url') . 'roles') }}"
-                       class="btn btn-danger btn-fill pull-right">Cancel</a>
-                </div>
-            </footer>
+            {!! formEditFooter('pages') !!}
 
             {!! closeForm() !!}
 

@@ -22,6 +22,8 @@ Route::group(['prefix' => config('constants.url.backend-prefix'), 'middleware' =
 
     Route::resource('pages', 'Backend\PagesController');
 
+    Route::resource('settings', 'Backend\SettingsController');
+
     /**
      * Modules
      */
