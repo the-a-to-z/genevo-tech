@@ -20,6 +20,10 @@ function backendUrlRoute($moreRouteUrls, $params) {
     return route(backendUrlPathRoute() . $moreRouteUrls, $params);
 }
 
+function uploadPath($extra = ''){
+	return url('uploads/' . $extra);
+}
+
 
 /***********************************************************************************************************************
  *                                      Permission helpers

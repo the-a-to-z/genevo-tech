@@ -22,7 +22,7 @@ class PageModule extends Authenticatable
 
     protected $modulesMapping = [
         'about-description' => 'App\Modules\AboutDescription',
-        'home-slideshow' => 'App\Modules\AboutDescription'
+        'home-slideshow' => 'App\Modules\HomeSlideshow'
     ];
 
     public function module()
