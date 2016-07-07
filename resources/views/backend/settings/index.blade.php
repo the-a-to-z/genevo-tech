@@ -58,7 +58,7 @@
                                                    data-tipso="{{ $errors->first($setting->name) }}">
                                         @else
                                                 <input type="text"
-                                                       class="td-input hasError"
+                                                       class="hasError"
                                                        name="{{ $setting->name }}"
                                                        value="{{ $setting->value }}"
                                                        data-tipso="No error">
@@ -107,7 +107,12 @@
 
         $('.hasError').tipso({
             background: '#fc727a',
-            position: 'right'
+            position: 'right',
+            onHide: function(elm){
+                elm.removeClass('hasError');
+                elm.removeClass('tipso_style');
+                elm.removeAttr('data-tipso');
+            }
         });
 
         $('.hasError').tipso('show');
