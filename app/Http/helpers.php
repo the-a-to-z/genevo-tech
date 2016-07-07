@@ -92,6 +92,14 @@ function btnSubmitEditHtmlId() {
     return 'btnSubmitEdit';
 }
 
+function btnSubmitCreate($text = 'Create') {
+    return '<button type="submit" class="btn btn-info btn-fill pull-right m-left-5" id="' . btnSubmitCreateHtmlId(). '">' . $text. '</button>';
+}
+
+function btnSubmitEdit($text = 'Update') {
+    return '<button type="submit" class="btn btn-info btn-fill pull-right m-left-5" id="' . btnSubmitEditHtmlId(). '">' . $text. '</button>';
+}
+
 function formEditHtmlId() {
     return 'formEdit';
 }
@@ -119,8 +127,23 @@ function openFormCreate($actionUrl) {
     return $markup;
 }
 
-function openFormEdit($actionUrl, $param) {
-    $markup = '<form method="POST" action="' . backendUrl($actionUrl . '/' . $param). '" accept-charset="UTF-8" id=' . formEditHtmlId(). '>';
+function openFormEdit($actionUrl, $param, $defaultUrl = true) {
+    $markup = '<form method="POST" action="' . backendUrl($defaultUrl ? ($actionUrl . '/' . $param) : $actionUrl) . '" accept-charset="UTF-8" id=' . formEditHtmlId(). ' enctype="multipart/form-data">';
+    $markup .= '<input name="_method" type="hidden" value="PATCH">';
+    $markup .= csrf_field();
+
+    return $markup;
+}
+
+function openFormUploadCreate($actionUrl) {
+    $markup = '<form role="form" method="POST" action="' . backendUrl($actionUrl). '" id=' . formCreateHtmlId() . '>';
+    $markup .= csrf_field();
+
+    return $markup;
+}
+
+function openFormUploadEdit($actionUrl, $param, $defaultUrl = true) {
+    $markup = '<form method="POST" action="' . backendUrl($defaultUrl ? ($actionUrl . '/' . $param) : $actionUrl) . '" accept-charset="UTF-8" id=' . formEditHtmlId(). ' enctype="multipart/form-data">';
     $markup .= '<input name="_method" type="hidden" value="PATCH">';
     $markup .= csrf_field();
 
@@ -134,7 +157,7 @@ function closeForm() {
 function formCreateFooter($action) {
     $markup =  '<footer class="form-fixed-footer">';
     $markup .= '<div class="container-fluid">';
-    $markup .= '<button type="submit" class="btn btn-info btn-fill pull-right m-left-5" id="' . btnSubmitCreateHtmlId(). '">Create</button>';
+    $markup .= btnSubmitCreate();
     $markup .= '<a href="' . backendUrl($action). '" class="btn btn-danger btn-fill pull-right">Cancel</a>';
     $markup .= '</div>';
     $markup .= '</footer>';
@@ -145,7 +168,7 @@ function formCreateFooter($action) {
 function formEditFooter($action) {
     $markup =  '<footer class="form-fixed-footer">';
     $markup .= '<div class="container-fluid">';
-    $markup .= '<button type="submit" class="btn btn-info btn-fill pull-right m-left-5" id="' . btnSubmitEditHtmlId(). '">Update</button>';
+    $markup .= btnSubmitEdit();
     $markup .= '<a href="' . backendUrl($action). '" class="btn btn-danger btn-fill pull-right">Cancel</a>';
     $markup .= '</div>';
     $markup .= '</footer>';
