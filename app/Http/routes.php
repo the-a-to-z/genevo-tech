@@ -26,6 +26,8 @@ Route::group(['prefix' => config('constants.url.backend-prefix'), 'middleware' =
      * Modules
      */
     Route::resource('modules/about-description', 'Backend\Modules\AboutDescriptionController');
+	
+	Route::resource('modules/home-slideshow', 'Backend\Modules\HomeSlideshowController');
 
     Route::resource('modules', 'Backend\ModulesController');
 
