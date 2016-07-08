@@ -120,7 +120,7 @@ class SettingsController extends BackendController
      */
     public function edit($id)
     {
-        $this->registerPermissionAs('edit-menu');
+        $this->registerPermissionAs('edit-setting');
 
         $menu = Menu::find($id);
 
@@ -141,39 +141,24 @@ class SettingsController extends BackendController
      */
     public function update(Request $request, $id)
     {
-        $this->registerPermissionAs('edit-menu');
+        $this->registerPermissionAs('edit-setting');
 
-        $this->validate($request, [
-            'slug' => 'required|unique:menus',
-            'name' => 'required',
-            'menu_position_id' => 'required',
-            'menu_site_id' => 'required',
-        ]);
+        $inputs = $request->all();
 
-        $input = $request->all();
+        unset($inputs['_token']);
+        unset($inputs['_method']);
 
-        $menu = new Menu();
+        foreach ($inputs as $name => $value) {
+            $this->validate($request, [
+                $name => 'required'
+            ]);
 
-        $menu->fill([
-            'slug' => strtolower($input['slug']),
-            'name' => ucfirst($input['name']),
-            'description' => $input['description'],
-            'css_icon_class' => $input['css_icon_class'],
-            'menu_position_id' => $input['menu_position_id'],
-            'menu_site_id' => $input['menu_site_id'],
-            'permission_id' => (isset($input['permission_id']) ? $input['permission_id'] : null)
-        ])->save();
-
-        $menuSite = MenuSite::find($input['menu_site_id']);
-
-        if($menuSite->name == 'backend') {
-            //always add new permission for root 
-
-            $permission = new RolePermission();
-            $permission->replacePermissionForRoot($input['permission_id']);
+            Setting::where('name', $name)->update([
+                'value' => $value
+            ]);
         }
 
-        Session::flash('flash_message', 'Menu has been saved!');
+        Session::flash('flash_message', 'Settings have been saved!');
 
         return redirect()->back();
     }

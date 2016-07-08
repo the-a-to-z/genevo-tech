@@ -5,7 +5,7 @@
     <div class="content">
         <div class="container-fluid">
 
-            {!! openFormEdit('settings', null) !!}
+            {!! openFormEdit('settings/update', null, false) !!}
 
             <div class="alert alert-danger">
                 <span><b> Warning - </b> Please be sure that everything are correct before saving the settings.</span>
@@ -20,9 +20,9 @@
                                     <h4 class="title">All Settings</h4>
                                 </div>
 
-                                @if(hasPermission('create-setting', $permissions))
+                                @if(hasPermission('edit-setting', $permissions))
                                     <div class="col-md-6">
-                                        {!! btnToCreate('settings', 'New Setting') !!}
+                                        {!! btnSubmitEdit('Save Settings') !!}
                                     </div>
                                 @endif
 
@@ -58,10 +58,8 @@
                                                    data-tipso="{{ $errors->first($setting->name) }}">
                                         @else
                                                 <input type="text"
-                                                       class="hasError"
                                                        name="{{ $setting->name }}"
-                                                       value="{{ $setting->value }}"
-                                                       data-tipso="No error">
+                                                       value="{{ $setting->value }}">
                                         @endif
 
                                         </td>
