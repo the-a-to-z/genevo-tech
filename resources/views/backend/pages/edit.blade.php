@@ -136,9 +136,15 @@
             var $chooser = $("#fieldChooser").fieldChooser(sourceFields, destinationFields);
 
             $chooser.on('listChanged', function () {
-                $('.field-chooser-source input[type="hidden"]').attr('disabled', true);
-                $('.field-chooser-target input[type="hidden"]').attr('disabled', false);
-            })
+                $('.field-chooser-source').find('input[type="hidden"]').attr('disabled', true);
+                $('.field-chooser-target').find('input[type="hidden"]').attr('disabled', false);
+            });
+            
+            $('#formEdit').submit(function () {
+                $('.field-chooser-source').find('input[type="hidden"]').attr('disabled', true);
+                $('.field-chooser-target').find('input[type="hidden"]').attr('disabled', false);
+            });
+
         });
     </script>
 

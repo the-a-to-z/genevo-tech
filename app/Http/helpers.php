@@ -21,7 +21,11 @@ function backendUrlRoute($moreRouteUrls, $params) {
 }
 
 function uploadPath($extra = ''){
-	return url('uploads/' . $extra);
+	return 'uploads/' . $extra;
+}
+
+function uploadUrl($extra = ''){
+    return url('uploads/' . $extra);
 }
 
 
@@ -136,7 +140,7 @@ function openFormEdit($actionUrl, $param, $defaultUrl = true) {
 }
 
 function openFormUploadCreate($actionUrl) {
-    $markup = '<form role="form" method="POST" action="' . backendUrl($actionUrl). '" id=' . formCreateHtmlId() . '>';
+    $markup = '<form role="form" method="POST" action="' . backendUrl($actionUrl). '" id=' . formCreateHtmlId() . ' enctype="multipart/form-data">';
     $markup .= csrf_field();
 
     return $markup;

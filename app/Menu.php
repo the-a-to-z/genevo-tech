@@ -16,7 +16,8 @@ class Menu extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'slug', 'css_icon_class', 'menu_position_id', 'menu_site_id', 'permission_id', 'active'
+        'page_id', 'url', 'module_id', 'name', 'description', 'slug', 'css_icon_class',
+        'menu_position_id', 'menu_site_id', 'permission_id', 'active'
     ];
 
     public function permission()
@@ -64,6 +65,35 @@ class Menu extends Authenticatable
     public function page()
     {
         return $this->belongsTo('App\Page');
+    }
+
+    public function module()
+    {
+        return $this->belongsTo('App\Module');
+    }
+
+    public function findFrontend()
+    {
+        return
+            DB::table('menus')
+                ->select(
+                    'menus.*',
+                    'modules.name as module_name'
+                )
+                ->join('menu_site', 'menu_site.id', '=', 'menus.menu_site_id')
+                ->join('menu_position', 'menu_position.id', '=', 'menus.menu_position_id')
+                ->leftJoin('modules', 'modules.id', '=', 'menus.module_id')
+                ->where('menu_site.name', 'frontend')
+                ->where('menu_position.name', 'top')
+                ->get();
+    }
+
+    public function findBySlug($slug)
+    {
+        return
+            DB::table('menus')
+                ->where('slug', $slug)
+                ->first();
     }
 
 }

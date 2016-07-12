@@ -16,8 +16,8 @@
     font-weight: normal;
 }
 
-.featured-item .desc {
-    color: #aaaaaa;
+.featured-item .desc, .featured-item .desc * {
+    color: #777;
 }
 
 .featured-item.border-box {
@@ -30,7 +30,11 @@
 .featured-item.border-box:hover {
     border: 1px solid transparent;
     background: #374046;
-    color: #7e7e7e;
+    color: #ccc;
+}
+
+.featured-item.border-box:hover * {
+    color: #ccc;
 }
 
 .featured-item.border-box:hover h4 {

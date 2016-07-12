@@ -60,6 +60,10 @@
     text-align: center;
 }
 
+.btnToCreate.pull-right {
+    margin-left: 10px;
+}
+
 .btn-mini {
     padding: 4px 8px;
 }
@@ -80,7 +84,7 @@
     font-weight: 600;
 }
 
-#permissionListContainer {
+#permissionListContainer, #pageListContainer, #urlInputContainer, #moduleListContainer, #selectMenuLink {
     display: none;
 }
 
@@ -92,17 +96,29 @@
     margin-top: -7px;
 }
 
-#iconModal .modal-content {
+.modal.modal-max .modal-content,
+.modal.modal-mid .modal-content {
     border-radius: 0;
 }
 
-#iconModal .font-icon-detail {
+.modal.modal-max .font-icon-detail,
+.modal.modal-mid .font-icon-detail {
     cursor: pointer;
+}
+.modal.modal-max .close,
+.modal.modal-mid .close {
+    font-weight: 100 !important;
+    font-family: monospace !important;
 }
 
 @media (min-width: 768px) {
-    #iconModal .modal-dialog {
-        width: 90%;
+    .modal.modal-max .modal-dialog {
+        width: 95%;
+        margin: 15px auto
+    }
+
+    .modal.modal-mid .modal-dialog {
+        max-width: 600px;
     }
 }
 
@@ -144,4 +160,22 @@
     padding-right: 16px!important;
     border-width: 0 0 0 1px;
     cursor: text;
+}
+
+/**
+* jquery filer override
+*/
+.jFiler-items-grid .jFiler-item {
+    float: none;
+}
+
+.jFiler-items-grid .jFiler-item .jFiler-item-container .jFiler-item-thumb {
+    width: 379px;
+    height: 217px;
+    margin: 0 auto;
+}
+
+/*Tinymce*/
+.mce-panel {
+    border-color: #f0f0f0!important;
 }

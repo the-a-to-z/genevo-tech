@@ -356,7 +356,7 @@ function iconList() {
         'pe-7s-airplay'
     ];
 
-    var iconModal = '<div class="modal fade" id="iconModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">';
+    var iconModal = '<div class="modal fade modal-max" id="iconModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">';
     iconModal +='<div class="modal-dialog" role="document">';
     iconModal += '<div class="modal-content">';
     iconModal += '<div class="modal-header">';

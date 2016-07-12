@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 
-    @foreach($modules as $name => $module)
+    @foreach($pageModules as $moduleName => $module)
 
-        @include('modules.' . $name)
+       @include('modules.widgets.' . $module['widget'], ['data' => $module['data'], 'moduleName' => $moduleName])
 
     @endforeach
 

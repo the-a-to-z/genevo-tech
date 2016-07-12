@@ -75,6 +75,7 @@ class ModulesController extends BackendController
 
         $module->fill([
             'name' => strtolower($input['name']),
+            'widget_name' => strtolower($input['widget_name']),
             'display_name' => ucfirst($input['display_name']),
             'description' => $input['description']
         ])->save();
@@ -135,6 +136,8 @@ class ModulesController extends BackendController
 
         $page->fill([
             'name' => ucfirst($input['name']),
+            'display_name' => ucfirst($input['display_name']),
+            'widget_name' => strtolower($input['widget_name']),
             'description' => $input['description'],
         ])->save();
 

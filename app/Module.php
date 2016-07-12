@@ -16,12 +16,17 @@ class Module extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'display_name', 'active'
+        'name', 'display_name', 'widget_name'
     ];
 
     public function pageModule()
     {
         return $this->hasMany('App\PageModule');
+    }
+
+    public function menu()
+    {
+        return $this->hasMany('App\Menu');
     }
 
     public function findByNotPageId($id)

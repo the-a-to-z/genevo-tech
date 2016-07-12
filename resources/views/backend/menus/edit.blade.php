@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Name</label>
+                                        <label>Slug</label>
                                         <input type="text"
                                                name="slug"
                                                class="form-control text-lowercase"
@@ -125,6 +125,72 @@
                                 </div>
                             </div>
 
+                            {{--Menu link--}}
+                            <div class="row" id="selectMenuLink">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Link menu to</label>
+                                        <div>
+                                            <div class="radio form-inline m-right-30">
+                                                <label class="text-transform-default">
+                                                    <input type="radio"
+                                                           name="link_menu_to"
+                                                           data-toggle="radio"
+                                                           value="page"
+                                                           data-name="link_to_menu"
+                                                        @if(old('link_menu_to'))
+                                                            {{ (old('link_menu_to') == 'page') ? 'checked' : '' }}
+                                                        @else
+                                                            {{ ($menu->page_id) ? 'checked' : '' }}
+                                                        @endif
+                                                    >
+                                                    Page
+                                                </label>
+                                            </div>
+
+                                            <div class="radio form-inline m-right-30">
+                                                <label class="text-transform-default">
+                                                    <input type="radio"
+                                                           name="link_menu_to"
+                                                           data-toggle="radio"
+                                                           value="module"
+                                                           data-name="link_menu_to"
+                                                           @if(old('link_menu_to'))
+                                                                {{ (old('link_menu_to') == 'module') ? 'checked' : '' }}
+                                                           @else
+                                                               {{ ($menu->module_id) ? 'checked' : '' }}
+                                                           @endif
+                                                    >
+                                                    Module
+                                                </label>
+                                            </div>
+
+                                            <div class="radio form-inline m-right-30">
+                                                <label class="text-transform-default">
+                                                    <input type="radio"
+                                                           name="link_menu_to"
+                                                           data-toggle="radio"
+                                                           value="url"
+                                                           data-name="link_menu_to"
+                                                            @if(old('link_menu_to'))
+                                                                {{ (old('link_menu_to') == 'url') ? 'checked' : '' }}
+                                                            @else
+                                                                {{ ($menu->url) ? 'checked' : '' }}
+                                                            @endif
+                                                    >
+                                                    Url
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                        {!! formError($errors->first('link_menu_to')) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            {{--Menu link--}}
+
+                            {{--Permission list--}}
                             <div class="row" id="permissionListContainer">
                                 <div class="header">
                                     <h4 class="title">Choose a permission for the menu</h4>
@@ -177,6 +243,126 @@
 
                                 </div>
                             </div>
+                            {{--Permission list--}}
+
+                            <div class="row" id="pageListContainer">
+                                <div class="col-md-12">
+                                    <div class="table-full-width" id="permissionList">
+                                        <table class="table table-checkbox">
+                                            <tbody>
+
+                                            @foreach($allPages as $page)
+
+                                                <tr>
+                                                    <td class="td-only-checkbox">
+                                                        <label class="radio">
+                                                            <span class="icons">
+                                                                <span class="first-icon fa fa-circle-o"></span>
+                                                                <span class="second-icon fa fa-dot-circle-o"></span>
+                                                            </span>
+                                                            <input type="radio"
+                                                                   name="page_id"
+                                                                   value="{{ $page->id }}"
+                                                                   data-toggle="radio"
+                                                                    {{ (old('page_id') ? old('page_id') : $menu->page_id) == $page->id ? ' checked' : '' }}
+                                                            >
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        {{ $page->display_name }}
+                                                        @if($page->description)
+                                                            (
+                                                            <span class="description">{{ $page->display_name }}</span>
+                                                            )
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="footer">
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! btnToCreate('pages', 'New page') !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {{--Module list--}}
+                            <div class="row" id="moduleListContainer">
+                                <div class="col-md-12">
+                                    <div class="table-full-width" id="permissionList">
+                                        <table class="table table-checkbox">
+                                            <tbody>
+
+                                            @foreach($allModules as $module)
+
+                                                <tr>
+                                                    <td class="td-only-checkbox">
+                                                        <label class="radio">
+                                                            <span class="icons">
+                                                                <span class="first-icon fa fa-circle-o"></span>
+                                                                <span class="second-icon fa fa-dot-circle-o"></span>
+                                                            </span>
+                                                            <input type="radio"
+                                                                   name="module_id"
+                                                                   value="{{ $module->id }}"
+                                                                   data-toggle="radio"
+                                                                    {{ (old('module_id') ? old('module_id') : $menu->module_id) == $module->id ? ' checked' : '' }}
+                                                            >
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        {{ $module->display_name }}
+                                                    </td>
+                                                </tr>
+
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="footer">
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! btnToCreate('modules', 'New page') !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {{--Module list--}}
+
+                            {{--Url input--}}
+                            <div class="row" id="urlInputContainer">
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+                                        <input type="text"
+                                               name="url"
+                                               class="form-control text-lowercase"
+                                               autofocus
+                                               value="{{ (old('url') ? old('url') : $menu->url) }}"
+                                        >
+
+                                        {!! formError($errors->first('url')) !!}
+                                    </div>
+
+                                </div>
+                            </div>
+                            {{--Url input--}}
+
                         </div>
                     </div>
 
@@ -200,15 +386,63 @@
             togglePermissionList();
 
             function togglePermissionList() {
-                if($('input[name="menu_site_id"]:checked').data('name') == 'backend') {
+                var site_name = $('input[name="menu_site_id"]:checked').data('name');
+
+                $('input[name="link_menu_to"]:nth-child(1)').trigger('change');
+
+                if(site_name == 'backend') {
                     $('#permissionListContainer').slideDown();
+                    $('#selectMenuLink').slideUp();
+                } else if(site_name == 'frontend') {
+                    $('#permissionListContainer').slideUp();
+                    $('#selectMenuLink').slideDown();
                 } else {
                     $('#permissionListContainer').slideUp();
+                    $('#selectMenuLink').slideUp();
                 }
             }
 
             $('input[name="menu_site_id"]').change(function () {
                 togglePermissionList();
+                $('input[name="link_menu_to"]').attr('checked', false);
+            });
+
+            toggleLinkToMenu();
+            function toggleLinkToMenu() {
+                var value = $('input[name="link_menu_to"]:checked').val();
+
+                var pagesContainer = $('#pageListContainer');
+                var moduleContainer = $('#moduleListContainer');
+                var urlContainer = $('#urlInputContainer');
+
+                $('input[name="menu_site_id"]:nth-child(1)').trigger('change');
+
+                if(value == 'page') {
+                    pagesContainer.slideDown();
+                    moduleContainer.slideUp();
+                    urlContainer.slideUp();
+                } else if(value == 'module') {
+                    moduleContainer.slideDown();
+                    pagesContainer.slideUp();
+                    urlContainer.slideUp();
+                } else if(value == 'url') {
+                    urlContainer.slideDown();
+                    moduleContainer.slideUp();
+                    pagesContainer.slideUp()
+                } else {
+                    urlContainer.slideUp();
+                    moduleContainer.slideUp();
+                    pagesContainer.slideUp();
+
+                    urlContainer.find('input[type="radio"]').attr('checked', false);
+                    moduleContainer.find('input[type="radio"]').attr('checked', false);
+                    pagesContainer.find('input[type="radio"]').attr('checked', false);
+                }
+            }
+
+            $('input[name="link_menu_to"]').change(function () {
+                $('input[name="permission_id"]').attr('checked', false);
+                toggleLinkToMenu();
             });
         });
     </script>

@@ -192,7 +192,7 @@ iframe {
 p {
     margin: 0 0 30px;
     line-height: 30px;
-    color: #7e7e7e;
+    color: #6e6e6e;
 }
 
 p, li {
@@ -1487,7 +1487,7 @@ header.nav-block-left {
 }
 
 .page-content {
-    padding: 60px 0;
+    padding: 60px 0 30px;
     display: inline-block;
     width: 100%;
 }
@@ -1519,7 +1519,7 @@ header.nav-block-left {
 }
 
 .breadcrumb li > a {
-    color: #7e7e7e;
+    color: #6e6e6e;
 }
 
 .breadcrumb li > a:hover {
@@ -1742,7 +1742,7 @@ header.nav-block-left {
     /*font-family: 'Abel', sans-serif;*/
     font-weight: normal;
     letter-spacing: 1px;
-    color: #7e7e7e;
+    color: #6e6e6e;
 }
 
 .portfolio-with-title.portfolio-masonry .portfolio-title {
@@ -3362,7 +3362,7 @@ header li.nav-icon .cart-table-list a {
 .contact-comments label {
     font-weight: normal;
     text-transform: uppercase;
-    color: #7e7e7e;
+    color: #6e6e6e;
 }
 
 address p {
@@ -4709,4 +4709,8 @@ address p {
 
 .sss_fb_button {
     width: 200px;
+}
+
+.gray-bg p {
+    color: #444;
 }

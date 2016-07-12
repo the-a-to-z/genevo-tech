@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Name</label>
+                                        <label>Slug</label>
                                         <input type="text"
                                                name="slug"
                                                class="form-control text-lowercase"
@@ -124,6 +124,54 @@
                                 </div>
                             </div>
 
+                            <div class="row" id="selectMenuLink">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Link menu to</label>
+                                        <div>
+                                            <div class="radio form-inline m-right-30">
+                                                <label class="text-transform-default">
+                                                    <input type="radio"
+                                                           name="link_menu_to"
+                                                           data-toggle="radio"
+                                                           value="page"
+                                                           data-name="link_to_menu"
+                                                    >
+                                                    Page
+                                                </label>
+                                            </div>
+
+                                            <div class="radio form-inline m-right-30">
+                                                <label class="text-transform-default">
+                                                    <input type="radio"
+                                                           name="link_menu_to"
+                                                           data-toggle="radio"
+                                                           value="url"
+                                                           data-name="link_menu_to"
+                                                    >
+                                                    Url
+                                                </label>
+                                            </div>
+
+                                            <div class="radio form-inline m-right-30">
+                                                <label class="text-transform-default">
+                                                    <input type="radio"
+                                                           name="link_menu_to"
+                                                           data-toggle="radio"
+                                                           value="module"
+                                                           data-name="link_menu_to"
+                                                    >
+                                                    Module
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                        {!! formError($errors->first('link_menu_to')) !!}
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row" id="permissionListContainer">
                                 <div class="header">
                                     <h4 class="title">Choose a permission for the menu</h4>
@@ -175,6 +223,118 @@
 
                                 </div>
                             </div>
+
+                            <div class="row" id="pageListContainer">
+                                <div class="col-md-12">
+                                    <div class="table-full-width" id="permissionList">
+                                        <table class="table table-checkbox">
+                                            <tbody>
+
+                                            @foreach($allPages as $page)
+
+                                                <tr>
+                                                    <td class="td-only-checkbox">
+                                                        <label class="radio">
+                                                            <span class="icons">
+                                                                <span class="first-icon fa fa-circle-o"></span>
+                                                                <span class="second-icon fa fa-dot-circle-o"></span>
+                                                            </span>
+                                                            <input type="radio"
+                                                                   name="page_id"
+                                                                   value="{{ $page->id }}"
+                                                                   data-toggle="radio"
+                                                            >
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        {{ $page->display_name }}
+                                                        @if($page->description)
+                                                            (
+                                                            <span class="description">{{ $page->display_name }}</span>
+                                                            )
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="footer">
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! btnToCreate('pages', 'New page') !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row" id="moduleListContainer">
+                                <div class="col-md-12">
+                                    <div class="table-full-width" id="permissionList">
+                                        <table class="table table-checkbox">
+                                            <tbody>
+
+                                            @foreach($allModules as $module)
+
+                                                <tr>
+                                                    <td class="td-only-checkbox">
+                                                        <label class="radio">
+                                                            <span class="icons">
+                                                                <span class="first-icon fa fa-circle-o"></span>
+                                                                <span class="second-icon fa fa-dot-circle-o"></span>
+                                                            </span>
+                                                            <input type="radio"
+                                                                   name="module_id"
+                                                                   value="{{ $module->id }}"
+                                                                   data-toggle="radio"
+                                                            >
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        {{ $module->display_name }}
+                                                    </td>
+                                                </tr>
+
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="footer">
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {!! btnToCreate('modules', 'New page') !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row" id="urlInputContainer">
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+                                        <input type="text"
+                                               name="url"
+                                               class="form-control text-lowercase"
+                                               autofocus
+                                               value="{{ (old('url') ? old('url') : '') }}"
+                                        >
+
+                                        {!! formError($errors->first('url')) !!}
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -196,10 +356,46 @@
     <script>
         $(document).ready(function () {
             $('input[name="menu_site_id"]').change(function () {
-                if($('input[name="menu_site_id"]:checked').data('name') == 'backend') {
+                $('input[name="link_menu_to"]:nth-child(1)').trigger('change');
+
+                var site_name = $('input[name="menu_site_id"]:checked').data('name');
+                if(site_name == 'backend') {
                     $('#permissionListContainer').slideDown();
+                    $('#selectMenuLink').slideUp();
+                } else if(site_name == 'frontend') {
+                    $('#permissionListContainer').slideUp();
+                    $('#selectMenuLink').slideDown();
                 } else {
                     $('#permissionListContainer').slideUp();
+                    $('#selectMenuLink').slideUp();
+                }
+            });
+
+            $('input[name="link_menu_to"]').change(function () {
+                $('input[name="menu_site_id"]:nth-child(1)').trigger('change');
+
+                var value = $('input[name="link_menu_to"]:checked').val();
+
+                var pagesContainer = $('#pageListContainer');
+                var moduleContainer = $('#moduleListContainer');
+                var urlContainer = $('#urlInputContainer');
+
+                if(value == 'page') {
+                    pagesContainer.slideDown();
+                    moduleContainer.slideUp();
+                    urlContainer.slideUp();
+                } else if(value == 'module') {
+                    moduleContainer.slideDown();
+                    pagesContainer.slideUp();
+                    urlContainer.slideUp();
+                } else if(value == 'url') {
+                    urlContainer.slideDown();
+                    moduleContainer.slideUp();
+                    pagesContainer.slideUp();
+                } else {
+                    urlContainer.slideUp();
+                    moduleContainer.slideUp();
+                    pagesContainer.slideUp();
                 }
             });
         });

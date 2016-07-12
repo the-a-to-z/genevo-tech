@@ -49,7 +49,7 @@
                                         <td class="text-right">
 
                                             @if( hasPermission('edit-module', $permissions) )
-                                                {!! btnToEdit('modules/' . $module->name) !!}
+                                                {!! btnToEdit($module->widget_name . '/module/' . $module->id) !!}
                                             @endif
 
                                             @if( hasPermission('delete-module', $permissions) )

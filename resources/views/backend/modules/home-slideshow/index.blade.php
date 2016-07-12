@@ -21,7 +21,7 @@
 									<div class="col-md-4 col-sm-6 col-lg-3">
 										<div class="wrap-slide-item">
 											<div class="wrap-slide-image">
-												<img src="{{ uploadPath('slideshow/'. $slide->image) }}" alt="" />
+												<img src="{{ uploadUrl('slideshow/'. $slide->image) }}" alt="" />
 											</div>
 											<div class="wrap-slide-title">
 												{{ $slide->title }}

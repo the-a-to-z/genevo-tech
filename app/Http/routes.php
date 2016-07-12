@@ -1,7 +1,5 @@
 <?php
 
-Route::get('/', 'HomeController@index');
-
 Route::auth();
 
 /************************************************************************************
@@ -27,10 +25,36 @@ Route::group(['prefix' => config('constants.url.backend-prefix'), 'middleware' =
     /**
      * Modules
      */
-    Route::resource('modules/about-description', 'Backend\Modules\AboutDescriptionController');
-	
-	Route::resource('modules/home-slideshow', 'Backend\Modules\HomeSlideshowController');
+    foreach (config('module.widget') as $module) {
+        if(isset($module['route-custom'])) {
+            foreach ($module['route-custom'] as $routeCustom) {
+                if($routeCustom['type'] == 'post') {
+                    Route::post($routeCustom['url'], $routeCustom['action']);
+                } else if($routeCustom['type'] == 'delete') {
+                    Route::delete($routeCustom['url'], $routeCustom['action']);
+                } else if($routeCustom['type'] == 'patch') {
+                    Route::patch($routeCustom['url'], $routeCustom['action']);
+                } else {
+                    Route::get($routeCustom['url'], $routeCustom['action']);
+                }
+            }
+        }
+
+        Route::resource($module['url'], $module['route-controller']);
+    }
 
     Route::resource('modules', 'Backend\ModulesController');
 
 });
+
+/************************************************************************************
+ *                                  Frontend routes
+ ************************************************************************************/
+
+Route::get('/demo', function () {
+    return view('layouts.local-demo');
+});
+
+Route::get('/', 'PageController@index');
+
+Route::get('{slug}', 'PageController@index');

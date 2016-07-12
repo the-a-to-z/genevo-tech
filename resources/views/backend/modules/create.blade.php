@@ -47,6 +47,21 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label>Use widget</label>
+
+                                            <select name="widget_name" class="form-control">
+                                                @foreach(config('module.widget') as $widgetName => $widgetAttr)
+                                                    <option value="{{ $widgetName }}">{{ $widgetAttr['display-name'] }}</option>
+                                                @endforeach
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
                                             <label>Description {!! formError($errors->first('description')) !!}</label>
 
                                             <textarea rows="5" class="form-control" name="description">{{ (old('description') ? old('description') : '') }}</textarea>

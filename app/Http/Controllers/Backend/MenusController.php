@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Menu;
 use App\MenuPosition;
 use App\MenuSite;
+use App\Module;
+use App\Page;
 use App\Permission;
 use App\Role;
 use App\RolePermission;
@@ -52,6 +54,8 @@ class MenusController extends BackendController
             'allPermissions' => Permission::all(),
             'allMenuSites' => MenuSite::all(),
             'allMenuPositions' => MenuPosition::all(),
+            'allModules' => Module::all(),
+            'allPages' => Page::all(),
         ]);
     }
 
@@ -66,7 +70,7 @@ class MenusController extends BackendController
         $this->registerPermissionAs('create-menu');
 
         $this->validate($request, [
-            'slug' => 'required|unique:menus',
+            'slug' => 'unique:menus',
             'name' => 'required',
             'menu_position_id' => 'required',
             'menu_site_id' => 'required',
@@ -74,16 +78,51 @@ class MenusController extends BackendController
 
         $input = $request->all();
 
+        $pageId = null;
+        $moduleId = null;
+        $url = null;
+
+        $menuSite = MenuSite::find($input['menu_site_id']);
+
+        if($menuSite->name == 'frontend') {
+            $this->validate($request, [
+                'link_menu_to' => 'required',
+            ]);
+
+            if($input['link_menu_to'] == 'page') {
+                $this->validate($request, [
+                    'page_id' => 'required',
+                ]);
+
+                $pageId = $input['page_id'];
+            } else if($input['link_menu_to'] == 'module') {
+                $this->validate($request, [
+                    'module_id' => 'required',
+                ]);
+
+                $moduleId = $input['module_id'];
+            } else {
+                $this->validate($request, [
+                    'url' => 'required',
+                ]);
+
+                $url = $input['url'];
+            }
+        }
+
         $menu = new Menu();
 
         $menu->fill([
-            'slug' => strtolower($input['slug']),
+            'slug' => ($input['slug'] ? strtolower($input['slug']) : null),
             'name' => ucfirst($input['name']),
             'description' => $input['description'],
             'css_icon_class' => $input['css_icon_class'],
             'menu_position_id' => $input['menu_position_id'],
             'menu_site_id' => $input['menu_site_id'],
-            'permission_id' => (isset($input['permission_id']) ? $input['permission_id'] : null)
+            'permission_id' => (isset($input['permission_id']) ? $input['permission_id'] : null),
+            'page_id' => $pageId,
+            'module_id' => $moduleId,
+            'url' => $url,
         ])->save();
 
         $menuSite = MenuSite::find($input['menu_site_id']);
@@ -128,6 +167,8 @@ class MenusController extends BackendController
             'allPermissions' => Permission::all(),
             'allMenuSites' => MenuSite::all(),
             'allMenuPositions' => MenuPosition::all(),
+            'allModules' => Module::all(),
+            'allPages' => Page::all(),
         ]);
     }
 
@@ -143,7 +184,7 @@ class MenusController extends BackendController
         $this->registerPermissionAs('edit-menu');
 
         $this->validate($request, [
-            'slug' => 'required|unique:menus',
+            'slug' => 'unique:menus,id,'.$id,
             'name' => 'required',
             'menu_position_id' => 'required',
             'menu_site_id' => 'required',
@@ -151,22 +192,59 @@ class MenusController extends BackendController
 
         $input = $request->all();
 
-        $menu = new Menu();
+        $pageId = null;
+        $moduleId = null;
+        $url = null;
 
-        $menu->fill([
-            'slug' => strtolower($input['slug']),
+        $menuSite = MenuSite::find($input['menu_site_id']);
+
+        if($menuSite->name == 'frontend') {
+            $this->validate($request, [
+                'link_menu_to' => 'required',
+            ]);
+
+            if($input['link_menu_to'] == 'page') {
+                $this->validate($request, [
+                    'page_id' => 'required',
+                ]);
+
+                $pageId = $input['page_id'];
+            } else if($input['link_menu_to'] == 'module') {
+                $this->validate($request, [
+                    'module_id' => 'required',
+                ]);
+
+                $moduleId = $input['module_id'];
+            } else {
+                $this->validate($request, [
+                    'url' => 'required',
+                ]);
+
+                $url = $input['url'];
+            }
+        }
+
+        $menu = Menu::find($id);
+
+        $menu->update([
+            'slug' => ($input['slug'] ? strtolower($input['slug']) : null),
             'name' => ucfirst($input['name']),
             'description' => $input['description'],
             'css_icon_class' => $input['css_icon_class'],
             'menu_position_id' => $input['menu_position_id'],
             'menu_site_id' => $input['menu_site_id'],
-            'permission_id' => (isset($input['permission_id']) ? $input['permission_id'] : null)
-        ])->save();
-
-        $menuSite = MenuSite::find($input['menu_site_id']);
+            'permission_id' => (isset($input['permission_id']) ? $input['permission_id'] : null),
+            'page_id' => $pageId,
+            'module_id' => $moduleId,
+            'url' => $url,
+        ]);
 
         if($menuSite->name == 'backend') {
-            //always add new permission for root 
+            //always add new permission for root
+
+            $this->validate($request, [
+                'permission_id' => 'required',
+            ]);
 
             $permission = new RolePermission();
             $permission->replacePermissionForRoot($input['permission_id']);

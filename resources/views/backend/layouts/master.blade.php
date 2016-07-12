@@ -16,18 +16,18 @@
     <!-- Animation library for notifications   -->
     <link href="{{ url('css/animate.min.css') }}" rel="stylesheet"/>
 
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="{{ url('css/light-bootstrap-dashboard.css') }}" rel="stylesheet"/>
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{ url('css/backend.css') }}" rel="stylesheet"/>
-
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="{{ url('css/pe-icon-7-stroke.css') }}" rel="stylesheet"/>
 
     @yield('style')
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="{{ url('css/light-bootstrap-dashboard.css') }}" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{{ url('css/backend.css') }}" rel="stylesheet"/>
 
 </head>
 <body>
@@ -44,6 +44,8 @@
 
     </div>
 </div>
+
+@yield('modal')
 
 <!--   Core JS Files   -->
 <script src="{{ url('js/jquery-1.10.2.js') }}" type="text/javascript"></script>
@@ -93,12 +95,35 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>
         $(document).ready(function () {
+            var toolbar = "styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link";
+            tinymce.init({
+                selector:'textarea.textEditorSmall' ,
+                content_css: "{{ url('css/backend-tinymce-content.css') }}",
+                height : 120,
+                plugins: "link",
+                menubar: false,
+                toolbar: toolbar,
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        editor.save();
+                    });
+                }
+            });
+
             tinymce.init({
                 selector:'textarea.textEditor' ,
                 content_css: "{{ url('css/backend-tinymce-content.css') }}",
                 height : 300,
-                plugins: "link"
+                plugins: "link",
+                menubar: false,
+                toolbar: toolbar,
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        editor.save();
+                    });
+                }
             });
+
         });
     </script>
 @show

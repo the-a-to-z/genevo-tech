@@ -2,37 +2,35 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Page;
 use App\PageModule;
-use Illuminate\Routing\Controller as BaseController;
 use App\Http\Requests;
 use App\Menu;
-use App\Module;
-use Illuminate\Http\Request;
+use App;
 
-class PageController extends BaseController
+class PageController extends Controller
 {
 
-    protected $page;
-
-    public function __construct()
+    public function index($slug = null)
     {
+        $menu = new Menu();
+        $currentMenu = $menu->findBySlug($slug);
 
-    }
-
-    public function findModules()
-    {
-        $page = Page::where('name', $this->page)->first();
-
-        if(count($page) == 0) {
+        if($currentMenu == null) {
             redirect('404');
         }
 
         $pageModule = new PageModule();
 
-        return $pageModule->findPageModules($page->id);
+        $pageModules = $pageModule->findPageModules($currentMenu->page_id);
+
+        $menu = $menu->findFrontend();
+
+        return view('page')->with([
+            'pageModules' => $pageModules,
+            'menus' => $menu
+        ]);
     }
+
 
     public function redirectToConstruction()
     {

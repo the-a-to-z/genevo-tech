@@ -158,9 +158,10 @@ class PagesController extends BackendController
             'description' => $input['description'],
         ])->save();
 
-        PageModule::where('page_id', $id)->delete();
-
         if(isset($input['module_id'])) {
+            //delete current page modules from database
+           // PageModule::where('page_id', $id)->delete();
+
             $pageModuleData = [];
             foreach ($input['module_id'] as $moduleId) {
                 $pageModuleData[] = [

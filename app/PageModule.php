@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Modules\AboutDescription;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 
@@ -41,14 +40,14 @@ class PageModule extends Authenticatable
                      ->join('modules', 'modules.id', '=', 'page_modules.module_id')
                      ->get();
 
-
         $modulesData = [];
 
         foreach ($modules as $module) {
-            $class = $this->moduleMap($module->name);
+            $class = config('module.widget.' . $module->widget_name . '.model');
             $obj = new $class();
 
-            $modulesData[$module->name] = $obj->viewData();
+            $modulesData[$module->name]['data'] = $obj->viewData($module->id);
+            $modulesData[$module->name]['widget'] = $module->widget_name;
         }
 
         return $modulesData;
