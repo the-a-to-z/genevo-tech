@@ -27,10 +27,40 @@ class PageController extends Controller
 
         return view('page')->with([
             'pageModules' => $pageModules,
-            'menus' => $menu
+            'menus' => $menu,
+            'currentMenu' => $currentMenu
         ]);
     }
 
+    public function show($slug, $itemSlug)
+    {
+        $module = App\Module::where('name', $slug)->first();
+
+        if($module == null) {
+            redirect('404');
+        }
+
+        $pageModule = new PageModule();
+
+        $menu = new Menu();
+        $menus = $menu->findFrontend();
+
+        $data = [
+            'module' => [
+                'data' => $module,
+                'item' => $pageModule->findDetailOfModule($module, $itemSlug)
+            ],
+            'menus' => $menus
+        ];
+
+        $currentMenu = $menu->findBySlug($slug);
+
+        if($currentMenu) {
+            $data['currentMenu'] = $currentMenu;
+        }
+
+        return view('page')->with($data);
+    }
 
     public function redirectToConstruction()
     {

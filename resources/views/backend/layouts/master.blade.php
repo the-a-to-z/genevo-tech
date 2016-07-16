@@ -78,9 +78,9 @@
 
         $.notify({
             icon: 'pe-7s-info',
-            message: "{{ Session::get('flash_message') }}"
+            message: "{!! Session::get('flash_message') !!}"
         }, {
-            type: '{!! (Session::has('flash_message_type') ? Session::get('flash_message_type') : 'info') !!} ',
+            type: "{!! (Session::has('flash_message_type') ? Session::get('flash_message_type') : 'info') !!}",
             timer: 4000
         });
 

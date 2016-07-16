@@ -13,8 +13,10 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
@@ -68,6 +70,7 @@ class PortfolioStyle2Controller extends BackendController
             'title' => $input['title'],
             'module_id' => $input['module_id'],
             'css_class' => (isset($input['css_class']) ? $input['css_class'] : null),
+            'show_category_filter' => (isset($input['show_category_filter']) ? $input['show_category_filter'] : null),
         ])->save();
 
         Session::flash('flash_message', 'Module has been saved!');
@@ -88,24 +91,17 @@ class PortfolioStyle2Controller extends BackendController
         $widget = new PortfolioStyle2();
         $widgetItem = new PortfolioStyle2Item();
 
+        $module = Module::find($id);
+        $widget = $widget->findByModuleId($id);
+
         return view(backendModuleViewUrl('widgets.portfolio-style-2.index'))->with([
             'modules' => Module::all(),
-            'widget' => $widget->findByModuleId($id),
+            'widget' => $widget,
             'items' => $widgetItem->findByModuleId($id),
-            'module' => Module::find($id)
-        ]);
-    }
-
-    public function showCategory($moduleId)
-    {
-        $this->registerPermissionAs('edit-module');
-
-        $widget = new PortfolioStyle2();
-
-        return view(backendModuleViewUrl('widgets.portfolio-style-2.category'))->with([
-            'widget' => $widget->findByModuleId($moduleId),
-            'module' => Module::find($moduleId),
-            'categories' => PortfolioStyle2Category::all()
+            'module' => $module,
+            'breadcrumbs' => [
+                'Modules List' => 'modules'
+            ]
         ]);
     }
 
@@ -113,12 +109,40 @@ class PortfolioStyle2Controller extends BackendController
     {
         $this->registerPermissionAs('edit-module');
 
+        $module = Module::find($moduleId);
         $widget = new PortfolioStyle2();
+        $widget = $widget->findByModuleId($moduleId);
 
         return view(backendModuleViewUrl('widgets.portfolio-style-2.create-item'))->with([
-            'categories' => PortfolioStyle2Category::all(),
-            'module' => Module::find($moduleId),
-            'widget' => $widget->findByModuleId($moduleId),
+            'categories' => PortfolioStyle2Category ::where('widget_id', $widget->id)->get(),
+            'module' => $module,
+            'widget' => $widget,
+            'breadcrumbs' => [
+                'Modules List' => 'modules',
+                $module->display_name => ('portfolio-style-2/module/' . $moduleId)
+            ]
+        ]);
+    }
+
+    public function editItem($moduleId, $id)
+    {
+        $this->registerPermissionAs('edit-module');
+
+        $module = Module::find($moduleId);
+        $widget = new PortfolioStyle2();
+        $widget = $widget->findByModuleId($moduleId);
+        $category = new PortfolioStyle2ItemCategories();
+        $categories = $category->ofItemWithAllCategories($id);
+
+        return view(backendModuleViewUrl('widgets.portfolio-style-2.edit-item'))->with([
+            'categories' => $categories,
+            'module' => $module,
+            'widget' => $widget,
+            'item' => PortfolioStyle2Item::find($id),
+            'breadcrumbs' => [
+                'Modules List' => 'modules',
+                $module->display_name => ('portfolio-style-2/module/' . $moduleId)
+            ]
         ]);
     }
 
@@ -153,14 +177,13 @@ class PortfolioStyle2Controller extends BackendController
             'title' => 'required'
         ]);
 
-        $module =  PortfolioStyle2::find($id                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        );
-
-        $input = $request->all();
+        $module =  PortfolioStyle2::find($id);
 
         $module->fill([
-            'title' => $input['title'],
-            'module_id' => $input['module_id'],
-            'css_class' => (isset($input['css_class']) ? $input['css_class'] : null),
+            'title' => $request->title,
+            'module_id' => $request->module_id,
+            'css_class' => $request->css_class,
+            'show_category_filter' => $request->show_category_filter,
         ])->save();
 
         Session::flash('flash_message', 'Module has been saved!');
@@ -170,6 +193,8 @@ class PortfolioStyle2Controller extends BackendController
 
     public function resetItemCategories($id, $categories)
     {
+        $this->registerPermissionAs('edit-module');
+
         PortfolioStyle2ItemCategories::where('item_id', $id)->delete();
 
         $dataInsert = [];
@@ -185,6 +210,8 @@ class PortfolioStyle2Controller extends BackendController
 
     public function storeItem(Request $request, $moduleId)
     {
+        $this->registerPermissionAs('edit-module');
+
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
@@ -200,24 +227,29 @@ class PortfolioStyle2Controller extends BackendController
             return redirect()->back();
         }
 
-        $portfolioItem = new PortfolioStyle2Item();
-        $portfolioItem->fill([
-            'widget_id' => Input::get('widget_id'),
-            'title' => Input::get('title'),
-            'description' => Input::get('description'),
+        $item = new PortfolioStyle2Item();
+        $item->fill([
+            'widget_id' => $request->widget_id,
+            'slug' => str_slug($request->title),
+            'title' => $request->title,
+            'description' => $request->description,
             'image' => $upload,
         ])->save();
 
-        $this->resetItemCategories($portfolioItem->id, Input::get('category_id'));
+        $this->resetItemCategories($item->id, $request->category_id);
 
         return redirect(backendUrl('portfolio-style-2/module/' . $moduleId ));
     }
 
-    public function updateItem(Request $request)
+    public function updateItem(Request $request, $moduleId, $id)
     {
-        $portfolioItem = PortfolioStyle2Item::find(Input::get('id'));
+        $this->registerPermissionAs('edit-module');
+
+        $item = PortfolioStyle2Item::find($request->id);
 
         if(Input::file('photo')) {
+            $this->destroyFile($item->image);
+
             $upload = $this->upload();
 
             if($upload == false) {
@@ -227,19 +259,25 @@ class PortfolioStyle2Controller extends BackendController
                 return redirect()->back();
             }
 
-            $portfolioItem->fill([
-                'widget_id' => Input::get('widget_id'),
-                'title' => Input::get('title'),
-                'description' => Input::get('description'),
+            $item->fill([
+                'widget_id' => $request->widget_id,
+                'slug' => str_slug($request->title),
+                'title' => $request->title,
+                'description' => $request->description,
                 'image' => $upload,
             ])->save();
         } else {
-            $portfolioItem->fill([
-                'module_widget_portfolio_2_id' => Input::get('module_widget_portfolio_2_id'),
-                'title' => Input::get('title'),
-                'description' => Input::get('description')
+            $item->fill([
+                'widget_id' => $request->widget_id,
+                'slug' => str_slug($request->title),
+                'title' => $request->title,
+                'description' => $request->description
             ])->save();
         }
+
+        $this->resetItemCategories($item->id, $request->category_id);
+
+        Session::flash('flash_message', 'Item has been saved!');
 
         return redirect()->back();
     }
@@ -271,13 +309,26 @@ class PortfolioStyle2Controller extends BackendController
         $filename  = time() . '.' . $file->getClientOriginalExtension();
         $path = public_path(uploadPath('portfolio-style-2/' . $filename));
 
-        $upload = Image::make($file->getRealPath())->resize(318, 240)->save($path);
+        //big size 750 x 471 or 900 x 565
+        Image::make($file->getRealPath())->resize(750, 471)->save($path);
+
+        //thumb size 350 x 220
+        $thumbPath = public_path(uploadPath('portfolio-style-2/thumbnails/' . $filename));
+        $upload = Image::make($file->getRealPath())->resize(350, 220)->save($thumbPath );
 
         if($upload == false) {
             return response()->json(['error' => $validator->errors()->getMessages()], 400);
         }
 
         return $filename;
+    }
+
+    public function destroyFile($file)
+    {
+        File::delete(public_path(uploadPath('portfolio-style-2/' . $file)));
+        File::delete(public_path(uploadPath('portfolio-style-2/thumbnails/' . $file)));
+
+        return true;
     }
 
     /**
@@ -291,11 +342,98 @@ class PortfolioStyle2Controller extends BackendController
         return redirect()->back();
     }
 
-    public function deleteItem($id)
+    public function deleteItem($moduleId, $id)
     {
         $this->registerPermissionAs('edit-module');
 
-        PortfolioStyle2Item::find($id)->delete();
+        $item = PortfolioStyle2Item::find($id);
+
+        $this->destroyFile($item->image);
+
+        $item->delete();
+
+        Session::flash('flash_message_type', 'warning');
+        Session::flash('flash_message', 'Item has been deleted!');
+
+        return redirect()->back();
+    }
+
+    public function showCategory($moduleId)
+    {
+        $this->registerPermissionAs('edit-module');
+
+        $module = Module::find($moduleId);
+        $widget = new PortfolioStyle2();
+        $widget = $widget->findByModuleId($moduleId);
+        $category = new PortfolioStyle2Category();
+
+        return view(backendModuleViewUrl('widgets.portfolio-style-2.category'))->with([
+            'widget' => $widget,
+            'module' => $module,
+            'categories' => $category->findByModuleId($moduleId),
+            'breadcrumbs' => [
+                'Modules List' => 'modules',
+                $module->display_name => ('portfolio-style-2/module/' . $moduleId)
+            ]
+        ]);
+    }
+
+    public function storeCategory(Request $request, $moduleId)
+    {
+        $this->registerPermissionAs('edit-module');
+
+        $this->validate($request, [
+            'widget_id' => 'required',
+            'display_name' => 'required'
+        ]);
+
+        $category = new PortfolioStyle2Category();
+
+        $category->fill([
+            'widget_id' => $request->widget_id,
+            'name' => str_slug($request->display_name),
+            'display_name' => $request->display_name
+        ])->save();
+
+        return redirect()->back();
+    }
+
+    public function updateCategory(Request $request, $moduleId, $id)
+    {
+        $this->registerPermissionAs('edit-module');
+
+        $this->validate($request, [
+            'display_name' => 'required'
+        ]);
+
+        $category = PortfolioStyle2Category::find($id);
+
+        $category->fill([
+            'name' => str_slug($request->display_name),
+            'display_name' => $request->display_name
+        ])->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteCategory($moduleId, $id)
+    {
+        $this->registerPermissionAs('edit-module');
+
+        if(PortfolioStyle2ItemCategories::where('category_id', $id)->count() > 0) {
+            Session::flash('flash_message_type', 'danger');
+            Session::flash(
+                'flash_message',
+                '<strong>Error! This category is being used by some item</strong>. Please remove this category from item then try again.'
+            );
+
+            return redirect()->back();
+        }
+
+        PortfolioStyle2Category::find($id)->delete();
+
+        Session::flash('flash_message_type', 'warning');
+        Session::flash('flash_message', 'Category has been deleted!');
 
         return redirect()->back();
     }

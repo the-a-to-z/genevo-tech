@@ -126,35 +126,11 @@
                                 @elseif($menu->module_id)
                                     <a href="#{{ $menu->module_name }}">{{ $menu->name }}</a>
                                 @else
-                                    <a href="{{ $menu->slug }}">{{ $menu->name }}</a>
+                                    <a href="{{ url('/' . $menu->slug) }}">{{ $menu->name }}</a>
                                 @endif
                             </li>
 
                         @endforeach
-                        {{--<li class="active">--}}
-                            {{--<a href="#home">Home</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="">--}}
-                            {{--<a href="#about">About</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="">--}}
-                            {{--<a href="#our-courses">Our Courses</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="">--}}
-                            {{--<a href="career-aspiration.html">Career Aspiration</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="">--}}
-                            {{--<a href="#schedule">Schedule</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="">--}}
-                            {{--<a href="jop-vacancies.html">Job Vacancies</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="">--}}
-                            {{--<a href="#team">Teachers</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="">--}}
-                            {{--<a href="#contact">Contact</a>--}}
-                        {{--</li>--}}
 
                     </ul>
                     <!--mega menu end-->
@@ -167,134 +143,134 @@
     <!--header end-->
 
     <!--slider revolution start-->
-    <section class="slider-revolution-wrapper">
-        <div class="tp-banner-container">
-            <div class="tp-banner">
-                <ul>
-                    <!-- slide 1 start -->
-                    <li class="" data-transition="fade" data-slotamount="7" data-masterspeed="500"
-                        data-saveperformance="on" data-title="New CCNA Class">
+    {{--<section class="slider-revolution-wrapper">--}}
+        {{--<div class="tp-banner-container">--}}
+            {{--<div class="tp-banner">--}}
+                {{--<ul>--}}
+                    {{--<!-- slide 1 start -->--}}
+                    {{--<li class="" data-transition="fade" data-slotamount="7" data-masterspeed="500"--}}
+                        {{--data-saveperformance="on" data-title="New CCNA Class">--}}
 
-                        <img src="img/banner/cisco-traning-girl.png" alt="" data-bgposition="center top"
-                             data-bgfit="cover" data-bgrepeat="no-repeat">
+                        {{--<img src="img/banner/cisco-traning-girl.png" alt="" data-bgposition="center top"--}}
+                             {{--data-bgfit="cover" data-bgrepeat="no-repeat">--}}
 
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption rev-heading lft start" data-x="center" data-y="150" data-speed="500"
-                             data-start="1900" data-easing="Back.easeOut" data-splitin="" data-splitout=""
-                             data-elementdelay="0.1" data-endelementdelay="0.1">New CCNA class is coming
-                        </div>
+                        {{--<!-- LAYER NR. 1 -->--}}
+                        {{--<div class="tp-caption rev-heading lft start" data-x="center" data-y="150" data-speed="500"--}}
+                             {{--data-start="1900" data-easing="Back.easeOut" data-splitin="" data-splitout=""--}}
+                             {{--data-elementdelay="0.1" data-endelementdelay="0.1">New CCNA class is coming--}}
+                        {{--</div>--}}
 
-                        <!-- LAYER NR. 2 -->
-                        <div class="tp-caption rev-subheading sfb" data-x="center" data-y="250" data-speed="300"
-                             data-start="2500" data-easing="Back.easeOut" data-splitin="" data-splitout=""
-                             data-elementdelay="0.1" data-endelementdelay="0.1">Only 44 days left to register.
-                        </div>
+                        {{--<!-- LAYER NR. 2 -->--}}
+                        {{--<div class="tp-caption rev-subheading sfb" data-x="center" data-y="250" data-speed="300"--}}
+                             {{--data-start="2500" data-easing="Back.easeOut" data-splitin="" data-splitout=""--}}
+                             {{--data-elementdelay="0.1" data-endelementdelay="0.1">Only 44 days left to register.--}}
+                        {{--</div>--}}
 
-                        <!-- LAYER NR. 3 -->
-                        <div class="tp-caption rev-subheading sfl" data-x="290" data-y="330" data-speed="500"
-                             data-start="3000" data-easing="Back.easeOut" data-splitin="" data-splitout=""
-                             data-elementdelay="0.1" data-endelementdelay="0.1">
-                            <a href="#" class="btn btn-medium btn-dark-border">
-                                <i class="fa fa-paper-plane-o"></i>
-                                Learn more about the class</a>
-                        </div>
-                    </li>
+                        {{--<!-- LAYER NR. 3 -->--}}
+                        {{--<div class="tp-caption rev-subheading sfl" data-x="290" data-y="330" data-speed="500"--}}
+                             {{--data-start="3000" data-easing="Back.easeOut" data-splitin="" data-splitout=""--}}
+                             {{--data-elementdelay="0.1" data-endelementdelay="0.1">--}}
+                            {{--<a href="#" class="btn btn-medium btn-dark-border">--}}
+                                {{--<i class="fa fa-paper-plane-o"></i>--}}
+                                {{--Learn more about the class</a>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
 
-                    <!-- slide 1 end -->
+                    {{--<!-- slide 1 end -->--}}
 
-                    <!-- slide 2 start -->
-                    <li class="" data-transition="fade" data-slotamount="7" data-masterspeed="500"
-                        data-saveperformance="on" data-title="Free Course">
+                    {{--<!-- slide 2 start -->--}}
+                    {{--<li class="" data-transition="fade" data-slotamount="7" data-masterspeed="500"--}}
+                        {{--data-saveperformance="on" data-title="Free Course">--}}
 
-                        <img src="img/banner/table.png" alt="" data-bgposition="center top" data-bgfit="cover"
-                             data-bgrepeat="no-repeat">
+                        {{--<img src="img/banner/table.png" alt="" data-bgposition="center top" data-bgfit="cover"--}}
+                             {{--data-bgrepeat="no-repeat">--}}
 
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption rev-heading lft start" data-x="center" data-y="200" data-speed="500"
-                             data-start="1900" data-easing="Back.easeOut" data-splitin="" data-splitout=""
-                             data-elementdelay="0.1" data-endelementdelay="0.1">Register now to get
-                        </div>
+                        {{--<!-- LAYER NR. 1 -->--}}
+                        {{--<div class="tp-caption rev-heading lft start" data-x="center" data-y="200" data-speed="500"--}}
+                             {{--data-start="1900" data-easing="Back.easeOut" data-splitin="" data-splitout=""--}}
+                             {{--data-elementdelay="0.1" data-endelementdelay="0.1">Register now to get--}}
+                        {{--</div>--}}
 
-                        <!-- LAYER NR. 2 -->
-                        <div
-                                class="tp-caption customin customout rev-heading rev-white"
-                                data-x="center"
-                                data-y="300"
-                                data-speed="500"
-                                data-start="2500"
-                                data-easing="Back.easeOut"
-                                data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-                                data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                                data-splitin=""
-                                data-splitout=""
-                                data-elementdelay="0.1"
-                                data-endelementdelay="0.1">Free 20 hours or 8 courses
-                        </div>
+                        {{--<!-- LAYER NR. 2 -->--}}
+                        {{--<div--}}
+                                {{--class="tp-caption customin customout rev-heading rev-white"--}}
+                                {{--data-x="center"--}}
+                                {{--data-y="300"--}}
+                                {{--data-speed="500"--}}
+                                {{--data-start="2500"--}}
+                                {{--data-easing="Back.easeOut"--}}
+                                {{--data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"--}}
+                                {{--data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"--}}
+                                {{--data-splitin=""--}}
+                                {{--data-splitout=""--}}
+                                {{--data-elementdelay="0.1"--}}
+                                {{--data-endelementdelay="0.1">Free 20 hours or 8 courses--}}
+                        {{--</div>--}}
 
-                        <!-- LAYER NR. 3 -->
-                        <div class="tp-caption rev-subheading sfl" data-x="290" data-y="400" data-speed="500"
-                             data-start="3000" data-easing="Back.easeOut" data-splitin="" data-splitout=""
-                             data-elementdelay="0.1" data-endelementdelay="0.1">
-                            <a href="#" class="btn btn-medium btn-theme-border-color">
-                                <i class="fa fa-paper-plane-o"></i>
-                                Read more</a>
-                        </div>
+                        {{--<!-- LAYER NR. 3 -->--}}
+                        {{--<div class="tp-caption rev-subheading sfl" data-x="290" data-y="400" data-speed="500"--}}
+                             {{--data-start="3000" data-easing="Back.easeOut" data-splitin="" data-splitout=""--}}
+                             {{--data-elementdelay="0.1" data-endelementdelay="0.1">--}}
+                            {{--<a href="#" class="btn btn-medium btn-theme-border-color">--}}
+                                {{--<i class="fa fa-paper-plane-o"></i>--}}
+                                {{--Read more</a>--}}
+                        {{--</div>--}}
 
-                        <!-- LAYER NR. 4 -->
-                        <div class="tp-caption rev-subheading sfr" data-x="490" data-y="400" data-speed="500"
-                             data-start="3000" data-easing="Back.easeOut" data-splitin="" data-splitout=""
-                             data-elementdelay="0.1" data-endelementdelay="0.1">
-                            <a href="#" class="btn btn-medium btn-dark-solid">
-                                <i class="fa fa-phone"></i>
-                                Contact us</a>
-                        </div>
-                    </li>
-                    <!-- slide 2 end -->
+                        {{--<!-- LAYER NR. 4 -->--}}
+                        {{--<div class="tp-caption rev-subheading sfr" data-x="490" data-y="400" data-speed="500"--}}
+                             {{--data-start="3000" data-easing="Back.easeOut" data-splitin="" data-splitout=""--}}
+                             {{--data-elementdelay="0.1" data-endelementdelay="0.1">--}}
+                            {{--<a href="#" class="btn btn-medium btn-dark-solid">--}}
+                                {{--<i class="fa fa-phone"></i>--}}
+                                {{--Contact us</a>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
+                    {{--<!-- slide 2 end -->--}}
 
-                    <!-- slide 3 start -->
-                    <li class="" data-transition="fade" data-slotamount="7" data-masterspeed="500"
-                        data-saveperformance="on" data-title="MSCA Class">
+                    {{--<!-- slide 3 start -->--}}
+                    {{--<li class="" data-transition="fade" data-slotamount="7" data-masterspeed="500"--}}
+                        {{--data-saveperformance="on" data-title="MSCA Class">--}}
 
-                        <img src="img/banner/ms-windows.png" alt="" data-bgposition="center top" data-bgfit="cover"
-                             data-bgrepeat="no-repeat">
+                        {{--<img src="img/banner/ms-windows.png" alt="" data-bgposition="center top" data-bgfit="cover"--}}
+                             {{--data-bgrepeat="no-repeat">--}}
 
-                        <!-- LAYER NR. 1 -->
-                        <div
-                                class="tp-caption customin customout rev-heading rev-white"
-                                data-x="100"
-                                data-y="200"
-                                data-speed="500"
-                                data-start="1900"
-                                data-easing="Back.easeOut"
-                                data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-                                data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                                data-splitin=""
-                                data-splitout=""
-                                data-elementdelay="0.1"
-                                data-endelementdelay="0.1">MCSA
-                        </div>
+                        {{--<!-- LAYER NR. 1 -->--}}
+                        {{--<div--}}
+                                {{--class="tp-caption customin customout rev-heading rev-white"--}}
+                                {{--data-x="100"--}}
+                                {{--data-y="200"--}}
+                                {{--data-speed="500"--}}
+                                {{--data-start="1900"--}}
+                                {{--data-easing="Back.easeOut"--}}
+                                {{--data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"--}}
+                                {{--data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"--}}
+                                {{--data-splitin=""--}}
+                                {{--data-splitout=""--}}
+                                {{--data-elementdelay="0.1"--}}
+                                {{--data-endelementdelay="0.1">MCSA--}}
+                        {{--</div>--}}
 
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption rev-desc fade rev-white" data-x="100" data-y="270" data-speed="500"
-                             data-start="2700" data-easing="Back.easeOut" data-splitin="" data-splitout=""
-                             data-elementdelay="0.1" data-endelementdelay="0.1">
-                            Microsoft Certified System administrator.
-                        </div>
+                        {{--<!-- LAYER NR. 1 -->--}}
+                        {{--<div class="tp-caption rev-desc fade rev-white" data-x="100" data-y="270" data-speed="500"--}}
+                             {{--data-start="2700" data-easing="Back.easeOut" data-splitin="" data-splitout=""--}}
+                             {{--data-elementdelay="0.1" data-endelementdelay="0.1">--}}
+                            {{--Microsoft Certified System administrator.--}}
+                        {{--</div>--}}
 
-                        <!-- LAYER NR. 2 -->
-                        <div class="tp-caption rev-subheading sfb rev-white" data-x="100" data-y="330" data-speed="300"
-                             data-start="2500" data-easing="Back.easeOut" data-splitin="" data-splitout=""
-                             data-elementdelay="0.1" data-endelementdelay="0.1">Register today only $240 (<span
-                                    class="text-line-through text-orange">$320</span>)
-                        </div>
+                        {{--<!-- LAYER NR. 2 -->--}}
+                        {{--<div class="tp-caption rev-subheading sfb rev-white" data-x="100" data-y="330" data-speed="300"--}}
+                             {{--data-start="2500" data-easing="Back.easeOut" data-splitin="" data-splitout=""--}}
+                             {{--data-elementdelay="0.1" data-endelementdelay="0.1">Register today only $240 (<span--}}
+                                    {{--class="text-line-through text-orange">$320</span>)--}}
+                        {{--</div>--}}
 
-                    </li>
-                    <!-- slide 3 end -->
-                </ul>
-                <div class="tp-bannertimer"></div>
-            </div>
-        </div>
-    </section>
+                    {{--</li>--}}
+                    {{--<!-- slide 3 end -->--}}
+                {{--</ul>--}}
+                {{--<div class="tp-bannertimer"></div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</section>--}}
     <!--slider revolution end-->
 
 </div>
@@ -419,8 +395,6 @@
 <script src="{{ url('vendors/slider-revolution/js/jquery.themepunch.tools.min.js') }}"></script>
 <script src="{{ url('vendors/slider-revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
 
-<script src="{{ url('js/imagesloaded.js') }}'"></script>
-
 <!-- only for single page nav -->
 <script src="{{ url('js/jquery.nav.js') }}"></script>
 
@@ -435,97 +409,98 @@
 
     jQuery(document).ready(function () {
 
-        jQuery('.tp-banner').show().revolution({
-            dottedOverlay: "none",
-            delay: 8000,
+        if(jQuery('.tp-banner').length > 0) {
+            jQuery('.tp-banner').show().revolution({
+                dottedOverlay: "none",
+                delay: 8000,
 
-            startheight: 450,
-            hideThumbs: 200,
+                startheight: 450,
+                hideThumbs: 200,
 
-            thumbWidth: 100,
-            thumbHeight: 50,
-            thumbAmount: 5,
+                thumbWidth: 100,
+                thumbHeight: 50,
+                thumbAmount: 5,
 
-            navigationType: "arrow",
-            navigationArrows: "solo",
-            navigationStyle: "preview1",
+                navigationType: "arrow",
+                navigationArrows: "solo",
+                navigationStyle: "preview1",
 
-            touchenabled: "on",
-            onHoverStop: "on",
+                touchenabled: "on",
+                onHoverStop: "on",
 
-            swipe_velocity: 0.7,
-            swipe_min_touches: 1,
-            swipe_max_touches: 1,
-            drag_block_vertical: false,
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
 
-            parallax: "mouse",
-            parallaxBgFreeze: "on",
-            parallaxLevels: [
-                7,
-                4,
-                3,
-                2,
-                5,
-                4,
-                3,
-                2,
-                1,
-                0
-            ],
+                parallax: "mouse",
+                parallaxBgFreeze: "on",
+                parallaxLevels: [
+                    7,
+                    4,
+                    3,
+                    2,
+                    5,
+                    4,
+                    3,
+                    2,
+                    1,
+                    0
+                ],
 
-            keyboardNavigation: "off",
+                keyboardNavigation: "off",
 
-            navigationHAlign: "center",
-            navigationVAlign: "bottom",
-            navigationHOffset: 0,
-            navigationVOffset: 20,
+                navigationHAlign: "center",
+                navigationVAlign: "bottom",
+                navigationHOffset: 0,
+                navigationVOffset: 20,
 
-            soloArrowLeftHalign: "left",
-            soloArrowLeftValign: "center",
-            soloArrowLeftHOffset: 20,
-            soloArrowLeftVOffset: 0,
+                soloArrowLeftHalign: "left",
+                soloArrowLeftValign: "center",
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
 
-            soloArrowRightHalign: "right",
-            soloArrowRightValign: "center",
-            soloArrowRightHOffset: 20,
-            soloArrowRightVOffset: 0,
+                soloArrowRightHalign: "right",
+                soloArrowRightValign: "center",
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
 
-            shadow: 0,
-            fullWidth: "on",
-            // autoHeight:"on",
-            fullScreen: "off",
+                shadow: 0,
+                fullWidth: "on",
+                // autoHeight:"on",
+                fullScreen: "off",
 
-            spinner: "spinner4",
+                spinner: "spinner4",
 
-            stopLoop: "off",
-            stopAfterLoops: -1,
-            stopAtSlide: -1,
+                stopLoop: "off",
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
 
-            shuffle: "off",
+                shuffle: "off",
 
-            autoHeight: "off",
-            forceFullWidth: "off",
+                autoHeight: "off",
+                forceFullWidth: "off",
 
-            hideThumbsOnMobile: "off",
-            hideNavDelayOnMobile: 1500,
-            hideBulletsOnMobile: "off",
-            hideArrowsOnMobile: "off",
-            hideThumbsUnderResolution: 0,
+                hideThumbsOnMobile: "off",
+                hideNavDelayOnMobile: 1500,
+                hideBulletsOnMobile: "off",
+                hideArrowsOnMobile: "off",
+                hideThumbsUnderResolution: 0,
 
-            hideSliderAtLimit: 0,
-            hideCaptionAtLimit: 0,
-            hideAllCaptionAtLilmit: 0,
-            startWithSlide: 0,
-            videoJsPath: "vendors/slider-revolution/videojs/",
-            fullScreenOffsetContainer: ""
-        });
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0,
+                videoJsPath: "vendors/slider-revolution/videojs/",
+                fullScreenOffsetContainer: ""
+            });
+        }
 
     }); //ready
 
     /**
      * Google map
      */
-
     function initMap() {
         var genevoLocation = {lat: 11.579563, lng: 104.901447};
 

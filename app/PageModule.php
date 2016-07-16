@@ -19,25 +19,16 @@ class PageModule extends Authenticatable
         'page_id', 'module_id'
     ];
 
-    protected $modulesMapping = [
-        'about-description' => 'App\Modules\AboutDescription',
-        'home-slideshow' => 'App\Modules\HomeSlideshow'
-    ];
-
     public function module()
     {
         return $this->belongsTo('App\Module');
-    }
-
-    public function moduleMap($key)
-    {
-        return $this->modulesMapping[$key];
     }
 
     public function findPageModules($pageId)
     {
         $modules = DB::table('page_modules')
                      ->join('modules', 'modules.id', '=', 'page_modules.module_id')
+                     ->where('page_id', $pageId)
                      ->get();
 
         $modulesData = [];
@@ -51,6 +42,14 @@ class PageModule extends Authenticatable
         }
 
         return $modulesData;
+    }
+
+    public function findDetailOfModule($module, $itemSlug)
+    {
+        $class = config('module.widget.' . $module->widget_name . '.model');
+        $obj = new $class();
+
+        return $obj->findDetail($module->id, $itemSlug);
     }
 
 }

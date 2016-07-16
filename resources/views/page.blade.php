@@ -2,10 +2,18 @@
 
 @section('content')
 
-    @foreach($pageModules as $moduleName => $module)
+    @if(isset($module))
 
-       @include('modules.widgets.' . $module['widget'], ['data' => $module['data'], 'moduleName' => $moduleName])
+        @include('modules.widgets.' . $module['data']->widget_name . '.show', $module)
 
-    @endforeach
+    @else
+
+        @foreach($pageModules as $moduleName => $module)
+
+            @include('modules.widgets.' . $module['widget'] . '.index', ['data' => $module['data'], 'moduleName' => $moduleName])
+
+        @endforeach
+
+    @endif
 
 @endsection

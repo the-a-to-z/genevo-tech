@@ -56,5 +56,5 @@ Route::get('/demo', function () {
 });
 
 Route::get('/', 'PageController@index');
-
 Route::get('{slug}', 'PageController@index');
+Route::get('{slug}/{itemSlug}', 'PageController@show');

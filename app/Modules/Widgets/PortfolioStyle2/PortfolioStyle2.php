@@ -16,8 +16,18 @@ class PortfolioStyle2 extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'module_id', 'css_class'
+        'title', 'show_category_filter','description', 'module_id', 'css_class'
     ];
+
+    public function items()
+    {
+        return $this->hasMany('App\Modules\Widgets\PortfolioStyle2\PortfolioStyle2Item', 'widget_id');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany('App\Modules\Widgets\PortfolioStyle2\PortfolioStyle2Category', 'widget_id');
+    }
 
     public function findByModuleId($id)
     {
@@ -42,12 +52,18 @@ class PortfolioStyle2 extends Model
      */
     public function viewData($id)
     {
+        return [
+           // 'portfolio' => DB::table($this->table)->where('module_id', $id)->first(),
+           // 'portfolioItems' => $item->findByModuleId($id)
+            'portfolio' => PortfolioStyle2::where('module_id', $id)->first()
+        ];
+    }
+
+    public function findDetail($id, $itemSlug)
+    {
         $item = new PortfolioStyle2Item();
 
-        return [
-            'portfolio' => DB::table($this->table)->where('module_id', $id)->first(),
-            'portfolioItems' => $item->findByModuleId($id)
-        ];
+        return $item->findByModuleIdAndItemSlug($id, $itemSlug);
     }
 
 }

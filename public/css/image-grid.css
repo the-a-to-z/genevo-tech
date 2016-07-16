@@ -20,11 +20,15 @@
 
 .image-grid-item .btnToEdit {
     position: absolute;
-    top: 0;
+    top: -1px;
     right: 41px;
     background: #3472F7;
     border: 0;
     color: #ffffff;
+    padding: 3px 12px;
+    border-radius: 0;
+    border-bottom: 0;
+    border-top: 0;
 }
 
 label.text-warning.note {

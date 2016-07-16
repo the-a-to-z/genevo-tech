@@ -37,7 +37,7 @@ return [
         ],
         'portfolio-style-2' => [
             'display-name' => 'Portfolio Style 2',
-            'model' => 'App\Modules\Widgets\PortfolioStyle2',
+            'model' => 'App\Modules\Widgets\PortfolioStyle2\PortfolioStyle2',
             'url' => 'portfolio-style-2/module',
             'route-controller' => 'Backend\Modules\Widgets\PortfolioStyle2Controller',
             'route-custom' => [
@@ -52,7 +52,12 @@ return [
                     'type' => 'post'
                 ],
                 [
-                    'url' => 'module/{moduleId}/portfolio-style-2/update-item',
+                    'url' => 'module/{moduleId}/portfolio-style-2/item/{id}/edit',
+                    'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@editItem',
+                    'type' => 'get'
+                ],
+                [
+                    'url' => 'module/{moduleId}/portfolio-style-2/item/{id}',
                     'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@updateItem',
                     'type' => 'patch'
                 ],
@@ -65,7 +70,22 @@ return [
                     'url' => 'module/{moduleId}/portfolio-style-2/category',
                     'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@showCategory',
                     'type' => 'get'
-                ]
+                ],
+                [
+                    'url' => 'module/{moduleId}/portfolio-style-2/category',
+                    'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@storeCategory',
+                    'type' => 'post'
+                ],
+                [
+                    'url' => 'module/{moduleId}/portfolio-style-2/category/{id}',
+                    'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@updateCategory',
+                    'type' => 'patch'
+                ],
+                [
+                    'url' => 'module/{moduleId}/portfolio-style-2/category/{id}',
+                    'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@deleteCategory',
+                    'type' => 'delete'
+                ],
             ]
         ]
     ]

@@ -2,6 +2,8 @@
 
 @section('content')
 
+    @define($editWidget = ($widget && (isset($widget->id) ? $widget->id : null) != null))
+
     <div class="content">
         <div class="container-fluid">
 
@@ -33,13 +35,38 @@
                                 <div class="col-md-12">
                                     <div class="pull-right">
                                         <div class="form-group form-inline">
-                                            <label>Background Color </label>
-
                                             <select name="css_class" class="form-control">
-                                                <option value="">Default</option>
-                                                <option value="gray-bg">Gray</option>
-                                            </select>
+                                                @define( $cssClass = old('css_class') ? old('css_class') : '')
 
+                                                @if($editWidget)
+                                                    @define( $cssClass = old('css_class') ? old('css_class') : $widget->css_class)
+                                                @endif
+
+                                                <option value=""{{ $cssClass == '' ? ' selected': '' }}>
+                                                    Background color: Default
+                                                </option>
+                                                <option value="gray-bg"{{ $cssClass == 'gray-bg' ? ' selected': '' }}>
+                                                    Background color: Gray
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group form-inline p-left-15">
+                                            <select name="show_category_filter" class="form-control">
+
+                                                @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : '')
+
+                                                @if($editWidget)
+                                                    @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : $widget->show_category_filter)
+                                                @endif
+
+                                                <option value="1"{{ $showCategoryFilter == '1' ? ' selected': '' }}>
+                                                    Category Filter: Show
+                                                </option>
+                                                <option value="0"{{ $showCategoryFilter == '0' ? ' selected': '' }}>
+                                                    Category Filter:  Hide
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +78,7 @@
 
             </div>
 
-            @if($widget && (isset($widget->id) ? $widget->id : null) != null)
+            @if($editWidget)
                 {!! formEditFooter('modules') !!}
             @else
                 {!! formCreateFooter('modules') !!}
@@ -59,7 +86,7 @@
 
             {!! closeForm() !!}
 
-            @if($widget && (isset($widget->id) ? $widget->id : null) != null)
+            @if($editWidget)
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -93,17 +120,9 @@
                                                             <div class="image-grid-title">
                                                                 {{ $item->title }}
 
-                                                                <button class="btn btn-mini btn-primary btn-fill btnToEdit"
-                                                                        data-toggle="modal"
-                                                                        data-target="#modalEditPortfolioItem"
-                                                                        data-id="{{ $item->id }}"
-                                                                        data-title="{{ $item->title }}"
-                                                                        data-description="{{ $item->description }}"
-                                                                >
-                                                                    <i class="fa fa-wrench"></i>
-                                                                </button>
+                                                                {!! btnToEdit('module/' . $module->id . '/portfolio-style-2/item', $item->id) !!}
 
-                                                                {!! btnDelete('module/portfolio-style-2/delete-item', $item->id) !!}
+                                                                {!! btnDelete('module/' . $module->id. '/portfolio-style-2/delete-item', $item->id) !!}
 
                                                             </div>
                                                         </div>

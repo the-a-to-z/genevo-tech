@@ -5,10 +5,11 @@
     <div class="content">
         <div class="container-fluid">
 
-            {!! openFormUploadCreate('module/'. $module->id . '/portfolio-style-2/store-item') !!}
+            {!! openFormUploadEdit('module/'. $module->id . '/portfolio-style-2/item', $item->id) !!}
 
             <input type="hidden" name="module_id" value="{{ $module->id }}">
             <input type="hidden" name="widget_id" value="{{ $widget->id }}">
+            {!! method_field('patch') !!}
 
             <div class="row">
                 <div class="col-md-8">
@@ -20,7 +21,7 @@
                                        class="form-control"
                                        placeholder="Title..."
                                        autofocus
-                                       value="{{ (old('title') ? old('title') : '') }}">
+                                       value="{{ (old('title') ? old('title') : $item->title) }}">
 
                                 @if($errors->has('description'))
                                     {!! formError($errors->first('title')) !!}
@@ -39,8 +40,7 @@
                                     @endif
                                 </label>
 
-
-                                <textarea class="textEditor" name="description"></textarea>
+                                <textarea class="textEditor" name="description">{{ $item->description }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,27 @@
                         </div>
 
                         <div class="content">
-                            <input type="file" name="photo" class="filer_input">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <input type="file" name="photo" class="filer_input">
+                                </div>
+
+                                @if($item->image)
+                                <div class="col-md-12">
+                                    <div class="form-group text-center">
+                                        <label>Current Image</label>
+                                        <div id="editPortfolioImagePreview">
+                                            <img src="{{ url(uploadPath('portfolio-style-2/thumbnails/' . $item->image)) }}"
+                                                 alt="{{ $item->title }}"
+                                                 class="img-responsive"
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+
                         </div>
                     </div>
 
@@ -82,7 +102,7 @@
 
             </div>
 
-            {!! formCreateFooter('portfolio-style-2/module/'. $module->id) !!}
+            {!! formEditFooter('portfolio-style-2/module/'. $module->id) !!}
 
             {!! closeForm() !!}
 

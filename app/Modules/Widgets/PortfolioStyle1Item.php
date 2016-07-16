@@ -34,4 +34,5 @@ class PortfolioStyle1Item extends Model
 
         return $query;
     }
+
 }

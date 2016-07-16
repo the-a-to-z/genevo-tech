@@ -11,6 +11,24 @@
             <a class="navbar-brand" href="{{ url('/' . config('constants.url.backend-prefix')) }}"></a>
         </div>
         <div class="collapse navbar-collapse">
+
+            @if(isset($breadcrumbs))
+                <ul class="breadcrumb">
+                    <?php
+                    $i = 0;
+                    $breadcrumbsCount = count($breadcrumbs);
+                    ?>
+                    @foreach($breadcrumbs as $name => $url)
+                        <?php $i++; ?>
+                        <li>
+                            <a href="{{ url(backendUrl($url)) }}">
+                                {{ $name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -21,7 +39,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile Setting</a></li>
-                        <li><a href="#">Setting</a></li>
+                        <li><a href="{{ backendUrl('settings') }}">Setting</a></li>
                         <li class="divider"></li>
                         <li><a href="/Action">Log Out</a></li>
                     </ul>

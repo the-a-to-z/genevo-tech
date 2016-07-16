@@ -556,6 +556,15 @@ body > .navbar-collapse[data-color="purple"]:after {
     margin-bottom: 0;
 }
 
+.navbar .breadcrumb {
+    margin-top: 10px;
+    max-width: 400px;
+    float: left;
+    height: 100%;
+    background: none;
+    margin-bottom: 0;
+}
+
 .sidebar,
 .main-panel {
     overflow: auto;
@@ -3852,7 +3861,6 @@ td .description, .small-description {
     margin-top: 100px;
 }
 
-
 .m-left-0 {
     margin-left: 0px;
 }
@@ -3888,7 +3896,6 @@ td .description, .small-description {
 .m-left-100 {
     margin-left: 100px;
 }
-
 
 .m-bottom-0 {
     margin-bottom: 0px;
@@ -3970,6 +3977,34 @@ td .description, .small-description {
 
 span[disabled] {
     opacity: 0.4;
+}
+
+
+.p-left-15 {
+    padding-left: 15px;
+}
+
+.p-left-20 {
+    padding-left: 20px;
+}
+
+
+.p-left-30 {
+    padding-left: 30px;
+}
+
+
+.p-right-15 {
+    padding-right: 15px;
+}
+
+.p-right-20 {
+    padding-right: 20px;
+}
+
+
+.p-right-30 {
+    padding-right: 30px;
 }
 
 /*

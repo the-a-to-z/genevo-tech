@@ -15,7 +15,11 @@
                                name="category_id[]"
                                value="{{ $category->id }}"
                                data-toggle="checkbox"
-                                {{ (old('category_id') ? (old('category_id') == $category->id ? 'checked' : '') : '') }}
+                               @if(old('category_id'))
+                                   {{ (old('category_id') == $category->id) ? 'checked' : '' }}
+                               @else
+                                   {{ ($category->item_id) ? 'checked' : '' }}
+                               @endif
                         >
                     </label>
                 </td>
