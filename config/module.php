@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is where to define constant variables
+ * This is where to define module widgets
  */
 
 return [
