@@ -10,7 +10,7 @@
 
         @foreach($pageModules as $moduleName => $module)
 
-            @include('modules.widgets.' . $module['widget'] . '.index', ['data' => $module['data'], 'moduleName' => $moduleName])
+            @include('modules.widgets.' . $module['widget'] . '.index', ['module' => $module, 'data' => $module['data'], 'moduleName' => $moduleName])
 
         @endforeach
 

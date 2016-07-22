@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +27,9 @@
 
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
     <link rel="stylesheet" type="text/css" href="{{ url('vendors/slider-revolution/css/settings.css') }}" media="screen">
+
+    @yield('style')
+
 </head>
 
 <body>

@@ -5,7 +5,9 @@
     <div class="content">
         <div class="container-fluid">
 
-            @if($data && (isset($data->id) ? $data->id : null) != null)
+            @define($editWidget = ($data && (isset($data->id) ? $data->id : null) != null))
+
+            @if($editWidget)
             {!! openFormEdit(config('module.widget.portfolio-style-1.url'), $data->id) !!}
             @else
             {!! openFormCreate(config('module.widget.portfolio-style-1.url')) !!}
@@ -36,8 +38,26 @@
                                             <label>Background Color </label>
 
                                             <select name="css_class" class="form-control">
-                                                <option value="">Default</option>
-                                                <option value="gray-bg">Gray</option>
+                                                <option value=""{{ ($data ? ($data->css_class == '' ? 'selected' : '') : '') }}>
+                                                    Default
+                                                </option>
+                                                <option value="gray-bg"{{ ($data ? ($data->css_class == 'gray-bg' ? 'selected' : '') : '') }}>
+                                                    Gray
+                                                </option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="form-group form-inline p-left-15">
+                                            <label>Choose theme </label>
+
+                                            <select name="theme" class="form-control">
+                                                <option value=""{{ ($data ? ($data->css_class == '' ? 'selected' : '') : '') }}>
+                                                    Default
+                                                </option>
+                                                <option value="image-list"{{ ($data ? ($data->theme == 'image-list' ? 'selected' : '') : '') }}>
+                                                    Image list
+                                                </option>
                                             </select>
 
                                         </div>
@@ -51,7 +71,7 @@
 
             </div>
 
-            @if($data && (isset($data->id) ? $data->id : null) != null)
+            @if($editWidget)
                 {!! formEditFooter('modules') !!}
             @else
                 {!! formCreateFooter('modules') !!}
@@ -59,7 +79,7 @@
 
             {!! closeForm() !!}
 
-            @if($data && (isset($data->id) ? $data->id : null) != null)
+            @if($editWidget)
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">

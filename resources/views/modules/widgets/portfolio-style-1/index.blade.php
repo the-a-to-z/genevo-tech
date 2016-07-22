@@ -5,6 +5,7 @@
                 <h3 class="text-uppercase">{!! $data['portfolio']->title !!}</h3>
             </div>
 
+            @if($data['portfolio']->theme == '')
             <div class="feature-box-grid">
 
                 @foreach($data['portfolioItems'] as $item)
@@ -26,6 +27,18 @@
                 @endforeach
 
             </div>
+
+            @else
+
+                <div class="image-inline-list">
+                    @foreach($data['portfolioItems'] as $item)
+                        <div class="item">
+                            <img src="{{ uploadUrl('portfolio-style-1/' . $item->image) }}" alt="{{ $item->title }}">
+                        </div>
+                    @endforeach
+                </div>
+
+            @endif
 
         </div>
     </div>

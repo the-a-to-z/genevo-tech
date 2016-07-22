@@ -110,17 +110,17 @@
 
 /**/
 
-#clients-1 .item {
+.image-inline-list .item {
     margin: 20px;
 }
 
-#clients-1 .item img{
+.image-inline-list .item img{
     display: block;
     width: 100%;
     height: auto;
 }
 
-#clients-1.owl-theme .owl-controls .owl-page span {
+.image-inline-list.owl-theme .owl-controls .owl-page span {
     background: #333;
 }
 

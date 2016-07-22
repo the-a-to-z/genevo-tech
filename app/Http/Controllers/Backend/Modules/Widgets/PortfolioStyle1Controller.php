@@ -67,6 +67,7 @@ class PortfolioStyle1Controller extends BackendController
             'title' => $input['title'],
             'module_id' => $input['module_id'],
             'css_class' => (isset($input['css_class']) ? $input['css_class'] : null),
+            'theme' => $input['theme']
         ])->save();
 
         Session::flash('flash_message', 'Module has been saved!');
@@ -134,6 +135,7 @@ class PortfolioStyle1Controller extends BackendController
             'title' => $input['title'],
             'module_id' => $input['module_id'],
             'css_class' => (isset($input['css_class']) ? $input['css_class'] : null),
+            'theme' => $input['theme']
         ])->save();
 
         Session::flash('flash_message', 'Module has been saved!');

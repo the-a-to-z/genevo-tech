@@ -6,11 +6,23 @@ use App\PageModule;
 use App\Http\Requests;
 use App\Menu;
 use App;
+use Illuminate\Support\Facades\View;
 
 class PageController extends Controller
 {
 
-    public function index($slug = null)
+    protected $menu;
+
+    public function __construct()
+    {
+        $this->menu = new Menu();
+
+        $menu = $this->menu->findFrontend();
+
+        View::share('menus', $menu);
+    }
+
+    public function index($slug = null, $paginate = null)
     {
         $menu = new Menu();
         $currentMenu = $menu->findBySlug($slug);
@@ -23,11 +35,8 @@ class PageController extends Controller
 
         $pageModules = $pageModule->findPageModules($currentMenu->page_id);
 
-        $menu = $menu->findFrontend();
-
         return view('page')->with([
             'pageModules' => $pageModules,
-            'menus' => $menu,
             'currentMenu' => $currentMenu
         ]);
     }
@@ -43,14 +52,12 @@ class PageController extends Controller
         $pageModule = new PageModule();
 
         $menu = new Menu();
-        $menus = $menu->findFrontend();
 
         $data = [
             'module' => [
                 'data' => $module,
                 'item' => $pageModule->findDetailOfModule($module, $itemSlug)
-            ],
-            'menus' => $menus
+            ]
         ];
 
         $currentMenu = $menu->findBySlug($slug);

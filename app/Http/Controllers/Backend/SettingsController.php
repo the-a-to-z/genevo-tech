@@ -34,9 +34,7 @@ class SettingsController extends BackendController
     {
         $this->registerPermissionAs('view-menus');
 
-        return view('backend.settings.index')->with([
-            'allSettings' => Setting::all()
-        ]);
+        return view('backend.settings.index')->with('allSettings', Setting::all());
     }
 
     /**
@@ -144,9 +142,6 @@ class SettingsController extends BackendController
         $this->registerPermissionAs('edit-setting');
 
         $inputs = $request->all();
-
-        unset($inputs['_token']);
-        unset($inputs['_method']);
 
         foreach ($inputs as $name => $value) {
             $this->validate($request, [

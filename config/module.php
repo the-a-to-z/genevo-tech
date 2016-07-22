@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is where to define constant variables
+ * This is where to define module widgets
  */
 
 return [
@@ -12,6 +12,7 @@ return [
             'url' => 'basic/module',
             'route-controller' => 'Backend\Modules\Widgets\BasicController'
         ],
+<<<<<<< HEAD
 		'slider' => [
             'display-name' => 'Slider',
             'model' => 'App\Modules\Widgets\Slider',
@@ -44,6 +45,13 @@ return [
                     'type' => 'delete'
                 ]
             ]
+=======
+        'contact-form' => [
+            'display-name' => 'Contact Form',
+            'model' => 'App\Modules\Widgets\ContactForm',
+            'url' => 'contact-form/module',
+            'route-controller' => 'Backend\Modules\Widgets\ContactFormController',
+>>>>>>> refs/remotes/origin/master
         ],
         'portfolio-style-1' => [
             'display-name' => 'Portfolio Style 1',
@@ -99,6 +107,59 @@ return [
                     'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@showCategory',
                     'type' => 'get'
                 ]
+            ]
+        ],
+        'job-listing' => [
+            'display-name' => 'Job Listing',
+            'model' => 'App\Modules\Widgets\JobListing\JobListing',
+            'url' => 'job-listing/module',
+            'route-controller' => 'Backend\Modules\Widgets\JobListingController',
+            'route-custom' => [
+                [
+                    'url' => 'module/{moduleId}/job-listing/create-item',
+                    'action' => 'Backend\Modules\Widgets\JobListingController@createItem',
+                    'type' => 'get'
+                ],
+                [
+                    'url' => 'module/{moduleId}/job-listing/store-item',
+                    'action' => 'Backend\Modules\Widgets\JobListingController@storeItem',
+                    'type' => 'post'
+                ],
+                [
+                    'url' => 'module/{moduleId}/job-listing/item/{id}/edit',
+                    'action' => 'Backend\Modules\Widgets\JobListingController@editItem',
+                    'type' => 'get'
+                ],
+                [
+                    'url' => 'module/{moduleId}/job-listing/item/{id}',
+                    'action' => 'Backend\Modules\Widgets\JobListingController@updateItem',
+                    'type' => 'patch'
+                ],
+                [
+                    'url' => 'module/{moduleId}/job-listing/delete-item/{id}',
+                    'action' => 'Backend\Modules\Widgets\JobListingController@deleteItem',
+                    'type' => 'delete'
+                ],
+                [
+                    'url' => 'module/{moduleId}/job-listing/category',
+                    'action' => 'Backend\Modules\Widgets\JobListingController@showCategory',
+                    'type' => 'get'
+                ],
+                [
+                    'url' => 'module/{moduleId}/job-listing/category',
+                    'action' => 'Backend\Modules\Widgets\JobListingController@storeCategory',
+                    'type' => 'post'
+                ],
+                [
+                    'url' => 'module/{moduleId}/job-listing/category/{id}',
+                    'action' => 'Backend\Modules\Widgets\JobListingController@updateCategory',
+                    'type' => 'patch'
+                ],
+                [
+                    'url' => 'module/{moduleId}/job-listing/category/{id}',
+                    'action' => 'Backend\Modules\Widgets\JobListingController@deleteCategory',
+                    'type' => 'delete'
+                ],
             ]
         ]
     ]

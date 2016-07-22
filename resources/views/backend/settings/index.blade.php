@@ -1,7 +1,6 @@
 @extends('backend.layouts.master')
 
 @section('content')
-
     <div class="content">
         <div class="container-fluid">
 
@@ -16,12 +15,8 @@
                     <div class="card">
                         <div class="header">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="title">All Settings</h4>
-                                </div>
-
                                 @if(hasPermission('edit-setting', $permissions))
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         {!! btnSubmitEdit('Save Settings') !!}
                                     </div>
                                 @endif
@@ -29,52 +24,109 @@
                             </div>
                         </div>
 
-                        <div class="content table-responsive table-full-width">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Setting Name</th>
-                                    <th>Value</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                        <div class="content">
 
-                                @foreach($allSettings as $key => $setting)
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>General Setting</h4>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive table-full-width">
+                                <table class="table no-bordered">
+                                    <tbody>
 
                                     <tr>
-                                        <td style="width: 10px"><i class="pe-7s-help1" data-tipso="{{ $setting->description }}"></i></td>
-                                        <th class="col-md-4">
-                                            {{ $setting->display_name }}
+                                        <td style="width: 10px">
+                                            <i class="pe-7s-help1" data-tipso=""></i>
+                                        </td>
+                                        <th style="width: 140px;">
+                                            {{ getSetting('company-name', 'display_name', $allSettings)}}
                                         </th>
 
-                                        <td class="text-primary td-input " data-tipso="test">
-                                        @if($errors->has($setting->name))
+                                        <td class="text-primary td-input">
                                             <input type="text"
-                                                   class="hasError"
-                                                   name="{{ $setting->name }}"
-                                                   value="{{ old($setting->name) }}"
-                                                   data-tipso="{{ $errors->first($setting->name) }}">
-                                        @else
-                                                <input type="text"
-                                                       name="{{ $setting->name }}"
-                                                       value="{{ $setting->value }}">
-                                        @endif
-
+                                                   name="company-name"
+                                                   value="{{ getSetting('company-name', 'value', $allSettings)}}">
                                         </td>
-
-                                        {{--<td class="text-right">--}}
-                                            {{--@if( hasPermission('delete-setting', $permissions) )--}}
-                                                {{--{!! btnDelete('settings', $setting->id) !!}--}}
-                                            {{--@endif--}}
-                                        {{--</td>--}}
                                     </tr>
 
-                                @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
 
-                                </tbody>
-                            </table>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Contact Setting</h4>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive table-full-width">
+                                <table class="table no-bordered">
+                                    <tbody>
+
+                                    <tr>
+                                        <td style="width: 10px">
+                                            <i class="pe-7s-help1" data-tipso=""></i>
+                                        </td>
+                                        <th style="width: 140px;">
+                                            Address
+                                        </th>
+
+                                        <td class="text-primary td-input ">
+                                            <input type="text"
+                                                   name="company-address"
+                                                   value="{{ getSetting('company-address', 'value', $allSettings)}}">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 10px">
+                                            <i class="pe-7s-help1" data-tipso=""></i>
+                                        </td>
+                                        <th>
+                                            Phone Number
+                                        </th>
+
+                                        <td class="text-primary td-input ">
+                                            <input type="text"
+                                                   name="company-contact-number"
+                                                   value="{{ getSetting('company-contact-number', 'value', $allSettings)}}">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 10px">
+                                            <i class="pe-7s-help1" data-tipso=""></i>
+                                        </td>
+                                        <th>
+                                            Email
+                                        </th>
+
+                                        <td class="text-primary td-input ">
+                                            <input type="text"
+                                                   name="company-contact-email"
+                                                   value="{{ getSetting('company-contact-email', 'value', $allSettings)}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 10px">
+                                            <i class="pe-7s-help1" data-tipso=""></i>
+                                        </td>
+                                        <th>
+                                            Google Map
+                                        </th>
+
+                                        <td class="text-primary td-input ">
+                                            <input type="text"
+                                                   name="company-map"
+                                                   value="{{ getSetting('company-map-coordination', 'value', $allSettings)}}">
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
                     </div>

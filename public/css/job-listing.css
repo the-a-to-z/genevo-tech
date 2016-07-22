@@ -1,0 +1,73 @@
+
+/* ----------------------------------------------------------------
+     job list
+-----------------------------------------------------------------*/
+
+.job-listing {
+}
+
+.job-listing .featured-item {
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    border: 1px solid #f0f0f0;
+    transition: background 0.5s ease-in-out;
+}
+
+.job-listing .featured-item:hover {
+    background: #f0f0f0;
+}
+
+.job-listing .featured-item .icon img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.job-listing .featured-item .label {
+    color: #999;
+    width: 100px;
+    display: inline-block;
+    text-align: left;
+    font-weight: 300;
+}
+
+.job-listing .position-name .text {
+    font-size: 24px;
+    color: #ec6719
+}
+
+.job-listing .company-name .text {
+    font-size: 16px;
+    color: #08c
+}
+
+.job-listing .page-content {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    margin-bottom: 0;
+}
+
+.job-listing .portfolio-filter li {
+    float: left;
+    width: 20%;
+}
+
+.job-listing .portfolio-filter li a {
+    text-transform: capitalize;
+    letter-spacing: normal;
+    color: #555;
+    display: inline-block;
+    max-width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 33px;
+}
+
+.job-listing .portfolio-filter li a:hover,
+.job-listing .portfolio-filter li a.active {
+    color: #ec6719;
+}

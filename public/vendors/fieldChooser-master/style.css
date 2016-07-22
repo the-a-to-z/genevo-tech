@@ -23,12 +23,13 @@
 
 .fc-field-list {
     width: 100%;
-    height: 300px;
+    min-height: 300px;
     margin: 0;
     padding: 3px;
     border-radius: 4px;
     background: #fff;
     border: 1px solid #ddd;
+    overflow-y: auto;
 }
 
 .fc-source-fields {
