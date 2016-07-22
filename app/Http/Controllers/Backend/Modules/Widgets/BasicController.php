@@ -63,6 +63,7 @@ class BasicController extends BackendController
             'module_id' => $input['module_id'],
             'description' => $input['description'],
             'css_class' => (isset($input['css_class']) ? $input['css_class'] : null),
+            'show_title' => $input['show_title'],
         ])->save();
 
         Session::flash('flash_message', 'Module has been saved!');
@@ -129,6 +130,7 @@ class BasicController extends BackendController
             'module_id' => $input['module_id'],
             'description' => $input['description'],
             'css_class' => (isset($input['css_class']) ? $input['css_class'] : null),
+            'show_title' => $input['show_title'],
         ])->save();
 
         Session::flash('flash_message', 'Module has been saved!');

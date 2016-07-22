@@ -95,13 +95,13 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>
         $(document).ready(function () {
-            var toolbar = "styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link";
+            var toolbar = "styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link";
             tinymce.init({
                 selector:'textarea.textEditorSmall' ,
                 content_css: "{{ url('css/backend-tinymce-content.css') }}",
                 height : 120,
-                plugins: "link",
-                menubar: false,
+                plugins: "link, table",
+                menubar: true,
                 toolbar: toolbar,
                 setup: function (editor) {
                     editor.on('change', function () {
@@ -114,7 +114,7 @@
                 selector:'textarea.textEditor' ,
                 content_css: "{{ url('css/backend-tinymce-content.css') }}",
                 height : 300,
-                plugins: "link",
+                plugins: "link, table",
                 menubar: false,
                 toolbar: toolbar,
                 setup: function (editor) {

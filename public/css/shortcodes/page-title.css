@@ -9,6 +9,9 @@
     background-color: #f0f0f0;
 }
 
+.page-title.bg-white {
+    background-color: #FFFFFF;
+}
 
 .page-title h1,
 .page-title h2,

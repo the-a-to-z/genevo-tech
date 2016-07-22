@@ -16,7 +16,7 @@ class PortfolioStyle1 extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'module_id', 'css_class'
+        'title', 'description', 'module_id', 'css_class', 'theme'
     ];
 
     public function findByModuleId($id)

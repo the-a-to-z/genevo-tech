@@ -55,6 +55,9 @@ Route::get('/demo', function () {
     return view('layouts.local-demo');
 });
 
+Route::post('contact-us', 'ContactFormController@send');
+Route::get('thanks-for-contact-us/{moduleId}', 'ContactFormController@afterSent');
+
 Route::get('/', 'PageController@index');
 Route::get('{slug}', 'PageController@index');
 Route::get('{slug}/{itemSlug}', 'PageController@show');

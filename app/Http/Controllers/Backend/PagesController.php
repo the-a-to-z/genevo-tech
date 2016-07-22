@@ -160,14 +160,21 @@ class PagesController extends BackendController
 
         if(isset($input['module_id'])) {
             //delete current page modules from database
-           // PageModule::where('page_id', $id)->delete();
+            PageModule::where('page_id', $id)->delete();
 
             $pageModuleData = [];
+            $storeModuleId = [];
             foreach ($input['module_id'] as $moduleId) {
+                if(isset($storeModuleId[$moduleId])) {
+                    continue;
+                }
+
                 $pageModuleData[] = [
                     'page_id' => $id,
                     'module_id' => $moduleId
                 ];
+
+                $storeModuleId[$moduleId] = true;
             }
 
             if(count($pageModuleData)) {

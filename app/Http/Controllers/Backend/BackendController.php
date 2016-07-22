@@ -124,4 +124,14 @@ class BackendController extends BaseController
         return false;
     }
 
+    public function uploadPath($fileName = null)
+    {
+        return public_path(uploadPath($this->uploadDir . '/'. $fileName));
+    }
+
+    public function uploadPathThumbnail($fileName = null)
+    {
+        return public_path(uploadPath($this->uploadDir . '/thumbnail/' . $fileName));
+    }
+
 }

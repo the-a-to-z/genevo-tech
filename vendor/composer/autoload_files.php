@@ -17,5 +17,10 @@ return array(
     'f0906e6318348a765ffb6eb24e0d0938' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     '58571171fd5812e6e447dce228f52f4d' => $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
     'f18cc91337d49233e5754e93f3ed9ec3' => $vendorDir . '/laravelcollective/html/src/helpers.php',
-    '6d394c3a532652dafb4dd296ba6a3f0b' => $baseDir . '/app/Http/helpers.php',
+    '4391e1617af56d3cd494e8c7ea735c78' => $baseDir . '/app/Helpers/SettingHelper.php',
+    '00620ec3787303b77ee72cb3469bb395' => $baseDir . '/app/Helpers/PermissionHelper.php',
+    '14df7641a5e7c6ae2fe80019e6260f8f' => $baseDir . '/app/Helpers/UrlHelper.php',
+    'e816a3bbf3d3060666b2a42b01a93ac0' => $baseDir . '/app/Helpers/DateHelper.php',
+    'a6b726a6227e28704f4b9ed720c9b54e' => $baseDir . '/app/Helpers/FormHelper.php',
+    '8de729c124fbeb69f515692d4632e144' => $baseDir . '/app/Helpers/ModuleHelper.php',
 );

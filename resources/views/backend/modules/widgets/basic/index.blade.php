@@ -33,11 +33,31 @@
                                 <div class="col-md-12">
                                     <div class="pull-right">
                                         <div class="form-group form-inline">
+                                            <label>Show Title </label>
+
+                                            <select name="show_title" class="form-control">
+                                                @if($data)
+                                                    <option value="1"{{ $data->show_title == '' ? ' selected' : '' }}>Yes</option>
+                                                    <option value="0"{{ $data->show_title == '' ? ' selected' : '' }}>No</option>
+                                                @else
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
+                                                @endif
+
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group form-inline p-left-15">
                                             <label>Background Color </label>
 
                                             <select name="css_class" class="form-control">
-                                                <option value="">Default</option>
-                                                <option value="gray-bg">Gray</option>
+                                                @if($data)
+                                                    <option value=""{{ $data->css_class == '' ? ' selected' : '' }}>Default</option>
+                                                    <option value="gray-bg"{{ $data->css_class == 'gray-bg' ? ' selected' : '' }}>Gray</option>
+                                                @else
+                                                    <option value="">Default</option>
+                                                    <option value="gray-bg">Gray</option>
+                                                @endif
                                             </select>
 
                                         </div>

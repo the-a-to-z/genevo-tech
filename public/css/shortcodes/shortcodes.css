@@ -15,7 +15,7 @@
 @import url("list-style.css");
 @import url("divider.css");
 @import url("heading.css");
-@import url("clients.css");
+@import url("image-inline-list.css");
 @import url("team.css");
 @import url("testimonial.css");
 @import url("progress-bar.css");
@@ -30,4 +30,9 @@
 @import url("carousel.css");
 @import url("side-nav.css");
 @import url("countdown.css");
+
+/*
+* Modules
+*/
+@import url('../modules/job-listing/frontend.css');
 

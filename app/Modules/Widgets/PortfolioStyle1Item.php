@@ -28,10 +28,6 @@ class PortfolioStyle1Item extends Model
                 ->where('module_id', $id)
                 ->get();
 
-        if (count($query) == 0) {
-            return false;
-        }
-
         return $query;
     }
 
