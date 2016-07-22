@@ -12,6 +12,39 @@ return [
             'url' => 'basic/module',
             'route-controller' => 'Backend\Modules\Widgets\BasicController'
         ],
+		'slider' => [
+            'display-name' => 'Slider',
+            'model' => 'App\Modules\Widgets\Slider',
+            'url' => 'slider/module',
+            'route-controller' => 'Backend\Modules\Widgets\SliderController',
+            'route-custom' => [
+                [
+                    'url' => 'module/{moduleId}/slider/item/create',
+                    'action' => 'Backend\Modules\Widgets\SliderController@createItem',
+                    'type' => 'get'
+                ],
+                [
+                    'url' => 'module/{moduleId}/slider/item',
+                    'action' => 'Backend\Modules\Widgets\SliderController@storeItem',
+                    'type' => 'post'
+                ],
+                [
+                    'url' => 'module/{moduleId}/slider/item/{itemId}/edit',
+                    'action' => 'Backend\Modules\Widgets\SliderController@editItem',
+                    'type' => 'get'
+                ],
+                [
+                    'url' => 'module/{moduleId}/slider/item/{itemId}',
+                    'action' => 'Backend\Modules\Widgets\SliderController@updateItem',
+                    'type' => 'patch'
+                ],
+                [
+                    'url' => 'module/{moduleId}/slider/item/{itemId}',
+                    'action' => 'Backend\Modules\Widgets\SliderController@destroyItem',
+                    'type' => 'delete'
+                ]
+            ]
+        ],
         'portfolio-style-1' => [
             'display-name' => 'Portfolio Style 1',
             'model' => 'App\Modules\Widgets\PortfolioStyle1',
@@ -37,7 +70,7 @@ return [
         ],
         'portfolio-style-2' => [
             'display-name' => 'Portfolio Style 2',
-            'model' => 'App\Modules\Widgets\PortfolioStyle2\PortfolioStyle2',
+            'model' => 'App\Modules\Widgets\PortfolioStyle2',
             'url' => 'portfolio-style-2/module',
             'route-controller' => 'Backend\Modules\Widgets\PortfolioStyle2Controller',
             'route-custom' => [
@@ -52,12 +85,7 @@ return [
                     'type' => 'post'
                 ],
                 [
-                    'url' => 'module/{moduleId}/portfolio-style-2/item/{id}/edit',
-                    'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@editItem',
-                    'type' => 'get'
-                ],
-                [
-                    'url' => 'module/{moduleId}/portfolio-style-2/item/{id}',
+                    'url' => 'module/{moduleId}/portfolio-style-2/update-item',
                     'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@updateItem',
                     'type' => 'patch'
                 ],
@@ -70,22 +98,7 @@ return [
                     'url' => 'module/{moduleId}/portfolio-style-2/category',
                     'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@showCategory',
                     'type' => 'get'
-                ],
-                [
-                    'url' => 'module/{moduleId}/portfolio-style-2/category',
-                    'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@storeCategory',
-                    'type' => 'post'
-                ],
-                [
-                    'url' => 'module/{moduleId}/portfolio-style-2/category/{id}',
-                    'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@updateCategory',
-                    'type' => 'patch'
-                ],
-                [
-                    'url' => 'module/{moduleId}/portfolio-style-2/category/{id}',
-                    'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@deleteCategory',
-                    'type' => 'delete'
-                ],
+                ]
             ]
         ]
     ]

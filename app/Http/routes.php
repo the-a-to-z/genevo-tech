@@ -5,7 +5,7 @@ Route::auth();
 /************************************************************************************
  *                                  Backend routes
  ************************************************************************************/
-
+ 
 Route::group(['prefix' => config('constants.url.backend-prefix'), 'middleware' => ['auth']], function() {
 
     Route::get('/', 'Backend\DashboardController@index');
@@ -21,6 +21,7 @@ Route::group(['prefix' => config('constants.url.backend-prefix'), 'middleware' =
     Route::resource('pages', 'Backend\PagesController');
 
     Route::resource('settings', 'Backend\SettingsController');
+	
 
     /**
      * Modules

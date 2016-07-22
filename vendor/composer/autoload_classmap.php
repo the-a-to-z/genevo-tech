@@ -38,7 +38,7 @@ return array(
     'App\\MenuPosition' => $baseDir . '/app/MenuPosition.php',
     'App\\MenuSite' => $baseDir . '/app/MenuSite.php',
     'App\\Module' => $baseDir . '/app/Module.php',
-    'App\\Modules\\HomeSlideshow' => $baseDir . '/app/Modules/HomeSlideshow.php',
+    'App\\Modules\\HomeSlideshow' => $baseDir . '/app/Modules/Slider.php',
     'App\\Modules\\Widgets\\Basic' => $baseDir . '/app/Modules/Widgets/Basic.php',
     'App\\Modules\\Widgets\\PortfolioStyle1' => $baseDir . '/app/Modules/Widgets/PortfolioStyle1.php',
     'App\\Page' => $baseDir . '/app/Page.php',

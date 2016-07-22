@@ -322,7 +322,7 @@ class ComposerStaticInit3a911fda0b7154662428f16ecb336a0e
         'App\\MenuPosition' => __DIR__ . '/../..' . '/app/MenuPosition.php',
         'App\\MenuSite' => __DIR__ . '/../..' . '/app/MenuSite.php',
         'App\\Module' => __DIR__ . '/../..' . '/app/Module.php',
-        'App\\Modules\\HomeSlideshow' => __DIR__ . '/../..' . '/app/Modules/HomeSlideshow.php',
+        'App\\Modules\\HomeSlideshow' => __DIR__ . '/../..' . '/app/Modules/Slider.php',
         'App\\Modules\\Widgets\\Basic' => __DIR__ . '/../..' . '/app/Modules/Widgets/Basic.php',
         'App\\Modules\\Widgets\\PortfolioStyle1' => __DIR__ . '/../..' . '/app/Modules/Widgets/PortfolioStyle1.php',
         'App\\Page' => __DIR__ . '/../..' . '/app/Page.php',

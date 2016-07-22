@@ -2,37 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da1aa07b-41b7-4c21-9b89-3f516e8755eb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-2/index.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-2/show.blade.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/portfolio-style-2/1468257913.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/portfolio-style-2/1468258442.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-1.blade.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/modules/widgets/basic.blade.php" afterPath="$PROJECT_DIR$/resources/views/modules/widgets/basic/index.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-2.blade.php" afterPath="$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-1/index.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/create-item.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/edit-item.blade.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Modules/HomeSlideshow.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/slideshow/cisco-traning-girl.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/backend/modules/home-slideshow/index.blade.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/PortfolioStyle2Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/PortfolioStyle2Controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle1Item.php" afterPath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle1Item.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2.php" afterPath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2Category.php" afterPath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2Item.php" afterPath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2Item.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2ItemCategories.php" afterPath="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2ItemCategories.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/PageModule.php" afterPath="$PROJECT_DIR$/app/PageModule.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/module.php" afterPath="$PROJECT_DIR$/config/module.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/backend.css" afterPath="$PROJECT_DIR$/public/css/backend.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/image-grid.css" afterPath="$PROJECT_DIR$/public/css/image-grid.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/light-bootstrap-dashboard.css" afterPath="$PROJECT_DIR$/public/css/light-bootstrap-dashboard.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/layouts/page-header.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/layouts/page-header.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/category-list.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/category-list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/category.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/category.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/create-item.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/create-item.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/local.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/local.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/page.blade.php" afterPath="$PROJECT_DIR$/resources/views/page.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" />
     </list>
     <list id="22b48aa8-57fd-4909-a9fa-e93b53dcfd14" name="Rejected commit: Default" comment="career-aspiration update links and items" />
     <ignored path="one-page-template.iws" />
@@ -45,19 +25,21 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="one-page-template" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PortfolioStyle2Controller.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/PortfolioStyle2Controller.php">
+      <file leaf-file-name="SliderController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/SliderController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="185" column="33" selection-start-line="185" selection-start-column="13" selection-end-line="185" selection-end-column="33" />
+            <state relative-caret-position="310">
+              <caret line="310" column="8" selection-start-line="310" selection-start-column="8" selection-end-line="310" selection-end-column="8" />
               <folding>
                 <element signature="e#64#115#0#PHP" expanded="true" />
               </folding>
@@ -65,64 +47,87 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="SliderItem.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/Slider/SliderItem.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="59" column="138" selection-start-line="59" selection-start-column="118" selection-end-line="59" selection-end-column="138" />
+            <state relative-caret-position="271">
+              <caret line="35" column="72" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-2/show.blade.php">
+      <file leaf-file-name="create-item.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/create-item.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+            <state relative-caret-position="102">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding>
+                <marker date="1469195001156" expanded="true" signature="5445:5457" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Slider.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/Slider/Slider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+              <folding>
+                <element signature="e#46#85#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SliderDetail.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/Slider/SliderDetail.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PortfolioStyle2.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/page.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-2/index.blade.php">
+      <file leaf-file-name="Basic.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/Basic.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="47" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="module.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/module.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit-item.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/edit-item.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="28" column="11" selection-start-line="2" selection-start-column="0" selection-end-line="28" selection-end-column="11" />
               <folding>
-                <marker date="1468659380369" expanded="true" signature="1589:1651" ph="..." />
-                <marker date="1468659380369" expanded="true" signature="1729:1781" ph="..." />
+                <marker date="1469194451684" expanded="true" signature="3877:3889" ph="..." />
               </folding>
             </state>
           </provider>
@@ -144,14 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2.php" />
-        <option value="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2Item.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/PagesController.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/modal-edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/modal-add.blade.php" />
-        <option value="$PROJECT_DIR$/public/vendors/jquery.filer/css/jquery.filer.css" />
-        <option value="$PROJECT_DIR$/resources/views/backend/roles/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2Category.php" />
         <option value="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2ItemCategory.php" />
         <option value="$PROJECT_DIR$/app/Modules/Widgets/PortFolioStyle2/PortfolioStyle2Item.php" />
         <option value="$PROJECT_DIR$/app/Modules/Widgets/PortFolioStyle2/PortfolioStyle2ItemCategories.php" />
@@ -171,7 +168,6 @@
         <option value="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/category-list.blade.php" />
         <option value="$PROJECT_DIR$/public/css/backend.css" />
         <option value="$PROJECT_DIR$/public/css/portfolio-style-2.css" />
-        <option value="$PROJECT_DIR$/config/module.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/create-item.blade.php" />
         <option value="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2Category.php" />
         <option value="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2ItemCategories.php" />
@@ -195,6 +191,15 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/PortfolioStyle2Controller.php" />
         <option value="$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2.php" />
         <option value="$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-2/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/SlideshowController.php" />
+        <option value="$PROJECT_DIR$/app/Modules/Widgets/Slider/SliderDetail.php" />
+        <option value="$PROJECT_DIR$/app/Modules/Widgets/Slider/Slider.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Modules/Widgets/Slider/SliderItem.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/edit-item.blade.php" />
+        <option value="$PROJECT_DIR$/config/module.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/SliderController.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/create-item.blade.php" />
       </list>
     </option>
   </component>
@@ -209,8 +214,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="24" />
-    <option name="width" value="1366" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -238,42 +244,39 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../office-cambodia" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\genevo-tech\app\Modules\Widgets\Slideshow" />
       <recent name="$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-2" />
       <recent name="$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style1" />
       <recent name="$PROJECT_DIR$/resources/views/modules/widgets/basic" />
       <recent name="$PROJECT_DIR$/app/Modules/Widgets/PortFolioStyle2" />
-      <recent name="$PROJECT_DIR$/resources/views/modules/widgets" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\genevo-tech\app\Modules\Widgets\Slider" />
+      <recent name="C:\xampp\htdocs\genevo-tech\resources\views\backend\modules\widgets" />
+      <recent name="C:\xampp\htdocs\genevo-tech\app\Modules\Widgets" />
+      <recent name="C:\xampp\htdocs\genevo-tech\app\Http\Controllers\Backend\Modules\Widgets" />
       <recent name="$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2" />
-      <recent name="$PROJECT_DIR$/public/uploads" />
-      <recent name="$PROJECT_DIR$/app/Modules/Widgets" />
-      <recent name="$PROJECT_DIR$/resources/views/modules/widgets" />
-      <recent name="$PROJECT_DIR$/resources/views/backend/modules/widgets" />
     </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -301,19 +304,6 @@
       <scripts />
       <node-interpreter value="project" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
       <method />
     </configuration>
   </component>
@@ -356,6 +346,11 @@
       <workItem from="1468411990967" duration="980000" />
       <workItem from="1468414667630" duration="27206000" />
       <workItem from="1468642613009" duration="13995000" />
+      <workItem from="1468663573463" duration="19000" />
+      <workItem from="1468664587884" duration="5000" />
+      <workItem from="1468665965282" duration="127000" />
+      <workItem from="1468666120964" duration="7453000" />
+      <workItem from="1469189530906" duration="5423000" />
     </task>
     <task id="LOCAL-00001" summary="career-aspiration update links and items">
       <created>1467191595739</created>
@@ -368,20 +363,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206846000" />
+    <option name="totallyTimeSpent" value="219873000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962447" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962447" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962447" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -391,6 +385,7 @@
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962447" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -411,129 +406,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="career-aspiration update links and items" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/SliderController.php</url>
+          <line>4</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/pages/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="130" column="15" selection-start-line="130" selection-start-column="15" selection-end-line="130" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/shortcodes/featured-box.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/modal-edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="57" column="30" selection-start-line="51" selection-start-column="24" selection-end-line="57" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/modal-add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="46" column="109" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/vendors/jquery.filer/css/jquery.filer.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="165" column="19" selection-start-line="165" selection-start-column="19" selection-end-line="165" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/RolesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="72" column="11" selection-start-line="69" selection-start-column="7" selection-end-line="72" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/users/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/framework/views/d04bc76159c3a34f996d719aa5b73ea0673a4719.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" column="51" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/framework/views/b20165e1d60b2fea2aa3c32725f9a1ce790826a3.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="86" column="83" selection-start-line="86" selection-start-column="83" selection-end-line="86" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/framework/views/2e2c3cbb2ad21ea100c229949b9c75b56effefc9.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="90" column="87" selection-start-line="90" selection-start-column="87" selection-end-line="90" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-1/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/home-slideshow/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="23" column="113" selection-start-line="23" selection-start-column="113" selection-end-line="23" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-1/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="822">
-          <caret line="83" column="73" selection-start-line="83" selection-start-column="73" selection-end-line="83" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/roles/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="43" column="63" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-1/modal-add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="5" column="23" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/layouts/page-header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/roles/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -545,24 +429,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/helpers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1568">
-          <caret line="51" column="34" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="34" />
-          <folding>
-            <element signature="e#7#301#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-1/modal-edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -577,7 +443,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -585,13 +450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
           <caret line="112" column="16" selection-start-line="112" selection-start-column="8" selection-end-line="112" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/module.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="39" column="75" selection-start-line="39" selection-start-column="75" selection-end-line="39" selection-end-column="75" />
         </state>
       </provider>
     </entry>
@@ -606,7 +464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
           <caret line="28" column="104" selection-start-line="28" selection-start-column="104" selection-end-line="28" selection-end-column="104" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -656,7 +513,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1760">
           <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -664,7 +520,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -672,19 +527,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="503" column="24" selection-start-line="503" selection-start-column="24" selection-end-line="503" selection-end-column="24" />
-          <folding>
-            <marker date="1468644715950" expanded="true" signature="43139:45658" ph="..." />
-            <marker date="1468644715950" expanded="true" signature="43152:45655" ph="..." />
-            <marker date="1468644715950" expanded="true" signature="43956:44202" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/page.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
+        <state relative-caret-position="0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -692,15 +541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -708,7 +548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="90" column="30" selection-start-line="90" selection-start-column="20" selection-end-line="90" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -716,15 +555,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
           <caret line="1361" column="21" selection-start-line="1361" selection-start-column="21" selection-end-line="1361" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/modules/widgets/portfolio-style-2/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="0">
           <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -732,7 +569,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="45" column="39" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -740,7 +576,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5760">
           <caret line="180" column="1" selection-start-line="180" selection-start-column="1" selection-end-line="180" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -748,7 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
           <caret line="2453" column="23" selection-start-line="2453" selection-start-column="23" selection-end-line="2453" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -756,25 +590,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/PortfolioStyle2Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
+        <state relative-caret-position="509">
           <caret line="185" column="33" selection-start-line="185" selection-start-column="13" selection-end-line="185" selection-end-column="33" />
-          <folding>
-            <element signature="e#64#115#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -782,15 +604,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="23" column="111" selection-start-line="23" selection-start-column="111" selection-end-line="23" selection-end-column="111" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-2/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
+        <state relative-caret-position="0">
           <caret line="59" column="138" selection-start-line="59" selection-start-column="118" selection-end-line="59" selection-end-column="138" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -798,9 +618,185 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="47" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/BasicController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/SlideshowController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="51" column="82" selection-start-line="51" selection-start-column="71" selection-end-line="51" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/PortfolioStyle2/PortfolioStyle2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="2" column="45" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2584">
+          <caret line="78" column="51" selection-start-line="78" selection-start-column="45" selection-end-line="78" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-1/modal-edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/portfolio-style-1/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="157" column="20" selection-start-line="157" selection-start-column="16" selection-end-line="157" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/vendors/jquery.filer/css/jquery.filer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/layouts/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="845">
+          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/Basic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/Slider/Slider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
           <folding>
-            <marker date="1468659380369" expanded="true" signature="1589:1651" ph="..." />
-            <marker date="1468659380369" expanded="true" signature="1729:1781" ph="..." />
+            <element signature="e#46#85#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="35" column="72" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/PortfolioStyle1Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="93" column="41" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="41" />
+          <folding>
+            <element signature="e#64#115#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/Slider/SliderDetail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Widgets/Slider/SliderItem.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Backend/Modules/Widgets/SliderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="310" column="8" selection-start-line="310" selection-start-column="8" selection-end-line="310" selection-end-column="8" />
+          <folding>
+            <element signature="e#64#115#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/edit-item.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="28" column="11" selection-start-line="2" selection-start-column="0" selection-end-line="28" selection-end-column="11" />
+          <folding>
+            <marker date="1469194451684" expanded="true" signature="3877:3889" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/modules/widgets/slider/create-item.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <marker date="1469195001156" expanded="true" signature="5445:5457" ph="..." />
           </folding>
         </state>
       </provider>
