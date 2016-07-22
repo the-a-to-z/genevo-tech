@@ -12,7 +12,6 @@ return [
             'url' => 'basic/module',
             'route-controller' => 'Backend\Modules\Widgets\BasicController'
         ],
-<<<<<<< HEAD
 		'slider' => [
             'display-name' => 'Slider',
             'model' => 'App\Modules\Widgets\Slider',
@@ -45,13 +44,12 @@ return [
                     'type' => 'delete'
                 ]
             ]
-=======
+        ],
         'contact-form' => [
             'display-name' => 'Contact Form',
             'model' => 'App\Modules\Widgets\ContactForm',
             'url' => 'contact-form/module',
-            'route-controller' => 'Backend\Modules\Widgets\ContactFormController',
->>>>>>> refs/remotes/origin/master
+            'route-controller' => 'Backend\Modules\Widgets\ContactFormController'
         ],
         'portfolio-style-1' => [
             'display-name' => 'Portfolio Style 1',
