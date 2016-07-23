@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="module_id" value="{{ $module->id }}">
-                    <input type="hidden" name="module_widget_portfolio_1_id" value="{{ $data->id }}">
+                    <input type="hidden" name="widget_id" value="{{ $data->id }}">
 
                     <div class="row">
                         <div class="col-md-12">

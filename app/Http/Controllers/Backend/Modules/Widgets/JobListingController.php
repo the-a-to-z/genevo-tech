@@ -7,7 +7,7 @@ use App\Module;
 use App\Modules\Widgets\JobListing\JobListing;
 use App\Modules\Widgets\JobListing\JobListingCategory;
 use App\Modules\Widgets\JobListing\JobListingItem;
-use App\Modules\Widgets\JobListing\JobListingItemCategories;
+use App\Modules\Widgets\JobListing\JobListingItemCategory;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -126,7 +126,8 @@ class JobListingController extends BackendController
         $module = Module::find($moduleId);
         $widget = new JobListing();
         $widget = $widget->findByModuleId($moduleId);
-        $category = new JobListingItemCategories();
+
+        $category = new JobListingItemCategory();
         $categories = $category->ofItemWithAllCategories($id);
 
         return view(backendModuleViewUrl('widgets.job-listing.edit-item'))->with([
@@ -192,7 +193,7 @@ class JobListingController extends BackendController
     {
         $this->registerPermissionAs('edit-module');
 
-        JobListingItemCategories::where('item_id', $id)->delete();
+        JobListingItemCategory::where('item_id', $id)->delete();
 
         $dataInsert = [];
         foreach ($categories as $category) {
@@ -202,7 +203,7 @@ class JobListingController extends BackendController
             ];
         }
 
-        return JobListingItemCategories::insert($dataInsert);
+        return JobListingItemCategory::insert($dataInsert);
     }
 
     public function storeItem(Request $request, $moduleId)
@@ -312,7 +313,7 @@ class JobListingController extends BackendController
 
         $this->validate($request, [
             'widget_id' => 'required',
-            'name' => 'unique:module_widget_job_listing_category',
+            'name' => 'unique:module_widget_job_listing_categories',
             'display_name' => 'required',
         ]);
 
@@ -332,7 +333,7 @@ class JobListingController extends BackendController
         $this->registerPermissionAs('edit-module');
 
         $this->validate($request, [
-            'name' => 'unique:module_widget_job_listing_category',
+            'name' => 'unique:module_widget_job_listing_categories',
             'display_name' => 'required'
         ]);
 
@@ -350,7 +351,7 @@ class JobListingController extends BackendController
     {
         $this->registerPermissionAs('edit-module');
 
-        if(JobListingItemCategories::where('category_id', $id)->count() > 0) {
+        if(JobListingItemCategory::where('category_id', $id)->count() > 0) {
             Session::flash('flash_message_type', 'danger');
             Session::flash(
                 'flash_message',

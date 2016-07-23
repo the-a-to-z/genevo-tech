@@ -16,7 +16,7 @@ class PortfolioStyle1Item extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'module_widget_portfolio_1_id', 'image'
+        'title', 'description', 'widget_id', 'image'
     ];
 
     public function findByModuleId($id)
@@ -24,7 +24,7 @@ class PortfolioStyle1Item extends Model
         $query =
             DB::table('module_widget_portfolio_1')
                 ->select('items.*')
-                ->join('module_widget_portfolio_1_items as items', 'items.module_widget_portfolio_1_id', '=', 'module_widget_portfolio_1.id')
+                ->join('module_widget_portfolio_1_items as items', 'items.widget_id', '=', 'module_widget_portfolio_1.id')
                 ->where('module_id', $id)
                 ->get();
 

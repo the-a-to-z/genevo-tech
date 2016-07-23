@@ -160,6 +160,8 @@ return [
 
         'Collective\Html\HtmlServiceProvider',
 
+        'Baum\Providers\BaumServiceProvider',
+
         /*
          * Intervention
          */

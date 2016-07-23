@@ -25,7 +25,7 @@ class PortfolioStyle1 extends Model
             DB::table('module_widget_portfolio_1')
                 ->select('module_widget_portfolio_1.*')
                 ->selectRaw('count(items.id) as total_items')
-                ->leftJoin('module_widget_portfolio_1_items as items', 'items.module_widget_portfolio_1_id', '=', 'module_widget_portfolio_1.id')
+                ->leftJoin('module_widget_portfolio_1_items as items', 'items.widget_id', '=', 'module_widget_portfolio_1.id')
                 ->where('module_id', $id)
                 ->get();
 
@@ -34,6 +34,11 @@ class PortfolioStyle1 extends Model
         }
 
         return $query[0];
+    }
+
+    public function items()
+    {
+        return $this->hasMany('App\Modules\Widgets\PortfolioStyle1Item', 'widget_id');
     }
 
     /**

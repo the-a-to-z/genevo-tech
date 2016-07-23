@@ -1,0 +1,167 @@
+
+/* ----------------------------------------------------------------
+     job list
+-----------------------------------------------------------------*/
+
+.job-listing {
+}
+
+.job-listing .featured-item {
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    border: 1px solid #f0f0f0;
+    transition: background 0.5s ease-in-out;
+}
+
+.job-listing .featured-item:hover {
+    background: #f0f0f0;
+}
+
+.job-listing .featured-item .icon img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.job-listing .featured-item .label {
+    color: #999;
+    width: 100px;
+    display: inline-block;
+    text-align: left;
+    font-weight: 300;
+}
+
+.job-listing .position-name .text {
+    font-size: 24px;
+    color: #ec6719
+}
+
+.job-listing .company-name .text {
+    font-size: 16px;
+    color: #08c
+}
+
+.job-listing .page-content {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    margin-bottom: 0;
+}
+
+.job-listing .portfolio-filter li {
+    float: left;
+    width: 20%;
+}
+
+.job-listing .portfolio-filter li a {
+    text-transform: capitalize;
+    letter-spacing: normal;
+    color: #555;
+    display: inline-block;
+    max-width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 33px;
+}
+
+.job-listing .portfolio-filter li a:hover,
+.job-listing .portfolio-filter li a.active {
+    color: #ec6719;
+}
+
+/*
+ * List style
+ */
+.job-listing .sidebar {
+    padding: 20px 15px 40px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.job-listing .sidebar h3 {
+    padding: 10px 20px 0;
+    line-height: 15px;
+    color: #888;
+}
+
+.job-listing .sidebar ul {
+    padding-left: 0;
+}
+
+.job-listing .sidebar ul > li > a {
+    color: #666;
+    padding: 4px 20px;
+    display: block;
+    width: 100%;
+}
+
+.job-listing .sidebar ul > li > a .fa {
+    width: 15px;
+    margin-right: 0;
+}
+
+.job-listing .sidebar ul > li.active a, .job-listing .sidebar ul > li > a:hover {
+    color: #ec6719;
+    background: #ddd;
+}
+
+.job-listing .table-job-listing {
+
+}
+
+.job-listing .table-job-listing.table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 0;
+    background: #f0f0f0;
+    padding: 12px 8px;
+    font-weight: 600;
+}
+
+.job-listing .table-job-listing.table > thead > tr > th:first-child {
+    padding-left: 26px;
+}
+
+.job-listing .table-job-listing.table>tbody>tr>td {
+    font-size: 13px;
+}
+
+.job-listing .table-job-listing.table>tbody>tr>td:first-child {
+    font-weight: 600;
+}
+
+.job-listing .table-job-listing.table>tbody>tr:first-child>td {
+    border: 0;
+}
+
+.job-listing .table-job-listing.table>tbody>tr:last-child>td {
+    border-bottom: 1px solid #ddd;
+}
+
+.job-listing .table-job-listing.table>tbody>tr>td .text-danger {
+    color: #FF4A55;
+}
+
+.job-listing .table-job-listing.table>tbody>tr>td .icon.text-danger {
+    color: red;
+}
+
+.job-listing .table-job-listing.table>tbody>tr>td .text-warning {
+    color: #FF9500;
+}
+
+.job-listing .table-job-listing.table>tbody>tr>td .icon {
+    display: inline-block;
+    padding-right: 10px;
+    font-size: 16px;
+    line-height: 13px;
+    position: relative;
+    width: 15px;
+}
+
+.job-listing .table-job-listing.table>tbody>tr>td .icon i  {
+    position: absolute;
+    top: -13px;
+}

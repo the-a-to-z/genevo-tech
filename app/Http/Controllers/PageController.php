@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Module;
 use App\PageModule;
 use App\Http\Requests;
 use App\Menu;
@@ -20,12 +21,12 @@ class PageController extends Controller
         $menu = $this->menu->findFrontend();
 
         View::share('menus', $menu);
+        View::share('settings', App\Setting::all());
     }
 
     public function index($slug = null, $paginate = null)
     {
-        $menu = new Menu();
-        $currentMenu = $menu->findBySlug($slug);
+        $currentMenu = $this->menu->findBySlug($slug);
 
         if($currentMenu == null) {
             redirect('404');
@@ -36,8 +37,10 @@ class PageController extends Controller
         $pageModules = $pageModule->findPageModules($currentMenu->page_id);
 
         return view('page')->with([
-            'pageModules' => $pageModules,
-            'currentMenu' => $currentMenu
+            'data' => [
+                'pageModules' => $pageModules,
+                'currentMenu' => $currentMenu
+            ]
         ]);
     }
 
@@ -49,9 +52,7 @@ class PageController extends Controller
             redirect('404');
         }
 
-        $pageModule = new PageModule();
-
-        $menu = new Menu();
+        $pageModule = new PageModule();;
 
         $data = [
             'module' => [
@@ -60,11 +61,45 @@ class PageController extends Controller
             ]
         ];
 
-        $currentMenu = $menu->findBySlug($slug);
+        $currentMenu = $this->menu->findBySlug($slug);
 
         if($currentMenu) {
             $data['currentMenu'] = $currentMenu;
         }
+
+        return view('page')->with($data);
+    }
+
+    public function showByCategory($slug, $categorySlug)
+    {
+        $currentMenu = $this->menu->findBySlug($slug);
+
+        if($currentMenu == null) {
+            redirect('404');
+        }
+
+        $pageModule = new PageModule();
+
+        $pageModules = $pageModule->findPageModules($currentMenu->page_id);
+
+        $widget = (array_values($pageModules)[0])['widget'];
+
+        $category = $widget->categories()->where('name', $categorySlug)->first();
+
+        $module = Module::find($widget->module_id);
+
+        $data = [
+            'data' => [
+                'pageModules' => [
+                    $module->name => [
+                        'widget' => $widget,
+                        'module' => $module,
+                        'category' => $category
+                    ]
+                ],
+                'currentMenu' => $currentMenu
+            ]
+        ];
 
         return view('page')->with($data);
     }

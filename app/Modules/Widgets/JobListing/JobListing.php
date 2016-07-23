@@ -16,7 +16,7 @@ class JobListing extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'show_category_filter','description', 'module_id', 'css_class', 'theme', 'display_per_page	'
+        'title', 'show_category_filter','description', 'module_id', 'css_class', 'theme', 'display_per_page'
     ];
 
     public function items()
@@ -29,9 +29,9 @@ class JobListing extends Model
         return $this->hasMany('App\Modules\Widgets\JobListing\JobListingCategory', 'widget_id');
     }
 
-    public function paginateItems()
+    public function paginateItems($displayPerPage = 20)
     {
-        return $this->items()->paginate(2);
+        return $this->items()->paginate($displayPerPage);
     }
 
     public function findByModuleId($id)
@@ -57,11 +57,7 @@ class JobListing extends Model
      */
     public function viewData($id)
     {
-        return [
-           // 'portfolio' => DB::table($this->table)->where('module_id', $id)->first(),
-           // 'portfolioItems' => $item->findByModuleId($id)
-            'portfolio' => JobListing::where('module_id', $id)->first()
-        ];
+        return [];
     }
 
     public function findDetail($id, $itemSlug)

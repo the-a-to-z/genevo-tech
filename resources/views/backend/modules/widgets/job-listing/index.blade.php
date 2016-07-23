@@ -1,27 +1,5 @@
 @extends('backend.layouts.master')
 
-@section('style')
-    <link rel="stylesheet" href="{{ url('vendors/SimpleDropDownEffects/css/basic.css') }}">
-@endsection
-
-@section('script')
-    <script src="{{  url('vendors/SimpleDropDownEffects/js/modernizr.custom.63321.js')  }}"></script>
-    <script src="{{  url('vendors/SimpleDropDownEffects/js/jquery.dropdown.js')  }}"></script>
-    <script>
-        $( function() {
-
-            $('.cd-select').each(function () {
-                $(this).dropdown({
-                    gutter: 0,
-                    stack: false
-                });
-            });
-
-        });
-
-    </script>
-@endsection
-
 @section('content')
 
     @define($editWidget = ($widget && (isset($widget->id) ? $widget->id : null) != null))
@@ -54,59 +32,76 @@
                         <div class="content">
                             <hr>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group form-inline">
-                                        <select name="css_class" class="cd-select">
-                                            @define( $theme = old('theme') ? old('theme') : '')
+                                <div class="form-group col-md-3">
+                                    @define( $theme = old('theme') ? old('theme') : '')
 
-                                            @if($editWidget)
-                                                @define( $theme = old('theme') ? old('theme') : $widget->theme)
-                                            @endif
+                                    @if($editWidget)
+                                        @define( $theme = old('theme') ? old('theme') : $widget->theme)
+                                    @endif
 
-                                            <option value=""{{ $theme == null ? ' selected': '' }}>
-                                                Background Default
-                                            </option>
-                                            <option value="gray-bg"{{ $theme == 'grid' ? ' selected': '' }}>
-                                                Grid
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group form-inline">
-                                        <select name="css_class" class="cd-select">
-                                            @define( $cssClass = old('css_class') ? old('css_class') : '')
-
-                                            @if($editWidget)
-                                                @define( $cssClass = old('css_class') ? old('css_class') : $widget->css_class)
-                                            @endif
-
-                                            <option value=""{{ $cssClass == null ? ' selected': '' }}>
-                                                Background Default
-                                            </option>
-                                            <option value="gray-bg"{{ $cssClass == 'gray-bg' ? ' selected': '' }}>
-                                                Gray
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group form-inline p-left-15">
-                                        <select name="show_category_filter" class="cd-select">
-
-                                            @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : '')
-
-                                            @if($editWidget)
-                                                @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : $widget->show_category_filter)
-                                            @endif
-
-                                            <option value="1"{{ $showCategoryFilter == '1' ? ' selected': '' }}>
-                                                Show Category
-                                            </option>
-                                            <option value="0"{{ $showCategoryFilter == '0' ? ' selected': '' }}>
-                                                Hide Category
-                                            </option>
-                                        </select>
-                                    </div>
+                                    <label {{ $theme == null ? ' selected': '' }}>Display as</label>
+                                    <select name="theme" class="cd-select">
+                                        <option value=""{{ $theme == null ? ' selected': '' }} class="fa fa-list">
+                                            List
+                                        </option>
+                                        <option value="grid"{{ $theme == 'grid' ? ' selected': '' }} class="fa fa-th-large">
+                                            Grid
+                                        </option>
+                                    </select>
                                 </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>Background color</label>
+                                    <select name="css_class" class="cd-select">
+                                        @define( $cssClass = old('css_class') ? old('css_class') : '')
+
+                                        @if($editWidget)
+                                            @define( $cssClass = old('css_class') ? old('css_class') : $widget->css_class)
+                                        @endif
+
+                                        <option value=""{{ $cssClass == null ? ' selected': '' }}>
+                                            Default
+                                        </option>
+                                        <option value="gray-bg"{{ $cssClass == 'gray-bg' ? ' selected': '' }}>
+                                            Gray
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>Show category</label>
+                                    <select name="show_category_filter" class="cd-select">
+
+                                        @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : '')
+
+                                        @if($editWidget)
+                                            @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : $widget->show_category_filter)
+                                        @endif
+
+                                        <option value="1"{{ $showCategoryFilter == '1' ? ' selected': '' }}>
+                                            Yes
+                                        </option>
+                                        <option value="0"{{ $showCategoryFilter == '0' ? ' selected': '' }}>
+                                            No
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>Number of display per page</label>
+
+                                    @define( $displayPerPage = old('display_per_page') ? old('display_per_page') : '')
+
+                                    @if($editWidget)
+                                        @define( $displayPerPage = old('display_per_page') ? old('display_per_page') : $widget->display_per_page)
+                                    @endif
+                                    <input type="number"
+                                           name="display_per_page"
+                                           class="form-control"
+                                           value="{{ $displayPerPage }}"
+                                    >
+                                </div>
+
                             </div>
 
                         </div>
@@ -168,9 +163,9 @@
                                                 {{ $item->company }}
                                             </td>
                                             <td>
-                                                @if($item->close_on > addDay(1, date('Y-m-d')))
+                                                @if($item->close_on > addDay(3, date('Y-m-d')))
                                                     {{ displayDate($item->close_on) }}
-                                                @elseif($item->close_on >= addDay(1, date('Y-m-d')))
+                                                @elseif($item->close_on >= addDay(3, date('Y-m-d')))
                                                     <span class="text-warning">{{ displayDate($item->close_on) }}</span>
                                                 @else
                                                     <span class="text-danger">{{ displayDate($item->close_on) }}</span>
@@ -209,12 +204,14 @@
     <link href="{{ url('vendors/jquery.filer/css/jquery.filer.css') }}" type="text/css" rel="stylesheet" />
     <link href="{{ url('vendors/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css') }}" type="text/css" rel="stylesheet" />
     <link href="{{ url('css/image-grid.css') }}" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url('vendors/SimpleDropDownEffects/css/basic.css') }}">
 
 @endsection
 
 @section('script')
 
-    <script src="{{ url('vendors/jquery.filer/js/jquery.filer.min.js') }}"></script>
+    <script src="{{  url('vendors/SimpleDropDownEffects/js/modernizr.custom.63321.js')  }}"></script>
+    <script src="{{  url('vendors/SimpleDropDownEffects/js/jquery.dropdown.js')  }}"></script>
     <script src="{{ url('js/jquery.confirm-action.js') }}"></script>
     <script>
         $(document).ready(function () {
@@ -227,17 +224,6 @@
                 }
             });
 
-            /**
-             * Upload item
-             */
-            $('.filer_input').filer({
-                limit: 1,
-                maxSize: 3,
-                extensions: ['jpg', 'jpeg', 'png', 'gif'],
-                changeInput: true,
-                showThumbs: true
-            });
-
             $('.btnToEdit').click(function () {
                 var container = $('#modalEditPortfolioItem');
 
@@ -247,6 +233,13 @@
                 $('#editPortfolioImagePreview').html($(this).closest('.image-grid-item').find('img').clone());
 
                 tinymce.get('portFolioItemDescription').setContent($(this).data('description'));
+            });
+
+            $('.cd-select').each(function () {
+                $(this).dropdown({
+                    gutter: 0,
+                    stack: false
+                });
             });
         });
     </script>

@@ -19,7 +19,6 @@ class ContactFormController extends PageController
 
     public function send(Request $request)
     {
-
         $module = new App\Modules\Widgets\ContactForm();
         $module = $module->findByModuleId($request->module_id);
 

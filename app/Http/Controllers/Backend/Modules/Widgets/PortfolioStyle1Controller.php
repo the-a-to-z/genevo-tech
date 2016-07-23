@@ -156,7 +156,7 @@ class PortfolioStyle1Controller extends BackendController
 
         $portfolioItem = new PortfolioStyle1Item();
         $portfolioItem->fill([
-            'module_widget_portfolio_1_id' => Input::get('module_widget_portfolio_1_id'),
+            'widget_id' => Input::get('widget_id'),
             'title' => Input::get('title'),
             'description' => Input::get('description'),
             'image' => $upload,
@@ -179,16 +179,17 @@ class PortfolioStyle1Controller extends BackendController
                 return redirect()->back();
             }
 
-
             $portfolioItem->fill([
-                'module_widget_portfolio_1_id' => Input::get('module_widget_portfolio_1_id'),
+                'widget_id' => Input::get('widget_id'),
                 'title' => Input::get('title'),
                 'description' => Input::get('description'),
                 'image' => $upload,
             ])->save();
+
         } else {
+
             $portfolioItem->fill([
-                'module_widget_portfolio_1_id' => Input::get('module_widget_portfolio_1_id'),
+                'widget_id' => Input::get('widget_id'),
                 'title' => Input::get('title'),
                 'description' => Input::get('description')
             ])->save();

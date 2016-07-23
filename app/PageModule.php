@@ -35,10 +35,9 @@ class PageModule extends Authenticatable
 
         foreach ($modules as $module) {
             $class = config('module.widget.' . $module->widget_name . '.model');
-            $obj = new $class();
 
-            $modulesData[$module->name]['data'] = $obj->viewData($module->id);
-            $modulesData[$module->name]['widget'] = $module->widget_name;
+            $modulesData[$module->name]['widget'] = $class::where('module_id', $module->id)->first();
+            $modulesData[$module->name]['module'] = $module;
         }
 
         return $modulesData;
@@ -50,6 +49,16 @@ class PageModule extends Authenticatable
         $obj = new $class();
 
         return $obj->findDetail($module->id, $itemSlug);
+    }
+
+    public function findModule($module)
+    {
+        $class = config('module.widget.' . $module->widget_name . '.model');
+//        $obj = new $class();
+
+        return $class::where('module_id', $module->id)->first();
+
+//        return $obj->findItemsByCategory($module->id, $categorySlug);
     }
 
 }

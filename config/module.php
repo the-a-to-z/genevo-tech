@@ -49,7 +49,7 @@ return [
             'display-name' => 'Contact Form',
             'model' => 'App\Modules\Widgets\ContactForm',
             'url' => 'contact-form/module',
-            'route-controller' => 'Backend\Modules\Widgets\ContactFormController'
+            'route-controller' => 'Backend\Modules\Widgets\ContactFormController',
         ],
         'portfolio-style-1' => [
             'display-name' => 'Portfolio Style 1',
@@ -76,7 +76,7 @@ return [
         ],
         'portfolio-style-2' => [
             'display-name' => 'Portfolio Style 2',
-            'model' => 'App\Modules\Widgets\PortfolioStyle2',
+            'model' => 'App\Modules\Widgets\PortfolioStyle2\PortfolioStyle2',
             'url' => 'portfolio-style-2/module',
             'route-controller' => 'Backend\Modules\Widgets\PortfolioStyle2Controller',
             'route-custom' => [
@@ -157,7 +157,7 @@ return [
                     'url' => 'module/{moduleId}/job-listing/category/{id}',
                     'action' => 'Backend\Modules\Widgets\JobListingController@deleteCategory',
                     'type' => 'delete'
-                ],
+                ]
             ]
         ]
     ]

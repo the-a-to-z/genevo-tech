@@ -8,9 +8,9 @@
 
     @else
 
-        @foreach($pageModules as $moduleName => $module)
+        @foreach($data['pageModules'] as $pageData)
 
-            @include('modules.widgets.' . $module['widget'] . '.index', ['module' => $module, 'data' => $module['data'], 'moduleName' => $moduleName])
+            @include('modules.widgets.' . $pageData['module']->widget_name . '.index', ['data' => $pageData, 'currentMenu' => $data['currentMenu']])
 
         @endforeach
 

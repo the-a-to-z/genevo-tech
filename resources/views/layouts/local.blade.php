@@ -403,9 +403,6 @@
 <!--common scripts-->
 <script src="{{ url('js/scripts.js?8') }}"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGYQW8u7lAmK5qkcxL8hyBcJQj8h1XZ9w&callback=initMap" async
-        defer></script>
-
 <!-- SLIDER REVOLUTION INIT  -->
 <script type="text/javascript">
 
@@ -500,25 +497,9 @@
 
     }); //ready
 
-    /**
-     * Google map
-     */
-    function initMap() {
-        var genevoLocation = {lat: 11.579563, lng: 104.901447};
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
-            center: genevoLocation
-        });
-
-        var marker = new google.maps.Marker({
-            position: genevoLocation,
-            map: map,
-            title: 'GeneVo Technology'
-        });
-    }
-
 </script>
+
+@yield("script")
 
 </body>
 </html>

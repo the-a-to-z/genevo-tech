@@ -1,11 +1,19 @@
 @section('style')
-    <link href="{{ url('css/job-listing.css') }}" rel="stylesheet">
+    <link href="{{ url('css/modules/job-listing/frontend.css') }}" rel="stylesheet">
     <link href="{{ url('css/flat-pagination.css') }}" rel="stylesheet">
 @endsection
 
-<div id="{{ $moduleName }}" class="job-listing">
-    <section class="page-title bg-white">
-        <div class="container">
+@define($items = $data['widget']->items()->paginate($data['widget']->display_per_page))
+@if(isset($data['category']))
+    @define($items = $data['widget']->items()->categorized($data['category'])->paginate($data['widget']->display_per_page))
+@endif
+
+@define($widget = $data['widget'])
+@define($module = $data['module'])
+
+<div id="{{ $module->name }}" class="job-listing">
+    <section class="page-title">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-uppercase">Opening Job Opportunities</h4>
@@ -14,71 +22,184 @@
         </div>
     </section>
 
-    @if($data['portfolio']->show_category_filter == '1')
-    <div class="page-content gray-bg">
+    @if($widget->show_category_filter == '1' && $widget->theme == 'grid')
+        <div class="page-content gray-bg">
 
-        <div class="container">
-            <ul class="portfolio-filter">
-                <li class="active"><a href="#" data-filter="*"> All</a></li>
-                @foreach($data['portfolio']->categories as $category)
-                    <li>
-                        <a href="#" data-filter=".{{ $category->name }}">
-                            {{ $category->display_name }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+            <div class="container-fluid">
+                <ul class="portfolio-filter">
+                    <li class="active"><a href="#" data-filter="*"> All</a></li>
+                    @foreach($widget->categories as $category)
+                        <li>
+                            <a href="#" data-filter=".{{ $category->name }}">
+                                {{ $category->display_name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
-    </div>
     @endif
 
-    <div class="page-content items{{ ($data['portfolio']->css_class ? ' ' . $data['portfolio']->css_class : '') }}">
+    <div class="page-content items{{ ($widget->css_class ? ' ' . $widget->css_class : '') }}">
 
-        <div class="container">
+        <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-3">
-                    @foreach($data['portfolio']->paginateItems() as $item)
+            @if($widget->theme == 'grid')
+                <div class="row">
+                    <div class="col-3">
+                        @foreach($items as $item)
 
-                        @define($categories = '');
-                        @define($categoryDisplays = '');
+                            @define($categories = '');
+                            @define($categoryDisplays = '');
 
-                        @foreach($item->itemCategory as $itemCategory)
-                            <?php $categories .= ' ' . $itemCategory->category->name;?>
-                            <?php $categoryDisplays .= '<a href="#">' . $itemCategory->category->display_name . '</a>, ';?>
-                        @endforeach
+                            @foreach($widget->categories as $category)
+                                <?php $categories .= ' ' . $category->name;?>
+                                <?php $categoryDisplays .= '<a href="#">' . $category->display_name . '</a>, ';?>
+                            @endforeach
 
-                        <div class="col-md-6{{ $categories }}">
-                            <div class="featured-item">
-                                <div class="position-name">
-                                    <span class="label">&nbsp;</span>
-                                    <a href="{{ url(str_slug($moduleName) . '/' . str_slug($item->job_title)) }}" class="text">
-                                        {{ $item->job_title }}
-                                    </a>
-                                </div>
-                                <div class="company-name">
-                                    <span class="label">Company </span>
-                                    <span class="text">{{ $item->company }}</span>
-                                </div>
-                                <div class="close-date">
-                                    <span class="label">Close on </span>
-                                    <span class="text">{{ displayDate($item->close_on) }}</span>
+                            <div class="col-md-6{{ $categories }}">
+                                <div class="featured-item">
+                                    <div class="position-name">
+                                        <span class="label">&nbsp;</span>
+                                        <a href="{{ url(str_slug($widget->name) . '/' . str_slug($item->job_title)) }}"
+                                           class="text">
+                                            {{ $item->job_title }}
+                                        </a>
+                                    </div>
+                                    <div class="company-name">
+                                        <span class="label">Company </span>
+                                        <span class="text">{{ $item->company }}</span>
+                                    </div>
+                                    <div class="close-date">
+                                        <span class="label">Close on </span>
+                                        <span class="text">{{ displayDate($item->close_on) }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                    @endforeach
+                        @endforeach
+                    </div>
+
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="flat-pagination">
-                            {!! $data['portfolio']->paginateItems()->render() !!}
+                            {!! $items->render() !!}
                         </div>
                     </div>
                 </div>
 
-            </div>
+            @else
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="sidebar">
+                                <h3>Categories</h3>
+                                <ul class="icon-list">
+                                    <li class="{{ Request::is($currentMenu->slug) ? 'active' : '' }}">
+                                        <a href="{{ url('/' . $currentMenu->slug) }}" data-filter="*">
+                                            <i class="fa fa-angle-right" aria-hidden="true"></i> All
+                                        </a>
+                                    </li>
+
+                                    @if($widget->show_category_filter == '1')
+                                        @foreach($widget->categories as $category)
+                                            @define($active = '')
+                                            @if(Request::is($currentMenu->slug . '/category/' . $category->name))
+                                                @define($active = 'active')
+                                            @endif
+
+                                            <li class="{{ $active }}" >
+                                                <a href="{{ url('/' . $currentMenu->slug . '/category/' . $category->name) }}">
+                                                    <i class="fa fa-angle-right"
+                                                       aria-hidden="true"></i> {{ $category->display_name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-job-listing">
+                                    <thead>
+                                    <tr>
+                                        <th>Job Title</th>
+                                        <th>Company</th>
+                                        <th>Close On</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    @foreach($items as $item)
+
+                                        <tr>
+                                            @if($item->close_on > addDay(3, date('Y-m-d')))
+
+                                                <td>
+                                                    <div class="icon">
+                                                        <i class="fa fa-fw"></i>
+                                                    </div>
+                                                    {{ $item->job_title }}
+                                                </td>
+                                                <td> {{ $item->company }} </td>
+                                                <td> {{ displayDate($item->close_on) }} </td>
+
+                                            @elseif($item->close_on >= addDay(3, date('Y-m-d')))
+
+                                                <td>
+                                                    <div class="icon text-warning">
+                                                        <i class="icon-lightbulb"></i>
+                                                    </div>
+                                                    <a href="{{ url(str_slug($widget->name) . '/' . str_slug($item->job_title)) }}">
+                                                        {{ $item->job_title }}
+                                                    </a>
+                                                </td>
+                                                <td> {{ $item->company }} </td>
+                                                <td>
+                                                    <span class="text-warning">{{ displayDate($item->close_on) }}</span>
+                                                </td>
+
+                                            @else
+
+                                                <td>
+                                                    <div class="icon text-danger">
+                                                        <i class="icon-lightbulb"></i>
+                                                    </div>
+                                                    {{ $item->job_title }}
+                                                </td>
+                                                <td> {{ $item->company }} </td>
+                                                <td>
+                                                    <span class="text-danger">{{ displayDate($item->close_on) }}</span>
+                                                </td>
+
+                                            @endif
+                                        </tr>
+
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="flat-pagination">
+                                        {!! $items->render() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            @endif
+
         </div>
     </div>
 </div>

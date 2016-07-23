@@ -305,7 +305,7 @@ INSERT INTO `module_widget_portfolio_1` (`id`, `module_id`, `title`, `css_class`
 
 CREATE TABLE `module_widget_portfolio_1_items` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `module_widget_portfolio_1_id` int(11) NOT NULL,
+  `widget_id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `description` text,
   `image` varchar(200) NOT NULL,
@@ -318,7 +318,7 @@ CREATE TABLE `module_widget_portfolio_1_items` (
 -- Dumping data for table `module_widget_portfolio_1_items`
 --
 
-INSERT INTO `module_widget_portfolio_1_items` (`id`, `module_widget_portfolio_1_id`, `title`, `description`, `image`, `css_class`, `created_at`, `updated_at`) VALUES
+INSERT INTO `module_widget_portfolio_1_items` (`id`, `widget_id`, `title`, `description`, `image`, `css_class`, `created_at`, `updated_at`) VALUES
 (2, 1, 'Profession Instructors', '<p>They are not a story teller. They have dozen of experience in real work. They know how to transfer thier knowledge and skills to you effectively.</p>', '1468142641.jpg', NULL, '2016-07-10 02:24:01', '2016-07-10 10:10:51'),
 (3, 1, 'We care about your future', '<p>We cannot teach you everything, but we teach you for the needs of job market and the future of your career.</p>', '1468167671.jpg', NULL, '2016-07-10 02:25:01', '2016-07-10 09:21:11'),
 (4, 1, 'Real Practical Lap', '<p>We provide you not just theory but experience of real work in our full-equipped lap.</p>', '1468146518.jpg', NULL, '2016-07-10 03:28:38', '2016-07-10 03:28:38');

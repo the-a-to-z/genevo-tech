@@ -1,14 +1,17 @@
-<div id="{{ $moduleName }}" class="page-content{{ ($data['portfolio']->css_class ? ' ' . $data['portfolio']->css_class : '') }}">
+@define($widget = $data['widget'])
+@define($module = $data['module'])
+
+<div id="{{ $module->name }}" class="page-content{{ ($widget->css_class ? ' ' . $widget->css_class : '') }}">
     <div class="container">
         <div class="row">
             <div class="heading-title text-center">
-                <h3 class="text-uppercase">{!! $data['portfolio']->title !!}</h3>
+                <h3 class="text-uppercase">{!! $widget->title !!}</h3>
             </div>
 
-            @if($data['portfolio']->theme == '')
+            @if($widget->theme == '')
             <div class="feature-box-grid">
 
-                @foreach($data['portfolioItems'] as $item)
+                @foreach($widget->items()->get() as $item)
 
                 <div class="col-md-4">
                     <div class="featured-item featured-item-img border-box text-center wow zoomIn" style="visibility: visible; animation-name: zoomIn;">
@@ -31,7 +34,7 @@
             @else
 
                 <div class="image-inline-list">
-                    @foreach($data['portfolioItems'] as $item)
+                    @foreach($widget->items()->get() as $item)
                         <div class="item">
                             <img src="{{ uploadUrl('portfolio-style-1/' . $item->image) }}" alt="{{ $item->title }}">
                         </div>

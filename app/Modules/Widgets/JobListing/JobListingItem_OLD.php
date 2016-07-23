@@ -2,31 +2,26 @@
 
 namespace App\Modules\Widgets\JobListing;
 
-use Baum\Node;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-/**
- * JobListingItem
- */
-class JobListingItem extends Node
+class JobListingItem extends Model
 {
 
-    /**
-     * Table name.
-     *
-     * @var string
-     */
     protected $table = 'module_widget_job_listing_items';
 
-    protected $parentColumn = 'widget_id';
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'slug', 'job_title', 'company', 'close_on', 'description', 'widget_id', 'image'
     ];
 
     public function categories()
     {
-        return $this->belongsToMany('App\Modules\Widgets\JobListing\JobListingCategory', 'module_widget_job_listing_item_categories', 'item_id', 'category_id');
+        return $this->belongsToMany('App\Modules\Widgets\JobListing\JobListingItemCategory', 'module_widget_job_listing_item_categories', 'item_id', 'id');
     }
 
     public function module()
@@ -41,7 +36,7 @@ class JobListingItem extends Node
         $categoryIds = $category->getDescendantsAndSelf()->lists('id');
 
         return $query->with('categories')
-            ->join('module_widget_job_listing_item_categories', 'module_widget_job_listing_item_categories.item_id', '=', 'module_widget_job_listing_items.id')
+            ->join('module_widget_job_listing_item_categories', 'module_widget_job_listing_item_categories.product_id', '=', 'module_widget_job_listing_item.id')
             ->whereIn('module_widget_job_listing_item_categories.category_id', $categoryIds);
     }
 

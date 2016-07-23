@@ -1,16 +1,19 @@
-<div id="{{ $moduleName }}" class="page-content{{ ($data['portfolio']->css_class ? ' ' . $data['portfolio']->css_class : '') }}">
+@define($widget = $data['widget'])
+@define($module = $data['module'])
+
+<div id="{{ $module->name }}" class="page-content{{ ($widget->css_class ? ' ' . $widget->css_class : '') }}">
     <div class="container">
 
         <div class="row">
             <div class="heading-title text-center">
-                <h3 class="text-uppercase">{!! $data['portfolio']->title !!}</h3>
+                <h3 class="text-uppercase">{!! $widget->title !!}</h3>
             </div>
 
-            @if($data['portfolio']->show_category_filter == '1')
+            @if($widget->show_category_filter == '1')
                 <div class="text-center">
                     <ul class="portfolio-filter">
                         <li class="active"><a href="#" data-filter="*"> All</a></li>
-                        @foreach($data['portfolio']->categories as $category)
+                        @foreach($widget->categories as $category)
                             <li>
                                 <a href="#" data-filter=".{{ $category->name }}">
                                     {{ $category->display_name }}
@@ -22,7 +25,7 @@
             @endif
 
             <div class="portfolio portfolio-with-title col-3 gutter">
-                @foreach($data['portfolio']->items as $item)
+                @foreach($widget->items()->get() as $item)
 
                 @define($categories = '');
                 @define($categoryDisplays = '');
@@ -34,7 +37,7 @@
 
                 <div class="portfolio-item{{ $categories }}">
 
-                    <a href="{{ url(str_slug($moduleName) . '/' . str_slug($item->title)) }}">
+                    <a href="{{ url(str_slug($module->name) . '/' . str_slug($item->title)) }}">
                         <div class="thumb">
                             <img src="{{ uploadUrl('portfolio-style-2/thumbnails/' . $item->image) }}" alt="{{ $item->title }}">
                             <div class="portfolio-hover">
@@ -47,7 +50,7 @@
 
                     <div class="portfolio-title">
                         <h4 class="m-bot-0">
-                            <a href="{{ url(str_slug($moduleName) . '/' . str_slug($item->title)) }}">
+                            <a href="{{ url(str_slug($module->name) . '/' . str_slug($item->title)) }}">
                                 {{ $item->title }}
                             </a>
                         </h4>
