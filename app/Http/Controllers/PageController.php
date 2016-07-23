@@ -81,8 +81,10 @@ class PageController extends Controller
         $pageModule = new PageModule();
 
         $pageModules = $pageModule->findPageModules($currentMenu->page_id);
+	
+		$pageModuleFirst = (array_values($pageModules)[0]);
 
-        $widget = (array_values($pageModules)[0])['widget'];
+        $widget = $pageModuleFirst['widget'];
 
         $category = $widget->categories()->where('name', $categorySlug)->first();
 
