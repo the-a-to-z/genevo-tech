@@ -15,11 +15,15 @@ class SliderDetail extends Model
      * @var array
      */
     protected $fillable = [
-        'text', 'color', 'font_size','slider_item_id'
+        'text', 'color', 'font_size','slider_item_id', 'animation_id'
     ];
 
     public function sliderItem()
     {
         return $this->belongsTo('App\Modules\Widgets\Slider\SliderItem', 'slider_item_id');
+    }
+    public function sliderAnimation()
+    {
+        return $this->belongsTo('App\Modules\Widgets\Slider\SliderAnimation', 'animation_id');
     }
 }

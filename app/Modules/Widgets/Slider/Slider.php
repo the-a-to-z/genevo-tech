@@ -13,9 +13,9 @@ class Slider extends Model {
         'module_id', 'status'
     ];
 
-    public function sliderDetails()
+    public function sliderItem()
     {
-        return $this->hasMany('App\Modules\Widgets\Slider\SliderDetail', 'slider_id');
+        return $this->hasMany('App\Modules\Widgets\Slider\SliderItem', 'slider_id');
     }
 	
 	public function viewData()
