@@ -35,6 +35,18 @@ class MenusController extends BackendController
     {
         $this->registerPermissionAs('view-menus');
 
+        $menuSite = MenuSite::where('name', 'frontend')->first();
+        $menu = $menuSite->menus();
+
+        return view('backend.menus.index')->with([
+            'frontendMenus' => $menu->orderBy('menu_position_id')->orderBy('default_order')->get()
+        ]);
+    }
+
+    public function showBackendMenus()
+    {
+        $this->registerPermissionAs('view-menus');
+
         return view('backend.menus.index')->with([
             'allMenus' => Menu::with('menuPosition', 'menuSite', 'permission')->get()
         ]);
@@ -253,6 +265,18 @@ class MenusController extends BackendController
         Session::flash('flash_message', 'Menu has been saved!');
 
         return redirect()->back();
+    }
+
+    public function updateOrder(Request $request)
+    {
+        Menu::find($request->menu_id)->fill([
+            'default_order' => $request->default_order
+        ])->save();
+
+        return response()->json([
+            'message' => 'Menu order has been saved!',
+            'message_type' => 'info'
+        ]);
     }
 
     /**

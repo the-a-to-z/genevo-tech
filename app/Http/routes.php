@@ -16,6 +16,7 @@ Route::group(['prefix' => config('constants.url.backend-prefix'), 'middleware' =
 
     Route::resource('permissions', 'Backend\PermissionsController');
 
+    Route::post('menus/all/update', 'Backend\MenusController@updateOrder');
     Route::resource('menus', 'Backend\MenusController');
 
     Route::resource('pages', 'Backend\PagesController');

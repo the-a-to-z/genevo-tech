@@ -36,10 +36,17 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($allMenus as $key => $menu)
+                                @foreach($frontendMenus as $key => $menu)
 
                                     <tr>
-                                        <td>{{ ++$key }}</td>
+                                        <td style="width: 80px;" class="td-input td-input-small">
+                                            <input type="hidden" name="menu_id[]" value="{{ $menu->id }}">
+                                            <input type="text"
+                                                   name="default_order[]"
+                                                   value="{{ $menu->default_order }}"
+                                                   class="form-control input_menu_order"
+                                            >
+                                        </td>
                                         <td>{{ $menu->name }}</td>
                                         <td>{{ $menu->menuPosition->display_name }}</td>
                                         <td>{{ $menu->menuSite->display_name }}</td>
@@ -82,6 +89,26 @@
                 message: {
                     html: 'You are about to delete a menu.<br><br> Are you sure?'
                 }
+            });
+
+            $('input.input_menu_order').on('input', function () {
+                var menuId = $(this).parent().find('input[name="menu_id[]"]').val();
+                var newOrderValue = $(this).val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ backendUrl('menus/all/update') }}",
+                    data: {menu_id: menuId, default_order: newOrderValue, '_token':"{{ csrf_token() }}"},
+                    success: function( response ) {
+                        $.notify({
+                            icon: 'pe-7s-info',
+                            message: response.message
+                        }, {
+                            type: response.message_type,
+                            timer: 4000
+                        });
+                    }
+                });
             });
         });
     </script>

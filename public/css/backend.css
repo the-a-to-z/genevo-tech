@@ -165,6 +165,12 @@
     border-radius: 4px;
 }
 
+.td-input.td-input-small input {
+    padding-left: 4px!important;
+    padding-right: 4px!important;
+    text-align: center;
+}
+
 /**
 * jquery filer override
 */

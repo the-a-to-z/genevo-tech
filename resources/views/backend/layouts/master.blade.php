@@ -71,10 +71,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        backend.initChartist();
 
         @if(Session::has('flash_message'))
-
-        backend.initChartist();
 
         $.notify({
             icon: 'pe-7s-info',
