@@ -123,6 +123,8 @@ return [
 
     'providers' => [
 
+        Barryvdh\Debugbar\ServiceProvider::class,
+
         /*
          * Laravel Framework Service Providers...
          */
@@ -160,8 +162,6 @@ return [
 
         'Collective\Html\HtmlServiceProvider',
 
-        'Baum\Providers\BaumServiceProvider',
-
         /*
          * Intervention
          */
@@ -181,6 +181,8 @@ return [
     */
 
     'aliases' => [
+
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -215,7 +217,7 @@ return [
 
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

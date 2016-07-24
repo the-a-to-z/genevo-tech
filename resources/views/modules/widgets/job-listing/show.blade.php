@@ -3,7 +3,7 @@
 @define($item = $data['item'])
 
 @section('style')
-    <link href="{{ url('css/modules/job-listing/frontend.css') }}" rel="stylesheet">jo
+    <link href="{{ url('css/modules/job-listing/frontend.css') }}" rel="stylesheet">
 @endsection
 
 <div class="job-listing-detail">

@@ -5,7 +5,7 @@
 
 @define($items = $data['widget']->items()->paginate($data['widget']->display_per_page))
 @if(isset($data['category']))
-    @define($items = $data['widget']->items()->categorized($data['category'])->paginate($data['widget']->display_per_page))
+    @define($items = $data['category']->items()->paginate($data['widget']->display_per_page))
 @endif
 
 @define($widget = $data['widget'])

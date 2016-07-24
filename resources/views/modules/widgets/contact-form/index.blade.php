@@ -83,7 +83,6 @@
         /**
          * Google map
          */
-        initMap();
         function initMap() {
             var genevoLocation = {lat: 11.579563, lng: 104.901447};
 

@@ -218,16 +218,14 @@ class JobListingController extends BackendController
             'category_id' => 'required',
         ]);
 
-        $item = new JobListingItem();
-
-        $item->fill([
+        $item = JobListingItem::create([
             'widget_id' => $request->widget_id,
             'slug' => str_slug($request->job_title),
             'job_title' => $request->job_title,
             'company' => $request->company,
             'close_on' => $request->close_on,
             'description' => $request->description
-        ])->save();
+        ]);
 
         $this->resetItemCategories($item->id, $request->category_id);
 
@@ -249,7 +247,6 @@ class JobListingController extends BackendController
         $item = JobListingItem::find($request->id);
 
         $item->fill([
-            'widget_id' => $request->widget_id,
             'slug' => str_slug($request->job_title),
             'job_title' => $request->job_title,
             'company' => $request->company,

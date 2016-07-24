@@ -2,13 +2,13 @@
 
 namespace App\Modules\Widgets\JobListing;
 
-use Baum\Node;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 /**
  * JobListingCategory
  */
-class JobListingCategory extends Node
+class JobListingCategory extends Model
 {
 
     protected $table = 'module_widget_job_listing_categories';
@@ -26,7 +26,7 @@ class JobListingCategory extends Node
 
     public function items()
     {
-        return $this->belongsToMany('App\Modules\Widgets\JobListing\JobListingItem', 'module_widget_job_listing_item_categories', 'category_id', 'category_id');
+        return $this->belongsToMany('App\Modules\Widgets\JobListing\JobListingItem', 'module_widget_job_listing_item_categories', 'category_id', 'item_id');
     }
 
     public function findByModuleId($id)

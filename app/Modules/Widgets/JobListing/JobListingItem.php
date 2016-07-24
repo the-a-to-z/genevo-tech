@@ -2,13 +2,13 @@
 
 namespace App\Modules\Widgets\JobListing;
 
-use Baum\Node;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 /**
  * JobListingItem
  */
-class JobListingItem extends Node
+class JobListingItem extends Model
 {
 
     /**
@@ -17,8 +17,6 @@ class JobListingItem extends Node
      * @var string
      */
     protected $table = 'module_widget_job_listing_items';
-
-    protected $parentColumn = 'widget_id';
 
     protected $fillable = [
         'slug', 'job_title', 'company', 'close_on', 'description', 'widget_id', 'image'
@@ -32,17 +30,6 @@ class JobListingItem extends Node
     public function module()
     {
         return $this->belongsTo('App\Modules\Widgets\JobListing\JobListing');
-    }
-
-    public function scopeCategorized($query, JobListingCategory $category = null)
-    {
-        if (is_null($category)) return $query->with('categories');
-
-        $categoryIds = $category->getDescendantsAndSelf()->lists('id');
-
-        return $query->with('categories')
-            ->join('module_widget_job_listing_item_categories', 'module_widget_job_listing_item_categories.item_id', '=', 'module_widget_job_listing_items.id')
-            ->whereIn('module_widget_job_listing_item_categories.category_id', $categoryIds);
     }
 
     public function findByModuleId($id)
