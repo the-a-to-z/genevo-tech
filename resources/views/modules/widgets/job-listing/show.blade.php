@@ -1,23 +1,27 @@
-@extends('layouts.master')
+@define($widget = $data['widget'])
+@define($module = $data['module'])
+@define($item = $data['item'])
 
-@section('content')
+@section('style')
+    <link href="{{ url('css/modules/job-listing/frontend.css') }}" rel="stylesheet">jo
+@endsection
+
+<div class="job-listing-detail">
 
     <section class="page-title">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-uppercase">
-                        @if(isset($currentMenu))
+                        @if(isset($data['currentMenu']))
                             <a href="{{ url('/' . $currentMenu->slug) }}" class="inactive-link">
-                                {{ $module['data']->display_name }}
+                                {{ $widget->title }}
                             </a>
                         @else
                             <a href="#" class="inactive-link">
-                                {{ $module['data']->display_name }}
+                                {{ $widget->title }}
                             </a>
                         @endif
-                        <i class="fa fa-angle-right"></i>
-                        <a href="#">{{ $module['item']->job_title }}</a>
                     </h4>
                 </div>
             </div>
@@ -32,21 +36,40 @@
 
                     <div class="col-md-12">
                         <!--classic image post-->
-                        <div class="blog-classic">
-                            <div class="blog-post">
-                                {!! $module['item']->description !!}
+                        <div class="job-listing-content">
+                            <h3 class="job-title">
+                                <a href="#">{{ $item->company }}</a>
+                            </h3>
+                            <h4>
+                                <span class="light">Company: </span> <span class="bold">{{ $item->company }}</span>
+                            </h4>
+                            <h4>
+                                <span class="light">Close on: </span>
+                                @if($item->close_on > addDay(3, date('Y-m-d')))
+                                    <span class="bold">{{ displayDate($item->close_on) }}</span>
+                                @elseif($item->close_on >= addDay(3, date('Y-m-d')))
+                                    <span class="bold text-warning">{{ displayDate($item->close_on) }}</span>
+                                @else
+                                    <span class="bold text-danger">{{ displayDate($item->close_on) }}</span>
+                                @endif
+                            </h4>
+
+                            <div class="description">
+                                {!! $item->description !!}
+                            </div>
+
+                            <hr>
+
+                            <div class="clearfix inline-block m-bot-50">
+                                <h5 class="text-uppercase social-area-title">Share Post </h5>
+                                <div class="widget-social-link circle social-large">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                </div>
                             </div>
 
                         </div>
-                    </div>
-                </div>
-
-                <div class="clearfix inline-block m-bot-50">
-                    <h5 class="text-uppercase">Share Post </h5>
-                    <div class="widget-social-link circle social-large">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                        <a href="#"><i class="fa fa-linkedin"></i></a>
                     </div>
                 </div>
 
@@ -54,5 +77,4 @@
         </div>
 
     </section>
-
-@endsection
+</div>

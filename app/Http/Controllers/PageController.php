@@ -44,30 +44,35 @@ class PageController extends Controller
         ]);
     }
 
-    public function show($slug, $itemSlug)
+    public function show($slug, $itemSlug, $itemId = null)
     {
-        $module = App\Module::where('name', $slug)->first();
-
-        if($module == null) {
-            redirect('404');
-        }
-
-        $pageModule = new PageModule();;
-
-        $data = [
-            'module' => [
-                'data' => $module,
-                'item' => $pageModule->findDetailOfModule($module, $itemSlug)
-            ]
-        ];
-
         $currentMenu = $this->menu->findBySlug($slug);
+        $pageModule = new PageModule();
 
-        if($currentMenu) {
-            $data['currentMenu'] = $currentMenu;
+        if ($currentMenu) {
+            $pageModules = $pageModule->findPageModules($currentMenu->page_id);
+
+            $pageModuleFirst = (array_values($pageModules)[0]);
+
+            $pageModule = $pageModuleFirst['widget'];
+
+            $module = App\Module::find($pageModule->module_id);
+
+            $data['data']['currentMenu'] = $currentMenu;
+        } else {
+            $module = App\Module::where('name', $slug)->first();
+
+            $pageModule = $pageModule->findDetailOfModule($module, $itemSlug);
         }
 
-        return view('page')->with($data);
+        $data['item'] = $pageModule->items()->find($itemId);
+        $data['widget'] = $pageModule;
+        $data['module'] = $module;
+        $data['pageDetail'] = true;
+
+        return view('page')->with([
+            'data' => $data
+        ]);
     }
 
     public function showByCategory($slug, $categorySlug)

@@ -145,7 +145,9 @@
                                                     <div class="icon">
                                                         <i class="fa fa-fw"></i>
                                                     </div>
-                                                    {{ $item->job_title }}
+                                                    <a href="{{ url(str_slug($currentMenu->slug) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
+                                                        {{ $item->job_title }}
+                                                    </a>
                                                 </td>
                                                 <td> {{ $item->company }} </td>
                                                 <td> {{ displayDate($item->close_on) }} </td>
@@ -156,7 +158,7 @@
                                                     <div class="icon text-warning">
                                                         <i class="icon-lightbulb"></i>
                                                     </div>
-                                                    <a href="{{ url(str_slug($widget->name) . '/' . str_slug($item->job_title)) }}">
+                                                    <a href="{{ url(str_slug($currentMenu->slug) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
                                                         {{ $item->job_title }}
                                                     </a>
                                                 </td>
@@ -171,7 +173,9 @@
                                                     <div class="icon text-danger">
                                                         <i class="icon-lightbulb"></i>
                                                     </div>
-                                                    {{ $item->job_title }}
+                                                    <a href="{{ url(str_slug($currentMenu->slug) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
+                                                        {{ $item->job_title }}
+                                                    </a>
                                                 </td>
                                                 <td> {{ $item->company }} </td>
                                                 <td>

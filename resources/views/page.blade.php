@@ -2,9 +2,9 @@
 
 @section('content')
 
-    @if(isset($module))
+    @if(isset($data['pageDetail']))
 
-        @include('modules.widgets.' . $module['data']->widget_name . '.show', $module)
+        @include('modules.widgets.' . $data['module']->widget_name . '.show', ['data' => $data])
 
     @else
 

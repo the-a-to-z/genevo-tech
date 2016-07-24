@@ -4669,12 +4669,16 @@ header li.nav-icon .cart-table-list a {
     color: #444;
 }
 
+.social-area-title {
+    margin-bottom: 10px;
+}
+
 .widget-social-link.social-large a {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 .widget-social-link.social-large a .fa {
-    font-size: 28px;
-    line-height: 48px;
+    font-size: 18px;
+    line-height: 40px;
 }

@@ -54,11 +54,8 @@ class PageModule extends Authenticatable
     public function findModule($module)
     {
         $class = config('module.widget.' . $module->widget_name . '.model');
-//        $obj = new $class();
 
         return $class::where('module_id', $module->id)->first();
-
-//        return $obj->findItemsByCategory($module->id, $categorySlug);
     }
 
 }
