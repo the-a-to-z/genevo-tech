@@ -78,7 +78,7 @@ class PagesController extends BackendController
         $page = new Page();
 
         $page->fill([
-            'name' => strtolower($input['name']),
+            'name' => ($input['name'] == '/' ? null : str_slug($input['name'])),
             'display_name' => ucfirst($input['display_name']),
             'description' => $input['description'],
         ])->save();
@@ -154,6 +154,7 @@ class PagesController extends BackendController
         $input = $request->all();
 
         $page->fill([
+            'name' => ($input['name'] == '/' ? null : str_slug($input['name'])),
             'display_name' => ucfirst($input['display_name']),
             'description' => $input['description'],
         ])->save();

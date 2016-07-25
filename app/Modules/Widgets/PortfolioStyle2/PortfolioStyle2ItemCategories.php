@@ -29,14 +29,16 @@ class PortfolioStyle2ItemCategories extends Model
         return $this->belongsTo('App\Modules\Widgets\PortfolioStyle2\PortfolioStyle2Category', 'category_id');
     }
 
-    public function ofItemWithAllCategories($itemId)
+    public function allOfWidgetWithItemCategories($widgetId, $itemId)
     {
         return
             DB::table($this->table)
-                ->rightJoin('module_widget_portfolio_2_category as category', function ($join) use ($itemId) {
+                ->rightJoin('module_widget_portfolio_2_category as category', function ($join) use ($widgetId, $itemId) {
                     $join->on('category.id', '=', $this->table . '.category_id');
+                    $join->on('category.widget_id', '=', DB::raw($widgetId));
                     $join->on($this->table . '.item_id', '=', DB::raw($itemId));
                 })
+                ->where('category.widget_id', $widgetId)
                 ->get();
     }
     

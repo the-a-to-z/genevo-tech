@@ -11,7 +11,7 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">New menu</h4>
+                            <h4 class="title">Edit menu</h4>
                         </div>
                         <div class="content">
 
@@ -129,7 +129,8 @@
                             <div class="row" id="selectMenuLink">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Link menu to</label>
+                                        <h4 class="m-top-0">Link menu to</h4>
+                                        {!! formError($errors->first('menu_site_id')) !!}
                                         <div>
                                             <div class="radio form-inline m-right-30">
                                                 <label class="text-transform-default">
@@ -145,23 +146,6 @@
                                                         @endif
                                                     >
                                                     Page
-                                                </label>
-                                            </div>
-
-                                            <div class="radio form-inline m-right-30">
-                                                <label class="text-transform-default">
-                                                    <input type="radio"
-                                                           name="link_menu_to"
-                                                           data-toggle="radio"
-                                                           value="module"
-                                                           data-name="link_menu_to"
-                                                           @if(old('link_menu_to'))
-                                                                {{ (old('link_menu_to') == 'module') ? 'checked' : '' }}
-                                                           @else
-                                                               {{ ($menu->module_id) ? 'checked' : '' }}
-                                                           @endif
-                                                    >
-                                                    Module
                                                 </label>
                                             </div>
 
@@ -196,7 +180,7 @@
                                     <h4 class="title">Choose a permission for the menu</h4>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="table-full-width" id="permissionList">
+                                    <div class="table-full-width table-checkbox-list" id="permissionList">
                                         <table class="table table-checkbox">
                                             <tbody>
 
@@ -247,7 +231,7 @@
 
                             <div class="row" id="pageListContainer">
                                 <div class="col-md-12">
-                                    <div class="table-full-width" id="permissionList">
+                                    <div class="table-full-width table-checkbox-list" id="pageList">
                                         <table class="table table-checkbox">
                                             <tbody>
 
@@ -284,24 +268,40 @@
                                         </table>
                                     </div>
 
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                {!! btnToCreate('pages', 'New page') !!}
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
 
                             {{--Module list--}}
                             <div class="row" id="moduleListContainer">
                                 <div class="col-md-12">
-                                    <div class="table-full-width" id="permissionList">
+                                    <h4 class="m-top-0">
+                                        Link to specific module (<span class="text-warning">optional</span>)
+                                    </h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="table-full-width table-checkbox-list" id="moduleList">
                                         <table class="table table-checkbox">
                                             <tbody>
+
+                                            <tr>
+                                                <td class="td-only-checkbox">
+                                                    <label class="radio">
+                                                            <span class="icons">
+                                                                <span class="first-icon fa fa-circle-o"></span>
+                                                                <span class="second-icon fa fa-dot-circle-o"></span>
+                                                            </span>
+                                                        <input type="radio"
+                                                               name="module_id"
+                                                               value=""
+                                                               data-toggle="radio"
+                                                                {{ (old('module_id') ? old('module_id') : $menu->module_id) == null ? ' checked' : '' }}
+                                                        >
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    None
+                                                </td>
+                                            </tr>
 
                                             @foreach($allModules as $module)
 
@@ -330,17 +330,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                {!! btnToCreate('modules', 'New page') !!}
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
+
                             </div>
                             {{--Module list--}}
 
@@ -412,18 +403,14 @@
                 var value = $('input[name="link_menu_to"]:checked').val();
 
                 var pagesContainer = $('#pageListContainer');
-                var moduleContainer = $('#moduleListContainer');
                 var urlContainer = $('#urlInputContainer');
+                var moduleContainer = $('#moduleListContainer');
 
                 $('input[name="menu_site_id"]:nth-child(1)').trigger('change');
 
                 if(value == 'page') {
                     pagesContainer.slideDown();
-                    moduleContainer.slideUp();
-                    urlContainer.slideUp();
-                } else if(value == 'module') {
                     moduleContainer.slideDown();
-                    pagesContainer.slideUp();
                     urlContainer.slideUp();
                 } else if(value == 'url') {
                     urlContainer.slideDown();
@@ -435,13 +422,14 @@
                     pagesContainer.slideUp();
 
                     urlContainer.find('input[type="radio"]').attr('checked', false);
-                    moduleContainer.find('input[type="radio"]').attr('checked', false);
+                    pagesContainer.find('input[type="radio"]').attr('checked', false);
                     pagesContainer.find('input[type="radio"]').attr('checked', false);
                 }
             }
 
             $('input[name="link_menu_to"]').change(function () {
                 $('input[name="permission_id"]').attr('checked', false);
+
                 toggleLinkToMenu();
             });
         });

@@ -107,12 +107,8 @@ class MenusController extends BackendController
                 ]);
 
                 $pageId = $input['page_id'];
-            } else if($input['link_menu_to'] == 'module') {
-                $this->validate($request, [
-                    'module_id' => 'required',
-                ]);
-
                 $moduleId = $input['module_id'];
+
             } else {
                 $this->validate($request, [
                     'url' => 'required',
@@ -221,12 +217,8 @@ class MenusController extends BackendController
                 ]);
 
                 $pageId = $input['page_id'];
-            } else if($input['link_menu_to'] == 'module') {
-                $this->validate($request, [
-                    'module_id' => 'required',
-                ]);
-
                 $moduleId = $input['module_id'];
+
             } else {
                 $this->validate($request, [
                     'url' => 'required',

@@ -3970,11 +3970,6 @@ td .description, .small-description {
     margin-right: 100px;
 }
 
-#permissionList {
-    max-height: 380px;
-    overflow-y: auto
-}
-
 span[disabled] {
     opacity: 0.4;
 }

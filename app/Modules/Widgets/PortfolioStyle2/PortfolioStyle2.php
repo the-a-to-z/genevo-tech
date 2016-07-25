@@ -16,7 +16,7 @@ class PortfolioStyle2 extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'show_category_filter','description', 'module_id', 'css_class'
+        'title', 'show_category_filter','description', 'module_id', 'css_class', 'display_per_column', 'display_item_wide'
     ];
 
     public function items()

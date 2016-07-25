@@ -21,6 +21,8 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="{{ url('css/pe-icon-7-stroke.css') }}" rel="stylesheet"/>
 
+    <link rel="stylesheet" href="{{ url('vendors/mui/mui.min.css') }}">
+
     @yield('style')
 
     <!--  Light Bootstrap Table core CSS    -->
@@ -53,6 +55,8 @@
 
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="{{ url('js/bootstrap-checkbox-radio-switch.js') }}"></script>
+
+<script src="{{  url('vendors/mui/mui.min.js')  }}"></script>
 
 <!--  Charts Plugin -->
 <script src="{{ url('js/chartist.min.js') }}"></script>

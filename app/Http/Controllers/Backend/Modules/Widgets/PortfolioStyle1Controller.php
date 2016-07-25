@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -248,8 +249,21 @@ class PortfolioStyle1Controller extends BackendController
     {
         $this->registerPermissionAs('edit-module');
 
-        PortfolioStyle1Item::find($id)->delete();
+        $item = PortfolioStyle1Item::find($id);
+
+        //Delete Image of item
+        $this->destroyFile($item->image);
+
+        $item->delete();
+
+        Session::flash('flash_message_type', 'warning');
+        Session::flash('flash_message', 'Item has been deleted!');
 
         return redirect()->back();
+    }
+
+    public function destroyFile($filename)
+    {
+        return File::delete("uploads/portfolio-style-1/" . $filename);
     }
 }

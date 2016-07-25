@@ -23,7 +23,7 @@
                                        autofocus
                                        value="{{ (old('title') ? old('title') : $item->title) }}">
 
-                                @if($errors->has('description'))
+                                @if($errors->has('title'))
                                     {!! formError($errors->first('title')) !!}
                                 @endif
                             </h4>
@@ -48,35 +48,63 @@
 
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="header">
-                            <h4 class="title">
-                                Image
-                                @if($errors->has('photo'))
-                                    {!! formError($errors->first('photo')) !!}
-                                @endif
-                            </h4>
-                        </div>
 
                         <div class="content">
-                            <div class="row">
 
-                                <div class="col-md-12">
+                            @define($isYoutubeActive = (old('youtube_video') || $item->youtube_video ? 'mui--is-active' : ''))
+                            @define($isImageActive = (old('image') || $item->image ? 'mui--is-active' : ''))
+
+                            <ul class="mui-tabs__bar mui-tabs__bar--justified">
+                                <li class="{{ $isImageActive }}" id="tab-image">
+                                    <a data-mui-toggle="tab" data-mui-controls="tab-image-content">Image</a>
+                                </li>
+                                <li class="{{ $isYoutubeActive }}" id="tab-youtube">
+                                    <a data-mui-toggle="tab" data-mui-controls="tab-youtube-content">Youtube video</a>
+                                </li>
+                            </ul>
+
+                            <div class="mui-tabs__pane {{ $isImageActive }}" id="tab-image-content">
+                                <div class="m-top-15 fadeIn">
                                     <input type="file" name="photo" class="filer_input">
                                 </div>
 
                                 @if($item->image)
-                                <div class="col-md-12">
-                                    <div class="form-group text-center">
-                                        <label>Current Image</label>
-                                        <div id="editPortfolioImagePreview">
-                                            <img src="{{ url(uploadPath('portfolio-style-2/thumbnails/' . $item->image)) }}"
-                                                 alt="{{ $item->title }}"
-                                                 class="img-responsive"
-                                            >
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group text-center">
+                                                <label>Current Image</label>
+                                                <div id="editPortfolioImagePreview">
+                                                    <img src="{{ url(uploadPath('portfolio-style-2/thumbnails/' . $item->image)) }}"
+                                                         alt="{{ $item->title }}"
+                                                         class="img-responsive"
+                                                    >
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                @endif
+                            </div>
+
+                            <div class="mui-tabs__pane {{ $isYoutubeActive }}" id="tab-youtube-content">
+                                <div class="m-top-15 fadeIn">
+                                    <input type="text"
+                                           name="youtube_video"
+                                           placeholder="http://youtube.com"
+                                           class="form-control"
+                                           value="{{ old('youtube_video') ? old('youtube_video') : $item->youtube_video }}"
+                                    >
+                                    {!! formError($errors->first('youtube_video')) !!}
+                                </div>
+
+                                @if($item->youtube_video)
+                                <div class="m-top-15">
+                                    <img src="{{ getYoutubeImageThumbnailUrl($item->youtube_video) }}"
+                                         alt="{{ $item->title }}"
+                                         class="img-responsive"
+                                    >
                                 </div>
                                 @endif
+
                             </div>
 
                         </div>
@@ -131,6 +159,11 @@
                 extensions: ['jpg', 'jpeg', 'png', 'gif'],
                 changeInput: true,
                 showThumbs: true
+            });
+
+            $('#tab-image').click(function () {
+                $('input[name="youtube_video"]').val('');
+                $('#tab-youtube-content').find('img').hide();
             });
 
         });

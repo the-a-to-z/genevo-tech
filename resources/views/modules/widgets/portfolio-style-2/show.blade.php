@@ -2,22 +2,15 @@
 
 @section('content')
 
+    @define($item = $data['item'])
+    @define($widget = $data['widget'])
+
     <section class="page-title">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-uppercase">
-                        @if(isset($currentMenu))
-                            <a href="{{ url('/' . $currentMenu->slug) }}" class="inactive-link">
-                                {{ $module['data']->display_name }}
-                            </a>
-                        @else
-                            <a href="#" class="inactive-link">
-                                {{ $module['data']->display_name }}
-                            </a>
-                        @endif
-                        <i class="fa fa-angle-right"></i>
-                        <a href="#">{{ $module['item']->title }}</a>
+                        <a href="#">{{ $item->title }}</a>
                     </h4>
                 </div>
             </div>
@@ -41,7 +34,7 @@
                                     {{-->--}}
                                 {{--</div>--}}
 
-                                {!! $module['item']->description !!}
+                                {!! $item->description !!}
                             </div>
 
                         </div>

@@ -10,7 +10,7 @@
 
         @foreach($data['pageModules'] as $pageData)
 
-            @include('modules.widgets.' . $pageData['module']->widget_name . '.index', ['data' => $pageData, 'currentMenu' => $data['currentMenu']])
+            @include('modules.widgets.' . $pageData['module']->widget_name . '.index', ['data' => $pageData, 'currentPage' => $data['currentPage']])
 
         @endforeach
 

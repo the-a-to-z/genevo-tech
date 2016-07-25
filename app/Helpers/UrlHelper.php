@@ -27,3 +27,15 @@ function uploadPath($extra = ''){
 function uploadUrl($extra = ''){
     return url('uploads/' . $extra);
 }
+
+function getYoutubeImageUrl($url) {
+    return str_replace('https://www.youtube.com/watch?v=', 'http://img.youtube.com/vi/', $url);
+}
+
+function getYoutubeImageThumbnailUrl($url) {
+    return getYoutubeImageUrl($url) . '/mqdefault.jpg';
+}
+
+function getYoutubeImageMaxUrl($url) {
+    return getYoutubeImageUrl($url) . '/maxresdefault.jpg';
+}

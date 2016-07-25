@@ -24,6 +24,11 @@ class Page extends Authenticatable
         return $this->hasOne('App\Menu');
     }
 
+    public function modules()
+    {
+        return $this->hasMany('App\PageModule');
+    }
+
     public function pageModule()
     {
         return $this->belongsTo('App\PageMenu');

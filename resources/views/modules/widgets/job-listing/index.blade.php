@@ -98,8 +98,8 @@
                             <div class="sidebar">
                                 <h3>Categories</h3>
                                 <ul class="icon-list">
-                                    <li class="{{ Request::is($currentMenu->slug) ? 'active' : '' }}">
-                                        <a href="{{ url('/' . $currentMenu->slug) }}" data-filter="*">
+                                    <li class="{{ Request::is($currentPage->name) ? 'active' : '' }}">
+                                        <a href="{{ url('/' . $currentPage->name) }}" data-filter="*">
                                             <i class="fa fa-angle-right" aria-hidden="true"></i> All
                                         </a>
                                     </li>
@@ -107,12 +107,12 @@
                                     @if($widget->show_category_filter == '1')
                                         @foreach($widget->categories as $category)
                                             @define($active = '')
-                                            @if(Request::is($currentMenu->slug . '/category/' . $category->name))
+                                            @if(Request::is($currentPage->name . '/category/' . $category->name))
                                                 @define($active = 'active')
                                             @endif
 
                                             <li class="{{ $active }}" >
-                                                <a href="{{ url('/' . $currentMenu->slug . '/category/' . $category->name) }}">
+                                                <a href="{{ url('/' . $currentPage->name . '/category/' . $category->name) }}">
                                                     <i class="fa fa-angle-right"
                                                        aria-hidden="true"></i> {{ $category->display_name }}
                                                 </a>
@@ -145,7 +145,7 @@
                                                     <div class="icon">
                                                         <i class="fa fa-fw"></i>
                                                     </div>
-                                                    <a href="{{ url(str_slug($currentMenu->slug) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
+                                                    <a href="{{ url(str_slug($currentPage->name) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
                                                         {{ $item->job_title }}
                                                     </a>
                                                 </td>
@@ -158,7 +158,7 @@
                                                     <div class="icon text-warning">
                                                         <i class="icon-lightbulb"></i>
                                                     </div>
-                                                    <a href="{{ url(str_slug($currentMenu->slug) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
+                                                    <a href="{{ url(str_slug($currentPage->name) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
                                                         {{ $item->job_title }}
                                                     </a>
                                                 </td>
@@ -173,7 +173,7 @@
                                                     <div class="icon text-danger">
                                                         <i class="icon-lightbulb"></i>
                                                     </div>
-                                                    <a href="{{ url(str_slug($currentMenu->slug) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
+                                                    <a href="{{ url(str_slug($currentPage->name) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
                                                         {{ $item->job_title }}
                                                     </a>
                                                 </td>

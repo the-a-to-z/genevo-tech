@@ -11,20 +11,21 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">Edit page {{ $page->name }}</h4>
+                            <h4 class="title">Edit page {{ $page->display_name }}</h4>
                         </div>
                         <div class="content">
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Name</label>
+                                        <label>
+                                            Slug (<span class="text-warning text-lowercase">use / for blank slug</span>)
+                                        </label>
                                         <input type="text"
                                                name="name"
                                                class="form-control"
                                                autofocus
-                                               readonly
-                                               value="{{ ($errors->has('name') ? old('name') : $page->name) }}"
+                                               value="{{ ($errors->has('name') ? old('name') : ($page->name ? $page->name : '/')) }}"
                                         >
 
                                         <div class="input-error-message">{{ $errors->first('name') }}&nbsp;</div>

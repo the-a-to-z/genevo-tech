@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class MenuSite extends Authenticatable
+class MenuSite extends Model
 {
 
     protected $table = 'menu_site';
@@ -18,7 +18,7 @@ class MenuSite extends Authenticatable
         'name', 'slug'
     ];
 
-    public function menu()
+    public function menus()
     {
         return $this->hasMany('App\Menu');
     }

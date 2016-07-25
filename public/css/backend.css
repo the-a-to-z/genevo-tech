@@ -188,3 +188,16 @@
 .mce-panel {
     border-color: #f0f0f0!important;
 }
+
+
+
+#permissionList, .table-checkbox-list {
+    max-height: 380px;
+    overflow-y: auto
+}
+
+
+.table tbody td.td-only-checkbox,
+.card .table tbody td.td-only-checkbox {
+    padding-left: 5px;
+}

@@ -153,18 +153,6 @@
                                                 </label>
                                             </div>
 
-                                            <div class="radio form-inline m-right-30">
-                                                <label class="text-transform-default">
-                                                    <input type="radio"
-                                                           name="link_menu_to"
-                                                           data-toggle="radio"
-                                                           value="module"
-                                                           data-name="link_menu_to"
-                                                    >
-                                                    Module
-                                                </label>
-                                            </div>
-
                                         </div>
 
                                         {!! formError($errors->first('link_menu_to')) !!}
@@ -226,7 +214,7 @@
 
                             <div class="row" id="pageListContainer">
                                 <div class="col-md-12">
-                                    <div class="table-full-width" id="permissionList">
+                                    <div class="table-full-width table-checkbox-list" id="pageList">
                                         <table class="table table-checkbox">
                                             <tbody>
 
@@ -262,22 +250,40 @@
                                         </table>
                                     </div>
 
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                {!! btnToCreate('pages', 'New page') !!}
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
+
+                            {{--Module list--}}
                             <div class="row" id="moduleListContainer">
                                 <div class="col-md-12">
-                                    <div class="table-full-width" id="permissionList">
+                                    <h4 class="m-top-0">
+                                        Link to specific module (<span class="text-warning">optional</span>)
+                                    </h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="table-full-width table-checkbox-list" id="moduleList">
                                         <table class="table table-checkbox">
                                             <tbody>
+
+                                            <tr>
+                                                <td class="td-only-checkbox">
+                                                    <label class="radio">
+                                                            <span class="icons">
+                                                                <span class="first-icon fa fa-circle-o"></span>
+                                                                <span class="second-icon fa fa-dot-circle-o"></span>
+                                                            </span>
+                                                        <input type="radio"
+                                                               name="module_id"
+                                                               value=""
+                                                               data-toggle="radio"
+                                                                {{ (old('module_id') == null ? ' checked' : '') }}
+                                                        >
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    None
+                                                </td>
+                                            </tr>
 
                                             @foreach($allModules as $module)
 
@@ -304,15 +310,6 @@
 
                                             </tbody>
                                         </table>
-                                    </div>
-
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                {!! btnToCreate('modules', 'New page') !!}
-                                            </div>
-                                        </div>
                                     </div>
 
                                 </div>
@@ -371,32 +368,39 @@
                 }
             });
 
-            $('input[name="link_menu_to"]').change(function () {
-                $('input[name="menu_site_id"]:nth-child(1)').trigger('change');
-
+            toggleLinkToMenu();
+            function toggleLinkToMenu() {
                 var value = $('input[name="link_menu_to"]:checked').val();
 
                 var pagesContainer = $('#pageListContainer');
-                var moduleContainer = $('#moduleListContainer');
                 var urlContainer = $('#urlInputContainer');
+                var moduleContainer = $('#moduleListContainer');
+
+                $('input[name="menu_site_id"]:nth-child(1)').trigger('change');
 
                 if(value == 'page') {
                     pagesContainer.slideDown();
-                    moduleContainer.slideUp();
-                    urlContainer.slideUp();
-                } else if(value == 'module') {
                     moduleContainer.slideDown();
-                    pagesContainer.slideUp();
                     urlContainer.slideUp();
                 } else if(value == 'url') {
                     urlContainer.slideDown();
                     moduleContainer.slideUp();
-                    pagesContainer.slideUp();
+                    pagesContainer.slideUp()
                 } else {
                     urlContainer.slideUp();
                     moduleContainer.slideUp();
                     pagesContainer.slideUp();
+
+                    urlContainer.find('input[type="radio"]').attr('checked', false);
+                    pagesContainer.find('input[type="radio"]').attr('checked', false);
+                    pagesContainer.find('input[type="radio"]').attr('checked', false);
                 }
+            }
+
+            $('input[name="link_menu_to"]').change(function () {
+                $('input[name="permission_id"]').attr('checked', false);
+
+                toggleLinkToMenu();
             });
         });
     </script>

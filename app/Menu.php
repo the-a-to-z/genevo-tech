@@ -17,7 +17,7 @@ class Menu extends Authenticatable
      */
     protected $fillable = [
         'page_id', 'url', 'module_id', 'name', 'description', 'slug', 'css_icon_class',
-        'menu_position_id', 'menu_site_id', 'permission_id', 'active'
+        'menu_position_id', 'menu_site_id', 'permission_id', 'active', 'default_order'
     ];
 
     public function permission()
@@ -78,13 +78,16 @@ class Menu extends Authenticatable
             DB::table('menus')
                 ->select(
                     'menus.*',
+                    'pages.name as page_name',
                     'modules.name as module_name'
                 )
                 ->join('menu_site', 'menu_site.id', '=', 'menus.menu_site_id')
                 ->join('menu_position', 'menu_position.id', '=', 'menus.menu_position_id')
+                ->leftJoin('pages', 'pages.id', '=', 'menus.page_id')
                 ->leftJoin('modules', 'modules.id', '=', 'menus.module_id')
                 ->where('menu_site.name', 'frontend')
                 ->where('menu_position.name', 'top')
+                ->orderBy('default_order')
                 ->get();
     }
 

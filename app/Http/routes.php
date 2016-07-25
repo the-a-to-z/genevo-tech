@@ -61,7 +61,7 @@ Route::post('contact-us', 'ContactFormController@send');
 Route::get('thanks-for-contact-us/{moduleId}', 'ContactFormController@afterSent');
 
 Route::get('/', 'PageController@index');
-Route::get('{slug}', 'PageController@index');
-Route::get('{slug}/{itemSlug}', 'PageController@show');
-Route::get('{slug}/category/{categorySlug}', 'PageController@showByCategory');
-Route::get('{slug}/{itemSlug}/{itemId}', 'PageController@show');
+Route::get('{pageSlug}', 'PageController@index');
+Route::get('{pageSlug}/{itemSlug}', 'PageController@show');
+Route::get('{pageSlug}/category/{categorySlug}', 'PageController@showByCategory');
+Route::get('{pageSlug}/{itemSlug}/{itemId}', 'PageController@show');

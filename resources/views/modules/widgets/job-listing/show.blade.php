@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <h4 class="text-uppercase">
                         @if(isset($data['currentMenu']))
-                            <a href="{{ url('/' . $currentMenu->slug) }}" class="inactive-link">
+                            <a href="{{ url('/' . $currentPage->name) }}" class="inactive-link">
                                 {{ $widget->title }}
                             </a>
                         @else

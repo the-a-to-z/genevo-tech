@@ -16,7 +16,7 @@ class PortfolioStyle2Item extends Model
      * @var array
      */
     protected $fillable = [
-        'slug', 'title', 'description', 'widget_id', 'image'
+        'slug', 'title', 'description', 'widget_id', 'image', 'youtube_video'
     ];
 
     public function itemCategory()

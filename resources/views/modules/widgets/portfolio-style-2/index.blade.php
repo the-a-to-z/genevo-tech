@@ -24,7 +24,9 @@
                 </div>
             @endif
 
-            <div class="portfolio portfolio-with-title col-3 gutter">
+            @define($slideAnimations = ['slideInLeft', 'slideInTop', 'slideInBottom', 'slideInRight'])
+
+            <div class="portfolio portfolio-with-title col-{{ $widget->display_per_column }} {{ $widget->display_item_wide ? '' : 'gutter' }}">
                 @foreach($widget->items()->get() as $item)
 
                 @define($categories = '');
@@ -35,8 +37,25 @@
                     <?php $categoryDisplays .= '<a href="#">' . $itemCategory->category->display_name . '</a>, ';?>
                 @endforeach
 
-                <div class="portfolio-item{{ $categories }}">
+                @define($animation = $slideAnimations[array_rand($slideAnimations)])
 
+                <div class="portfolio-item{{ $categories }} {{ $animation }}" style="visibility: visible; animation-name: {{ $animation }}">
+
+                    @if($item->youtube_video)
+                        <div class="thumb">
+                            <img src="{{ getYoutubeImageMaxUrl($item->youtube_video) }}" alt="">
+                            <div class="portfolio-hover">
+                                <div class="action-btn">
+                                    <a class="popup-vimeo text-danger" href="{{ $item->youtube_video }}">
+                                        <i class="icon-arrows_keyboard_right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-title">
+                            <h4><a class="popup-vimeo" href="{{ $item->youtube_video }}">{{ $item->title }}</a></h4>
+                        </div>
+                    @else
                     <a href="{{ url(str_slug($module->name) . '/' . str_slug($item->title)) }}">
                         <div class="thumb">
                             <img src="{{ uploadUrl('portfolio-style-2/thumbnails/' . $item->image) }}" alt="{{ $item->title }}">
@@ -58,6 +77,9 @@
                             {!! rtrim($categoryDisplays, ',') !!}
                         </p>
                     </div>
+
+                    @endif
+
                 </div>
 
                 @endforeach

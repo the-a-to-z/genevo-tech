@@ -26,31 +26,31 @@ class PageController extends Controller
 
     public function index($slug = null, $paginate = null)
     {
-        $currentMenu = $this->menu->findBySlug($slug);
+        $currentPage = App\Page::where('name', $slug)->first();
 
-        if($currentMenu == null) {
+        if($currentPage == null) {
             redirect('404');
         }
 
         $pageModule = new PageModule();
 
-        $pageModules = $pageModule->findPageModules($currentMenu->page_id);
+        $pageModules = $pageModule->findPageModules($currentPage->id);
 
         return view('page')->with([
             'data' => [
                 'pageModules' => $pageModules,
-                'currentMenu' => $currentMenu
+                'currentPage' => $currentPage
             ]
         ]);
     }
 
     public function show($slug, $itemSlug, $itemId = null)
     {
-        $currentMenu = $this->menu->findBySlug($slug);
+        $currentPage = App\Page::where('name', $slug)->first();
         $pageModule = new PageModule();
 
-        if ($currentMenu) {
-            $pageModules = $pageModule->findPageModules($currentMenu->page_id);
+        if ($currentPage) {
+            $pageModules = $pageModule->findPageModules($currentPage->id);
 
             $pageModuleFirst = (array_values($pageModules)[0]);
 
@@ -58,14 +58,20 @@ class PageController extends Controller
 
             $module = App\Module::find($pageModule->module_id);
 
-            $data['data']['currentMenu'] = $currentMenu;
+            $data['data']['currentPage'] = $currentPage;
         } else {
             $module = App\Module::where('name', $slug)->first();
 
-            $pageModule = $pageModule->findDetailOfModule($module, $itemSlug);
+            $pageModule = $pageModule->findModule($module);
         }
 
-        $data['item'] = $pageModule->items()->find($itemId);
+        if($itemId) {
+            $item = $pageModule->items()->find($itemId);
+        } else {
+            $item = $pageModule->items()->first();
+        }
+
+        $data['item'] = $item;
         $data['widget'] = $pageModule;
         $data['module'] = $module;
         $data['pageDetail'] = true;
@@ -77,16 +83,16 @@ class PageController extends Controller
 
     public function showByCategory($slug, $categorySlug)
     {
-        $currentMenu = $this->menu->findBySlug($slug);
+        $currentPage = App\Page::where('name', $slug)->first();
 
-        if($currentMenu == null) {
+        if($currentPage == null) {
             redirect('404');
         }
 
         $pageModule = new PageModule();
 
-        $pageModules = $pageModule->findPageModules($currentMenu->page_id);
-	
+        $pageModules = $pageModule->findPageModules($currentPage->id);
+
 		$pageModuleFirst = (array_values($pageModules)[0]);
 
         $widget = $pageModuleFirst['widget'];
@@ -104,7 +110,7 @@ class PageController extends Controller
                         'category' => $category
                     ]
                 ],
-                'currentMenu' => $currentMenu
+                'currentPage' => $currentPage
             ]
         ];
 

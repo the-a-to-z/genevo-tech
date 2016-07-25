@@ -33,41 +33,79 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="pull-right">
-                                        <div class="form-group form-inline">
-                                            <select name="css_class" class="form-control">
-                                                @define( $cssClass = old('css_class') ? old('css_class') : '')
+                                    <div class="form-group col-md-3">
+                                        <label for="">Background color</label>
+                                        <select name="css_class" class="cd-select">
+                                            @define( $cssClass = old('css_class') ? old('css_class') : '')
 
-                                                @if($editWidget)
-                                                    @define( $cssClass = old('css_class') ? old('css_class') : $widget->css_class)
-                                                @endif
+                                            @if($editWidget)
+                                                @define( $cssClass = old('css_class') ? old('css_class') : $widget->css_class)
+                                            @endif
 
-                                                <option value=""{{ $cssClass == '' ? ' selected': '' }}>
-                                                    Background color: Default
-                                                </option>
-                                                <option value="gray-bg"{{ $cssClass == 'gray-bg' ? ' selected': '' }}>
-                                                    Background color: Gray
-                                                </option>
-                                            </select>
-                                        </div>
+                                            <option value=""{{ $cssClass == false ? ' selected': '' }}>
+                                                Default
+                                            </option>
+                                            <option value="gray-bg"{{ $cssClass == 'gray-bg' ? ' selected': '' }}>
+                                                Gray
+                                            </option>
+                                        </select>
+                                    </div>
 
-                                        <div class="form-group form-inline p-left-15">
-                                            <select name="show_category_filter" class="form-control">
+                                    <div class="form-group col-md-3">
+                                        <label for="">Display</label>
+                                        <select name="display_per_column" class="cd-select">
 
-                                                @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : '')
+                                            @define( $displayPerColumn = old('display_per_column') ? old('display_per_column') : '')
 
-                                                @if($editWidget)
-                                                    @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : $widget->show_category_filter)
-                                                @endif
+                                            @if($editWidget)
+                                                @define( $displayPerColumn = old('display_per_column') ? old('display_per_column') : $widget->display_per_column)
+                                            @endif
 
-                                                <option value="1"{{ $showCategoryFilter == '1' ? ' selected': '' }}>
-                                                    Category Filter: Show
-                                                </option>
-                                                <option value="0"{{ $showCategoryFilter == '0' ? ' selected': '' }}>
-                                                    Category Filter:  Hide
-                                                </option>
-                                            </select>
-                                        </div>
+                                            <option value="4"{{ $displayPerColumn == false || $displayPerColumn == 4 ? ' selected': '' }}>
+                                                4 per column
+                                            </option>
+                                            <option value="2"{{ $displayPerColumn == 2 ? ' selected': '' }}>
+                                                2 per column
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="">Space between item</label>
+                                        <select name="display_item_wide" class="cd-select">
+
+                                            @define( $displayWide = old('display_item_wide') ? old('display_item_wide') : '')
+
+                                            @if($editWidget)
+                                                @define( $displayWide = old('display_item_wide') ? old('display_item_wide') : $widget->display_item_wide)
+                                            @endif
+
+                                            <option value=""{{ $displayWide == false ? ' selected': '' }}>
+                                                No
+                                            </option>
+                                            <option value="1"{{ $displayWide == '1' ? ' selected': '' }}>
+                                                Yes
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="">Show category</label>
+                                        <select name="show_category_filter" class="cd-select">
+
+                                            @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : '')
+
+                                            @if($editWidget)
+                                                @define( $showCategoryFilter = old('show_category_filter') ? old('show_category_filter') : $widget->show_category_filter)
+                                            @endif
+
+                                            <option value="1"{{ $showCategoryFilter == '1' ? ' selected': '' }}>
+                                                Yes
+                                            </option>
+                                            <option value=""{{ $showCategoryFilter == false ? ' selected': '' }}>
+                                                No
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +153,11 @@
                                                     <div class="col-md-4 col-sm-6 col-lg-3">
                                                         <div class="image-grid-item">
                                                             <div class="image-grid-image">
-                                                                <img src="{{ uploadUrl('portfolio-style-2/'. $item->image) }}" alt="" />
+                                                                @if($item->youtube_video)
+                                                                    <img src="{{ getYoutubeImageThumbnailUrl($item->youtube_video) }}" alt="" />
+                                                                @else
+                                                                    <img src="{{ uploadUrl('portfolio-style-2/'. $item->image) }}" alt="" />
+                                                                @endif
                                                             </div>
                                                             <div class="image-grid-title">
                                                                 {{ $item->title }}
@@ -150,15 +192,15 @@
 
 @section('style')
 
-    <link href="{{ url('vendors/jquery.filer/css/jquery.filer.css') }}" type="text/css" rel="stylesheet" />
-    <link href="{{ url('vendors/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css') }}" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url('vendors/SimpleDropDownEffects/css/basic.css') }}">
     <link href="{{ url('css/image-grid.css') }}" type="text/css" rel="stylesheet" />
 
 @endsection
 
 @section('script')
 
-    <script src="{{ url('vendors/jquery.filer/js/jquery.filer.min.js') }}"></script>
+    <script src="{{  url('vendors/SimpleDropDownEffects/js/modernizr.custom.63321.js')  }}"></script>
+    <script src="{{  url('vendors/SimpleDropDownEffects/js/jquery.dropdown.js')  }}"></script>
     <script src="{{ url('js/jquery.confirm-action.js') }}"></script>
     <script>
         $(document).ready(function () {
@@ -171,27 +213,13 @@
                 }
             });
 
-            /**
-             * Upload item
-             */
-            $('.filer_input').filer({
-                limit: 1,
-                maxSize: 3,
-                extensions: ['jpg', 'jpeg', 'png', 'gif'],
-                changeInput: true,
-                showThumbs: true
+            $('.cd-select').each(function () {
+                $(this).dropdown({
+                    gutter: 0,
+                    stack: false
+                });
             });
 
-            $('.btnToEdit').click(function () {
-                var container = $('#modalEditPortfolioItem');
-
-                container.find('input[name="title"]').val($(this).data('title'))
-                container.find('input[name="id"]').val($(this).data('id'));
-
-                $('#editPortfolioImagePreview').html($(this).closest('.image-grid-item').find('img').clone());
-
-                tinymce.get('portFolioItemDescription').setContent($(this).data('description'));
-            });
         });
     </script>
 

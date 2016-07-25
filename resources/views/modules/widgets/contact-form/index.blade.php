@@ -69,6 +69,7 @@
 </div>
 
 @section('style')
+    @parent
     <link href="{{ url('css/modules/contact-form/frontend.css') }}" rel="stylesheet">
 @endsection
 

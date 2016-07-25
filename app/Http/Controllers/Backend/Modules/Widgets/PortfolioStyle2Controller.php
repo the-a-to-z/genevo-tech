@@ -62,16 +62,23 @@ class PortfolioStyle2Controller extends BackendController
             'title' => 'required'
         ]);
 
-        $module = new PortfolioStyle2();
+        $widget = new PortfolioStyle2();
 
-        $input = $request->all();
-
-        $module->fill([
-            'title' => $input['title'],
-            'module_id' => $input['module_id'],
-            'css_class' => (isset($input['css_class']) ? $input['css_class'] : null),
-            'show_category_filter' => (isset($input['show_category_filter']) ? $input['show_category_filter'] : null),
+        $widget->fill([
+            'title' => $request->title,
+            'module_id' => $request->module_id,
+            'css_class' => (isset($request->css_class) ? $request->css_class : null),
+            'show_category_filter' => (isset($request->show_category_filter) ? $request->show_category_filter : null),
+            'display_per_column' => $request->display_per_column,
+            'display_item_wide' => $request->display_item_wide,
         ])->save();
+
+        //create default category for this module
+        PortfolioStyle2Category::create([
+            'widget_id' => $widget->id,
+            'name' => 'uncategorized',
+            'display_name' => 'Uncategorized'
+        ]);
 
         Session::flash('flash_message', 'Module has been saved!');
 
@@ -132,7 +139,7 @@ class PortfolioStyle2Controller extends BackendController
         $widget = new PortfolioStyle2();
         $widget = $widget->findByModuleId($moduleId);
         $category = new PortfolioStyle2ItemCategories();
-        $categories = $category->ofItemWithAllCategories($id);
+        $categories = $category->allOfWidgetWithItemCategories($widget->id, $id);
 
         return view(backendModuleViewUrl('widgets.portfolio-style-2.edit-item'))->with([
             'categories' => $categories,
@@ -182,8 +189,10 @@ class PortfolioStyle2Controller extends BackendController
         $module->fill([
             'title' => $request->title,
             'module_id' => $request->module_id,
-            'css_class' => $request->css_class,
-            'show_category_filter' => $request->show_category_filter,
+            'css_class' => (isset($request->css_class) ? $request->css_class : null),
+            'show_category_filter' => (isset($request->show_category_filter) ? $request->show_category_filter : null),
+            'display_per_column' => $request->display_per_column,
+            'display_item_wide' => $request->display_item_wide,
         ])->save();
 
         Session::flash('flash_message', 'Module has been saved!');
@@ -218,13 +227,20 @@ class PortfolioStyle2Controller extends BackendController
             'category_id' => 'required',
         ]);
 
-        $upload = $this->upload();
+        $image = null;
+        $youtube_video = null;
 
-        if($upload == false) {
-            Session::flash('flash_message', 'Image could not be saved. Please try again!');
-            Session::flash('flash_message_type', 'danger');
+        if($request->youtube_video == false) {
+            $image = $this->upload();
 
-            return redirect()->back();
+            if($image == false) {
+                Session::flash('flash_message', 'Image could not be saved. Please try again!');
+                Session::flash('flash_message_type', 'danger');
+
+                return redirect()->back();
+            }
+        } else {
+            $youtube_video = $request->youtube_video;
         }
 
         $item = new PortfolioStyle2Item();
@@ -233,7 +249,8 @@ class PortfolioStyle2Controller extends BackendController
             'slug' => str_slug($request->title),
             'title' => $request->title,
             'description' => $request->description,
-            'image' => $upload,
+            'image' => $image,
+            'youtube_video' => $youtube_video,
         ])->save();
 
         $this->resetItemCategories($item->id, $request->category_id);
@@ -247,33 +264,42 @@ class PortfolioStyle2Controller extends BackendController
 
         $item = PortfolioStyle2Item::find($request->id);
 
-        if(Input::file('photo')) {
+        $image = null;
+        $youtube_video = null;
+
+        if($request->youtube_video == false) {
+
+            if(Input::file('photo')) {
+                $this->destroyFile($item->image);
+
+                $image = $this->upload();
+
+                if($image == false) {
+                    Session::flash('flash_message', 'Image could not be saved. Please try again!');
+                    Session::flash('flash_message_type', 'danger');
+
+                    return redirect()->back();
+                }
+            } else {
+                $image = $item->image;
+            }
+        } else {
+            //destroy image if youtube video is set
             $this->destroyFile($item->image);
 
-            $upload = $this->upload();
-
-            if($upload == false) {
-                Session::flash('flash_message', 'Image could not be saved. Please try again!');
-                Session::flash('flash_message_type', 'danger');
-
-                return redirect()->back();
-            }
-
-            $item->fill([
-                'widget_id' => $request->widget_id,
-                'slug' => str_slug($request->title),
-                'title' => $request->title,
-                'description' => $request->description,
-                'image' => $upload,
-            ])->save();
-        } else {
-            $item->fill([
-                'widget_id' => $request->widget_id,
-                'slug' => str_slug($request->title),
-                'title' => $request->title,
-                'description' => $request->description
-            ])->save();
+            $youtube_video = $request->youtube_video;
         }
+
+        $item->fill([
+            'widget_id' => $request->widget_id,
+            'slug' => str_slug($request->title),
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $image,
+            'youtube_video' => $youtube_video,
+        ])->save();
+
+
 
         $this->resetItemCategories($item->id, $request->category_id);
 
@@ -283,7 +309,7 @@ class PortfolioStyle2Controller extends BackendController
     }
 
     /**
-     * @return upload error in json format or name of the file uploaded
+     * @return bool|\Illuminate\Http\JsonResponse|string
      */
     public function upload()
     {
@@ -300,9 +326,6 @@ class PortfolioStyle2Controller extends BackendController
         // Check to see if validation fails or passes
         if ($validator->fails())
         {
-            // that the provided file was not an adequate type
-            dd(response()->json(['error' => $validator->errors()->getMessages()], 400));
-
             return false;
         }
 
