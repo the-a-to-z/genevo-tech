@@ -132,6 +132,7 @@
                                         <th>Job Title</th>
                                         <th>Company</th>
                                         <th>Close On</th>
+                                        <th class="text-center">Share</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -151,6 +152,12 @@
                                                 </td>
                                                 <td> {{ $item->company }} </td>
                                                 <td> {{ displayDate($item->close_on) }} </td>
+                                                <td class="has-socials has-socials-small">
+                                                    @include(
+                                                        'partials.socials-small', [
+                                                        'title' => $item->job_title
+                                                    ])
+                                                </td>
 
                                             @elseif($item->close_on >= addDay(3, date('Y-m-d')))
 
@@ -166,6 +173,12 @@
                                                 <td>
                                                     <span class="text-warning">{{ displayDate($item->close_on) }}</span>
                                                 </td>
+                                                <td class="has-socials has-socials-small">
+                                                    @include(
+                                                        'partials.socials-small', [
+                                                        'title' => $item->job_title
+                                                    ])
+                                                </td>
 
                                             @else
 
@@ -180,6 +193,12 @@
                                                 <td> {{ $item->company }} </td>
                                                 <td>
                                                     <span class="text-danger">{{ displayDate($item->close_on) }}</span>
+                                                </td>
+                                                <td class="has-socials has-socials-small">
+                                                    @include(
+                                                        'partials.socials-small', [
+                                                        'title' => $item->job_title
+                                                    ])
                                                 </td>
 
                                             @endif

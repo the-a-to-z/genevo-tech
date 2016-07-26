@@ -62,11 +62,8 @@
 
                             <div class="clearfix inline-block m-bot-50">
                                 <h5 class="text-uppercase social-area-title">Share Post </h5>
-                                <div class="widget-social-link circle social-large">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                                </div>
+
+                                @include('partials.socials', ['title' => $item->job_title])
                             </div>
 
                         </div>
