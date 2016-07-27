@@ -30,6 +30,11 @@
             @endif
 
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{{ url('/') }}" target="_blank">
+                        <i class="fa fa-globe"></i> View site
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         {{ $loggedInUser->name }} (<span class="small-description">{{ $loggedInUser->role->display_name }}</span>)
