@@ -143,14 +143,17 @@ class SettingsController extends BackendController
 
         $inputs = $request->all();
 
+        unset($inputs['_method']);
+        unset($inputs['_token']);
+
         foreach ($inputs as $name => $value) {
             $this->validate($request, [
                 $name => 'required'
             ]);
 
-            Setting::where('name', $name)->update([
-                'value' => $value
-            ]);
+            $setting = Setting::firstOrNew(['name' => $name]);
+            $setting->value = ($value ? $value : null);
+            $setting->save();
         }
 
         Session::flash('flash_message', 'Settings have been saved!');

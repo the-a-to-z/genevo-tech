@@ -16,7 +16,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="text-uppercase">Opening Job Opportunities</h4>
+                    <h4 class="text-uppercase">
+                        Opening Job Opportunities
+                    </h4>
                 </div>
             </div>
         </div>
@@ -107,12 +109,12 @@
                                     @if($widget->show_category_filter == '1')
                                         @foreach($widget->categories as $category)
                                             @define($active = '')
-                                            @if(Request::is($currentPage->name . '/category/' . $category->name))
+                                            @if(Request::is($module->name . '/category/' . $category->name))
                                                 @define($active = 'active')
                                             @endif
 
                                             <li class="{{ $active }}" >
-                                                <a href="{{ url('/' . $currentPage->name . '/category/' . $category->name) }}">
+                                                <a href="{{ url('/' . $module->name . '/category/' . $category->name) }}">
                                                     <i class="fa fa-angle-right"
                                                        aria-hidden="true"></i> {{ $category->display_name }}
                                                 </a>
@@ -146,7 +148,7 @@
                                                     <div class="icon">
                                                         <i class="fa fa-fw"></i>
                                                     </div>
-                                                    <a href="{{ url(str_slug($currentPage->name) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
+                                                    <a href="{{ url(str_slug($module->name) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
                                                         {{ $item->job_title }}
                                                     </a>
                                                 </td>
@@ -165,7 +167,7 @@
                                                     <div class="icon text-warning">
                                                         <i class="icon-lightbulb"></i>
                                                     </div>
-                                                    <a href="{{ url(str_slug($currentPage->name) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
+                                                    <a href="{{ url(str_slug($module->name) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
                                                         {{ $item->job_title }}
                                                     </a>
                                                 </td>
@@ -186,7 +188,7 @@
                                                     <div class="icon text-danger">
                                                         <i class="icon-lightbulb"></i>
                                                     </div>
-                                                    <a href="{{ url(str_slug($currentPage->name) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
+                                                    <a href="{{ url(str_slug($module->name) . '/' . str_slug($item->job_title) . '/' . $item->id) }}">
                                                         {{ $item->job_title }}
                                                     </a>
                                                 </td>

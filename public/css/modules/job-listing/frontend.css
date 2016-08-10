@@ -125,7 +125,8 @@
 }
 
 .job-listing .table-job-listing.table>tbody>tr>td {
-    font-size: 13px;
+    font-size: 14px;
+    padding: 14px 8px;
 }
 
 .job-listing .table-job-listing.table>tbody>tr>td:first-child {
@@ -175,15 +176,15 @@
 }
 
 .job-listing-detail > section.page-title {
-    background: #fff;
-}
-
-.job-listing-detail > section.body-content {
     background: #f0f0f0;
 }
 
-.job-listing-content {
+.job-listing-detail > section.body-content {
     background: #fafafa;
+}
+
+.job-listing-content {
+    background: #fff;
     padding: 60px;
     max-width: 900px;
     margin: 0 auto 60px;

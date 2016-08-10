@@ -39,31 +39,21 @@ class PageController extends Controller
         return view('page')->with([
             'data' => [
                 'pageModules' => $pageModules,
-                'currentPage' => $currentPage
-            ]
+                'currentPage' => $currentPage,
+            ],
+            'currentMenu' => $currentPage
         ]);
     }
 
     public function show($slug, $itemSlug, $itemId = null)
     {
         $currentPage = App\Page::where('name', $slug)->first();
+
         $pageModule = new PageModule();
 
-        if ($currentPage) {
-            $pageModules = $pageModule->findPageModules($currentPage->id);
+        $module = App\Module::where('name', $slug)->first();
 
-            $pageModuleFirst = (array_values($pageModules)[0]);
-
-            $pageModule = $pageModuleFirst['widget'];
-
-            $module = App\Module::find($pageModule->module_id);
-
-            $data['data']['currentPage'] = $currentPage;
-        } else {
-            $module = App\Module::where('name', $slug)->first();
-
-            $pageModule = $pageModule->findModule($module);
-        }
+        $pageModule = $pageModule->findModule($module);
 
         if($itemId) {
             $item = $pageModule->items()->find($itemId);
@@ -77,7 +67,8 @@ class PageController extends Controller
         $data['pageDetail'] = true;
 
         return view('page')->with([
-            'data' => $data
+            'data' => $data,
+            'currentMenu' => $currentPage
         ]);
     }
 
@@ -85,32 +76,29 @@ class PageController extends Controller
     {
         $currentPage = App\Page::where('name', $slug)->first();
 
-        if($currentPage == null) {
+        $pageModule = new PageModule();
+
+        $module = App\Module::where('name', $slug)->first();
+
+        $pageModule = $pageModule->findModule($module);
+
+        if($pageModule == null) {
             redirect('404');
         }
 
-        $pageModule = new PageModule();
-
-        $pageModules = $pageModule->findPageModules($currentPage->id);
-
-		$pageModuleFirst = (array_values($pageModules)[0]);
-
-        $widget = $pageModuleFirst['widget'];
-
-        $category = $widget->categories()->where('name', $categorySlug)->first();
-
-        $module = Module::find($widget->module_id);
+        $category = $pageModule->categories()->where('name', $categorySlug)->first();
 
         $data = [
             'data' => [
                 'pageModules' => [
                     $module->name => [
-                        'widget' => $widget,
+                        'widget' => $pageModule,
                         'module' => $module,
                         'category' => $category
                     ]
                 ],
-                'currentPage' => $currentPage
+                'currentPage' => $currentPage,
+                'currentMenu' => $currentPage,
             ]
         ];
 

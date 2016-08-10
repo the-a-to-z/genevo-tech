@@ -57,6 +57,41 @@
 
                             <div class="row">
                                 <div class="col-md-12">
+                                    <h4>Theme Setting</h4>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive table-full-width">
+                                <table class="table no-bordered">
+                                    <tbody>
+
+                                    <tr>
+                                        <td style="width: 10px">
+                                            <i class="pe-7s-help1" data-tipso=""></i>
+                                        </td>
+                                        <th style="width: 140px;">
+                                            Header style
+                                        </th>
+
+                                        <td class="text-primary td-input">
+                                            <select name="theme-header">
+                                                <option value="0" {{ getSetting('theme-header', 'value', $allSettings) == false ? 'selected' : '' }}>
+                                                    Default
+                                                </option>
+                                                <option value="orange" {{ getSetting('theme-header', 'value', $allSettings) == 'orange' ? 'selected' : '' }}>
+                                                    Orange
+                                                </option>
+                                            </select>
+
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
                                     <h4>Contact Setting</h4>
                                 </div>
                             </div>
@@ -119,7 +154,7 @@
 
                                         <td class="text-primary td-input ">
                                             <input type="text"
-                                                   name="company-map"
+                                                   name="company-map-coordination"
                                                    value="{{ getSetting('company-map-coordination', 'value', $allSettings)}}">
                                         </td>
                                     </tr>

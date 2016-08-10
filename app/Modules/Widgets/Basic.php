@@ -16,7 +16,7 @@ class Basic extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'module_id', 'css_class', 'show_title'
+        'title', 'description', 'module_id', 'css_class', 'show_title', 'full_width'
     ];
 
     public function findByModuleId($id)

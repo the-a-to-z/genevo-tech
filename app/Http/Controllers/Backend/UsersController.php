@@ -65,7 +65,12 @@ class UsersController extends BackendController
 
         $user = new User();
 
-        $user->fill($request->all())->save();
+        $user->fill([
+        	'role_id' => $request->role_id,
+        	'name' => $request->name,
+        	'emal' => $request->email,
+        	'password' => bcrypt($request->password)
+        ])->save();
 
         Session::flash('flash_message', 'User has been saved!');
 

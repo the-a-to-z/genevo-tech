@@ -98,14 +98,16 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>
         $(document).ready(function () {
-            var toolbar = "styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link";
+            var toolbarSmall = "styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link";
+            var toolbar = "styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link | code";
+
             tinymce.init({
                 selector:'textarea.textEditorSmall' ,
                 content_css: "{{ url('css/backend-tinymce-content.css') }}",
                 height : 120,
                 plugins: "link, table",
                 menubar: true,
-                toolbar: toolbar,
+                toolbar: toolbarSmall,
                 setup: function (editor) {
                     editor.on('change', function () {
                         editor.save();
@@ -117,7 +119,7 @@
                 selector:'textarea.textEditor' ,
                 content_css: "{{ url('css/backend-tinymce-content.css') }}",
                 height : 300,
-                plugins: "link, table",
+                plugins: "link, table, code",
                 menubar: false,
                 toolbar: toolbar,
                 setup: function (editor) {

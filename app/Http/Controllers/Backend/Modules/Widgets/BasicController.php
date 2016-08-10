@@ -63,6 +63,7 @@ class BasicController extends BackendController
             'module_id' => $input['module_id'],
             'description' => $input['description'],
             'css_class' => (isset($input['css_class']) ? $input['css_class'] : null),
+            'full_width' => $request->full_width,
             'show_title' => $input['show_title'],
         ])->save();
 
@@ -130,6 +131,7 @@ class BasicController extends BackendController
             'module_id' => $input['module_id'],
             'description' => $input['description'],
             'css_class' => (isset($input['css_class']) ? $input['css_class'] : null),
+            'full_width' => $request->full_width,
             'show_title' => $input['show_title'],
         ])->save();
 

@@ -14,6 +14,10 @@ function getSetting($name, $resultField, $settings) {
     reset($return);
     $first_key = key($return);
 
+    if(!isset($return[$first_key][$resultField])) {
+        return null;
+    }
+
     return $return[$first_key][$resultField];
 }
 
@@ -26,6 +30,10 @@ function getSettingValue($name, $settings) {
 
     reset($return);
     $first_key = key($return);
+
+    if(!isset($return[$first_key]['value'])) {
+        return null;
+    }
 
     return $return[$first_key]['value'];
 }

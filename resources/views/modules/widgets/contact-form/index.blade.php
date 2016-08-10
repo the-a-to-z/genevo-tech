@@ -81,11 +81,19 @@
             defer></script>
 
     <script type="text/javascript">
+        <?php
+        $googleMap = getSettingValue('company-map-coordination', $settings);
+        $googleMapCor = explode(', ', $googleMap);
+        $googleMapLat = (isset($googleMapCor[0]) ? $googleMapCor[0] : null);
+        $googleMapLng = (isset($googleMapCor[1]) ? $googleMapCor[1] : null);
+        ?>
         /**
          * Google map
          */
         function initMap() {
-            var genevoLocation = {lat: 11.579563, lng: 104.901447};
+            var lat = {{ $googleMapLat }};
+            var lng = {{ $googleMapLng }};
+            var genevoLocation = {lat: lat, lng: lng};
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 16,

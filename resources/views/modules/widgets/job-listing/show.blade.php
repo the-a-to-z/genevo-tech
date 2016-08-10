@@ -18,7 +18,7 @@
                                 {{ $widget->title }}
                             </a>
                         @else
-                            <a href="#" class="inactive-link">
+                            <a href="{{ url($module->name) }}">
                                 {{ $widget->title }}
                             </a>
                         @endif

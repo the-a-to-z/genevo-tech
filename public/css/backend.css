@@ -155,7 +155,7 @@
     padding-bottom: 0!important;
 }
 
-.td-input input{
+.td-input input, .td-input select {
     height: 100%;
     width: 100%;
     border: 1px solid #ddd;
@@ -163,9 +163,11 @@
     padding-right: 16px!important;
     cursor: text;
     border-radius: 4px;
+    background: transparent;
 }
 
-.td-input.td-input-small input {
+.td-input.td-input-small input,
+.td-input.td-input-small select {
     padding-left: 4px!important;
     padding-right: 4px!important;
     text-align: center;
@@ -188,7 +190,6 @@
 .mce-panel {
     border-color: #f0f0f0!important;
 }
-
 
 
 #permissionList, .table-checkbox-list {

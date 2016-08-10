@@ -4,13 +4,14 @@
 
     @define($item = $data['item'])
     @define($widget = $data['widget'])
+    @define($module = $data['module'])
 
     <section class="page-title">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-uppercase">
-                        <a href="#">{{ $item->title }}</a>
+                        <a href="{{ url($module->name) }}">{{ $item->title }}</a>
                     </h4>
                 </div>
             </div>

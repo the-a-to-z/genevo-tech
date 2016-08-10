@@ -43,7 +43,7 @@ class Menu extends Authenticatable
                 ->join('menu_site', 'menu_site.id', '=', 'menus.menu_site_id')
                 ->join('menu_position', 'menu_position.id', '=', 'menus.menu_position_id')
                 ->leftJoin('permission', 'permission.id', '=', 'menus.permission_id')
-                ->leftJoin('role_permission', function ($join) use ($role) {
+                ->join('role_permission', function ($join) use ($role) {
                     $join->on('role_permission.permission_id', '=', 'permission.id');
                     $join->on('role_permission.role_id', '=', DB::raw($role));
                 })

@@ -1470,6 +1470,12 @@ fieldset[disabled] .radio label {
     mask: url("../img/mask.png") 0 0 no-repeat;
 }
 
+.switch.switch-large.has-switch {
+    overflow: visible;
+    -webkit-mask-size: 90px 30px;
+    width: 90px;
+}
+
 .has-switch.deactivate {
     opacity: 0.5;
     filter: alpha(opacity=50);
@@ -1512,6 +1518,7 @@ fieldset[disabled] .radio label {
     background-size: 150% 150%;
     box-shadow: 0 1px 1px #FFFFFF inset, 0 1px 1px rgba(0, 0, 0, 0.25);
     cursor: pointer;
+    margin-bottom: 0;
 }
 
 .has-switch input[type=checkbox] {
@@ -1536,6 +1543,17 @@ fieldset[disabled] .radio label {
     z-index: 1;
     -webkit-transition: 0.25s ease-out;
     transition: 0.25s ease-out;
+}
+
+
+.switch.switch-large.has-switch span {
+    height: 30px;
+    line-height: 22px;
+    font-size: 13px;
+}
+
+.switch.switch-large.has-switch > div label.switch-large {
+    height: 28px;
 }
 
 .has-switch span.switch-left {

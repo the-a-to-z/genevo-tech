@@ -61,6 +61,21 @@
                                             </select>
 
                                         </div>
+
+                                        <div class="form-group form-inline p-left-15">
+                                            <label>Full width </label>
+
+                                            <select name="full_width" class="form-control">
+                                                @if($data)
+                                                    <option value="1"{{ $data->full_width == 1 ? ' selected' : '' }}>Yes</option>
+                                                    <option value="0"{{ $data->full_width == false ? ' selected' : '' }}>No</option>
+                                                @else
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
+                                                @endif
+                                            </select>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>

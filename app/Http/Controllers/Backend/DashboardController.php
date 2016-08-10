@@ -15,6 +15,8 @@ class DashboardController extends BackendController
      */
     public function index()
     {
+        return redirect(backendUrl('pages'));
+
         return view('backend.dashboard');
     }
 }

@@ -37,7 +37,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        {{ $loggedInUser->name }} (<span class="small-description">{{ $loggedInUser->role->display_name }}</span>)
+                        <i class="fa fa-user"></i> {{ $loggedInUser->name }} (<span class="small-description">{{ $loggedInUser->role->display_name }}</span>)
 
                         <b class="caret"></b>
 
@@ -46,7 +46,7 @@
                         <li><a href="#">Profile Setting</a></li>
                         <li><a href="{{ backendUrl('settings') }}">Setting</a></li>
                         <li class="divider"></li>
-                        <li><a href="/Action">Log Out</a></li>
+                        <li><a href="{{ url('/logout') }}">Log Out</a></li>
                     </ul>
                 </li>
             </ul>
