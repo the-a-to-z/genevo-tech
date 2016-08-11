@@ -119,6 +119,11 @@ return [
                 ],
                 [
                     'url' => 'module/{moduleId}/portfolio-style-2/category',
+                    'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@showCategory',
+                    'type' => 'get'
+                ],
+                [
+                    'url' => 'module/{moduleId}/portfolio-style-2/category',
                     'action' => 'Backend\Modules\Widgets\PortfolioStyle2Controller@storeCategory',
                     'type' => 'post'
                 ],
