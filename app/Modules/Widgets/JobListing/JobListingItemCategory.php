@@ -1,13 +1,13 @@
 <?php
 namespace App\Modules\Widgets\JobListing;
 
-use Baum\Node;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 /**
  * JobListingItemCategory
  */
-class JobListingItemCategory extends Node
+class JobListingItemCategory extends Model
 {
 
     protected $table = 'module_widget_job_listing_item_categories';

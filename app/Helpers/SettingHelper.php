@@ -4,7 +4,7 @@
  *                                      Setting helpers
  ***********************************************************************************************************************/
 
-function getSetting($name, $resultField, $settings) {
+function getSetting($name, $resultField, $settings) use ($settings) {
     $settings = $settings->toArray();
 
     $return = array_filter($settings, function ($row) use ($name) {
