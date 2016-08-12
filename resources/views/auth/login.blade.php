@@ -86,7 +86,15 @@
     </div> <!-- end login -->
 
     <div id="logo">
-        <h1>Logo</h1>
+        @if(AppSetting::valueOf('company-logo'))
+            @if(AppSetting::valueOf('company-logo-image-type') == 'svg-code')
+                {!! AppSetting::valueOf('company-logo') !!}
+            @else
+                <img src="{{ url('/' . AppSetting::valueOf('company-logo')) }}" alt="AppSetting::valueOf('company-name')">
+            @endif
+        @else
+            <h1>Logo</h1>
+        @endif
     </div>
 
 </div>

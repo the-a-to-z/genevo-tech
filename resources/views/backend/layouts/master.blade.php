@@ -99,7 +99,7 @@
     <script>
         $(document).ready(function () {
             var toolbarSmall = "styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link";
-            var toolbar = "styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link | code";
+            var toolbar = "fullscreen | styleselect | removeformat | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link | code";
 
             tinymce.init({
                 selector:'textarea.textEditorSmall' ,
@@ -119,7 +119,7 @@
                 selector:'textarea.textEditor' ,
                 content_css: "{{ url('css/backend-tinymce-content.css') }}",
                 height : 300,
-                plugins: "link, table, code",
+                plugins: "link, table, code, fullscreen",
                 menubar: false,
                 toolbar: toolbar,
                 setup: function (editor) {

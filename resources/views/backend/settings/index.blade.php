@@ -86,6 +86,39 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td style="width: 10px">
+                                            <i class="pe-7s-help1" data-tipso=""></i>
+                                        </td>
+                                        <th style="width: 140px;">
+                                            Image Logo
+                                        </th>
+
+                                        <td class="text-primary td-input">
+                                            <textarea name="company-logo" class="form-control resize-verticle" cols="30" rows="3">{{ getSetting('company-logo', 'value', $allSettings)}}</textarea>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 10px">
+                                            <i class="pe-7s-help1" data-tipso=""></i>
+                                        </td>
+                                        <th style="width: 140px;">
+                                            Image type
+                                        </th>
+
+                                        <td class="text-primary td-input">
+                                            <select name="company-logo-image-type">
+                                                <option value="svg-code" {{ getSetting('company-logo-image-type', 'value', $allSettings) == 'svg-code' ? 'selected' : '' }}>
+                                                    SVG Code
+                                                </option>
+                                                <option value="orange" {{ getSetting('company-logo-image-type', 'value', $allSettings) == 'file' ? 'selected' : '' }}>
+                                                    File
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
                                     </tbody>
                                 </table>
                             </div>

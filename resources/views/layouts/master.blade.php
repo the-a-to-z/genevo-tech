@@ -1,3 +1,4 @@
+
 <?php
 
     $themeHeader = getSettingValue('theme-header', $settings);
