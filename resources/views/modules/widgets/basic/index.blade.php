@@ -9,9 +9,9 @@
                 <h3 class="text-uppercase text-center">{{ $widget->title }}</h3>
                 @endif
 
-                <p class="center">
+                <div class="center">
                     {!! $widget->description !!}
-                </p>
+                </div>
             </div>
         </div>
     </div>

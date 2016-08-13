@@ -106,13 +106,16 @@
 
                                         @foreach($allMenuSites as $menuSite)
 
+                                            @define($disabled = ((hasPermission('create-backend-menu', $permissions) == false && $menuSite->name == 'backend') ? 'disabled' : ''))
+
                                             <div class="radio form-inline m-right-30">
-                                                <label class="text-transform-default">
+                                                <label class="text-transform-default {{ $disabled }}">
                                                     <input type="radio"
                                                            name="menu_site_id"
                                                            data-toggle="radio"
                                                            value="{{ $menuSite->id }}"
                                                            data-name="{{ $menuSite->name }}"
+                                                           {{ $disabled }}
                                                             {{ (old('menu_site_id') ? old('menu_site_id') : $menu->menu_site_id ) == $menuSite->id ? ' checked' : '' }}>
                                                     {{ $menuSite->display_name }}
                                                 </label>
