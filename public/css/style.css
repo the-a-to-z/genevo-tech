@@ -499,7 +499,7 @@ header.sticky li.nav-icon i {
 }
 
 .menuzord-menu > li > a {
-    line-height: 80px;
+    line-height: 75px;
 }
 
 .nav-border-bottom .menuzord-menu > li > a {
@@ -507,10 +507,13 @@ header.sticky li.nav-icon i {
 }
 
 header.sticky .menuzord-menu > li > a {
-    /*line-height: 60px;*/
+    line-height: 80px;
 }
 
-.menuzord-menu > li > a,
+.menuzord-menu > li > a {
+    padding: 5px 12px 0;
+}
+
 header.sticky .menuzord-menu > li > a {
     padding: 0 12px;
 }
@@ -1585,12 +1588,12 @@ header.nav-block-left {
     float: left;
 }
 
-/*.portfolio.center .portfolio-item {*/
-    /*position: relative!important;*/
-    /*left: initial!important;*/
-    /*float: none!important;*/
-    /*display: inline-block;*/
-/*}*/
+.portfolio.center .portfolio-item {
+    position: relative!important;
+    left: initial!important;
+    float: none!important;
+    display: inline-block;
+}
 
 .portfolio .portfolio-item .thumb {
     position: relative;
@@ -4796,4 +4799,33 @@ td.has-socials.has-socials-small {
     width: 122px;
     text-align: center;
     background: #f5f5f5;
+}
+
+#schedule table {
+    border: 1px solid #ddd;
+}
+
+#schedule table tr:first-child > td {
+    box-sizing: border-box;
+    padding: 16px;
+    line-height: 1.42857;
+    vertical-align: top;
+    border-top-width: 0px;
+    color: #ec6719;
+    border-bottom: 1px solid #ddd;
+    background: transparent!important;
+}
+
+#schedule table tr > td:first-child {
+    background: #fbfbfb;
+}
+
+#schedule table tr > td {
+    box-sizing: border-box;
+    padding: 16px;
+    line-height: 1.42857;
+    vertical-align: top;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: transparent;
 }

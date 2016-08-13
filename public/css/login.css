@@ -25,6 +25,11 @@ a:hover {
     text-decoration: underline;
 }
 
+a.btn-link {
+    color: #0070c9;
+    font-size: 11px;
+}
+
 .help-block {
     color: #f44336;
     margin-bottom: 10px;
@@ -344,4 +349,13 @@ input[type="checkbox"]:checked:before {
 
 #logo h1 {
     font-weight: 300;
+}
+
+#logo svg, #logo img {
+    height: 130px;
+    margin-bottom: -110px;
+}
+
+#logo svg path {
+    fill: #4f6f8f
 }

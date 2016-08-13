@@ -37,15 +37,15 @@
                             }
                             ?>
 
-                            @if(Request::is($request))
+                            @if(Request::is($request) && (Request::segment(2) == false))
                                 <li class="active">
-                                    <a href="" onclick="return false">
+                                    <a href="{{ url($request) }}" onclick='{{ Request::segment(2) ? 'window.location.href = "' . url($request) . '"' : 'return false'}}'>
                                         {{ $menu->name }}
                                     </a>
                                 </li>
                             @elseif(Request::segment(1) == $menu->page_name && Request::segment(1) != null)
                                 <li class="active">
-                                    <a href="" onclick="return false">
+                                    <a href="{{ url($request) }}" onclick='{{ Request::segment(2) ? 'window.location.href = "' . url($request) . '"' : 'return false'}}'>
                                         {{ $menu->name }}
                                     </a>
                                 </li>

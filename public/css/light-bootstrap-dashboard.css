@@ -175,6 +175,14 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
     outline: 0;
 }
 
+textarea.resize-verticle {
+    resize: vertical;
+}
+
+textarea.resize-horizontal {
+    resize: horizontal;
+}
+
 .ui-slider-handle:focus,
 .navbar-toggle,
 input:focus {

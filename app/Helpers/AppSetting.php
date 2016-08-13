@@ -5,25 +5,20 @@ use App\Setting;
 class AppSetting
 {
 
-    private $settings;
+    protected static $settings;
 
-    /**
-     * Setting constructor.
-     * @param $settings
-     */
-    public function __construct(Setting $settings)
+    public static function get()
     {
-        $this->settings = $settings;
+        if(self::$settings == null) {
+            self::$settings = Setting::get();
+        }
+
+        return self::$settings;
     }
 
-    public function get()
+    public static function valueOf($name)
     {
-        return $this->settings;
-    }
-
-    public static function valueOf(Setting $settings, $resultField)
-    {
-        $settings = $settings->toArray();
+        $settings = self::get()->toArray();
 
         $return = array_filter($settings, function ($row) use ($name) {
             return $row['name'] == $name;
@@ -32,10 +27,10 @@ class AppSetting
         reset($return);
         $first_key = key($return);
 
-        if(!isset($return[$first_key][$resultField])) {
+        if(!isset($return[$first_key]['value'])) {
             return null;
         }
 
-        return $return[$first_key][$resultField];
+        return $return[$first_key]['value'];
     }
 }

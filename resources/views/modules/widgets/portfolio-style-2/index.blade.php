@@ -26,7 +26,7 @@
 
             @define($slideAnimations = ['slideInLeft', 'slideInTop', 'slideInBottom', 'slideInRight'])
 
-            <div class="portfolio  portfolio-masonry portfolio-with-title center col-{{ $widget->display_per_column }} {{ $widget->display_item_wide ? '' : 'gutter' }}">
+            <div class="portfolio portfolio-with-title col-{{ $widget->display_per_column }} {{ $widget->display_item_wide ? '' : 'gutter' }}">
                 @foreach($widget->items()->get() as $item)
 
                 @define($categories = '');

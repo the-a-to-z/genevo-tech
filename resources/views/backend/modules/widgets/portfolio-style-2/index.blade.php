@@ -62,10 +62,13 @@
                                             @endif
 
                                             <option value="4"{{ $displayPerColumn == false || $displayPerColumn == 4 ? ' selected': '' }}>
-                                                4 per column
+                                                4 per row
+                                            </option>
+                                            <option value="3"{{ $displayPerColumn == 3 ? ' selected': '' }}>
+                                                3 per row
                                             </option>
                                             <option value="2"{{ $displayPerColumn == 2 ? ' selected': '' }}>
-                                                2 per column
+                                                2 per row
                                             </option>
                                         </select>
                                     </div>
