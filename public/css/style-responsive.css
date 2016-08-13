@@ -515,6 +515,10 @@ Table of contents
         padding: 30px 25px;
     }
 
+    .body-content {
+        margin-top: 50px;
+    }
+
 }
 
 @media screen and (max-width: 767px) {

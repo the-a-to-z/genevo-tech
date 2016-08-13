@@ -1,13 +1,6 @@
 <header id="header" class="header-full-width {{ $themeHeader }}">
 
     <div class="header-sticky light-header">
-        <div id="secondary-top-header">
-            <ul class="menuzord-menu pull-right">
-                <li>
-                    <a href="#">About</a>
-                </li>
-            </ul>
-        </div>
 
         <div class="container">
             <div id="massive-menu" class="menuzord">
