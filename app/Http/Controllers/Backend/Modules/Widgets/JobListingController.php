@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Yajra\Datatables\Facades\Datatables;
 
 class JobListingController extends BackendController
 {
@@ -71,6 +72,18 @@ class JobListingController extends BackendController
         Session::flash('flash_message', 'Module has been saved!');
 
         return redirect()->back();
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function itemData($moduleId)
+    {
+        $item = new JobListingItem();
+
+        return Datatables::of($item->findByModuleIdQuery($moduleId))->make(true);
     }
 
     /**

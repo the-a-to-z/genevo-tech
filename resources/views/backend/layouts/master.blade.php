@@ -10,6 +10,8 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
 
+    <link href='//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+
     <!-- Bootstrap core CSS     -->
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet"/>
 
@@ -49,8 +51,18 @@
 
 @yield('modal')
 
+@include('partials.define-js')
+
 <!--   Core JS Files   -->
 <script src="{{ url('js/jquery-1.10.2.js') }}" type="text/javascript"></script>
+
+<script src="{{ url('js/helper.html.js') }}"></script>
+
+<script src="{{ url('js/moment-with-locales.js') }}"></script>
+
+<!-- Datatable -->
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
 <script src="{{ url('js/bootstrap.min.js') }}" type="text/javascript"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
@@ -75,7 +87,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        backend.initChartist();
+        //backend.initChartist();
 
         @if(Session::has('flash_message'))
 

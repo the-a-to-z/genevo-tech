@@ -32,14 +32,18 @@ class JobListingItem extends Model
         return $this->belongsTo('App\Modules\Widgets\JobListing\JobListing');
     }
 
-    public function findByModuleId($id)
+    public function findByModuleIdQuery($id)
     {
         return
             DB::table('module_widget_job_listing')
                 ->select('items.*')
                 ->join('module_widget_job_listing_items as items', 'items.widget_id', '=', 'module_widget_job_listing.id')
-                ->where('module_id', $id)
-                ->get();
+                ->where('module_id', $id);
+    }
+
+    public function findByModuleId($id)
+    {
+        return $this->findByModuleIdQuery($id)->get();
     }
 
     public function findByCategory($categorySlug)

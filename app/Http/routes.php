@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::auth();
 
 /************************************************************************************
@@ -17,6 +19,7 @@ Route::group(['prefix' => config('constants.url.backend-prefix'), 'middleware' =
     Route::resource('permissions', 'Backend\PermissionsController');
 
     Route::post('menus/all/update', 'Backend\MenusController@updateOrder');
+
     Route::resource('menus', 'Backend\MenusController');
 
     Route::resource('pages', 'Backend\PagesController');
@@ -45,6 +48,7 @@ Route::group(['prefix' => config('constants.url.backend-prefix'), 'middleware' =
         Route::resource($module['url'], $module['route-controller']);
     }
 
+    Route::get('modules/data', 'Backend\ModulesController@data');
     Route::resource('modules', 'Backend\ModulesController');
 
 });

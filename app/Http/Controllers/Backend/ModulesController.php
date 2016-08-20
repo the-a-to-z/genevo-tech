@@ -18,6 +18,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Yajra\Datatables\Facades\Datatables;
 
 class ModulesController extends BackendController
 {
@@ -39,6 +40,16 @@ class ModulesController extends BackendController
         return view('backend.modules.index')->with([
             'modules' => Module::all()
         ]);
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function data()
+    {
+        return Datatables::of(Module::all())->make(true);
     }
 
     /**
@@ -179,7 +190,7 @@ class ModulesController extends BackendController
         PageModule::where('module_id', $id)->delete();
 
         Session::flash('flash_message_type', 'warning');
-        Session::flash('flash_message', 'Permission has been deleted!');
+        Session::flash('flash_message', 'Module <strong>' . $module->display_name. '</strong> has been deleted!');
 
         return redirect()->back();
     }

@@ -133,14 +133,13 @@
                                     </a>
                                 </div>
                             </div>
-                            <hr>
                         </div>
 
-                        <div class="content">
+                        <div class="content has-datatable">
 
                             @if($items)
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover">
+                            <div class="table-responsive table-full-width">
+                                <table class="table table-hover" id="job-listing-table">
                                     <thead>
                                     <tr>
                                         <th></th>
@@ -150,37 +149,37 @@
                                         <th></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    {{--<tbody>--}}
 
-                                    @foreach($items as $key => $item)
+                                    {{--@foreach($items as $key => $item)--}}
 
-                                        <tr>
-                                            <td>{{ ++$key }}</td>
-                                            <td>
-                                                {{ $item->job_title }}
-                                            </td>
-                                            <td>
-                                                {{ $item->company }}
-                                            </td>
-                                            <td>
-                                                @if($item->close_on > addDay(3, date('Y-m-d')))
-                                                    {{ displayDate($item->close_on) }}
-                                                @elseif($item->close_on >= addDay(3, date('Y-m-d')))
-                                                    <span class="text-warning">{{ displayDate($item->close_on) }}</span>
-                                                @else
-                                                    <span class="text-danger">{{ displayDate($item->close_on) }}</span>
-                                                @endif
-                                            </td>
-                                            <td class="text-right">
-                                                {!! btnToEdit('module/' . $module->id . '/job-listing/item', $item->id) !!}
+                                        {{--<tr>--}}
+                                            {{--<td>{{ ++$key }}</td>--}}
+                                            {{--<td>--}}
+                                                {{--{{ $item->job_title }}--}}
+                                            {{--</td>--}}
+                                            {{--<td>--}}
+                                                {{--{{ $item->company }}--}}
+                                            {{--</td>--}}
+                                            {{--<td>--}}
+                                                {{--@if($item->close_on > addDay(3, date('Y-m-d')))--}}
+                                                    {{--{{ displayDate($item->close_on) }}--}}
+                                                {{--@elseif($item->close_on >= addDay(3, date('Y-m-d')))--}}
+                                                    {{--<span class="text-warning">{{ displayDate($item->close_on) }}</span>--}}
+                                                {{--@else--}}
+                                                    {{--<span class="text-danger">{{ displayDate($item->close_on) }}</span>--}}
+                                                {{--@endif--}}
+                                            {{--</td>--}}
+                                            {{--<td class="text-right">--}}
+                                                {{--{!! btnToEdit('module/' . $module->id . '/job-listing/item', $item->id) !!}--}}
 
-                                                {!! btnDelete('module/' . $module->id. '/job-listing/delete-item', $item->id) !!}
-                                            </td>
-                                        </tr>
+                                                {{--{!! btnDelete('module/' . $module->id. '/job-listing/delete-item', $item->id) !!}--}}
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
 
-                                    @endforeach
+                                    {{--@endforeach--}}
 
-                                    </tbody>
+                                    {{--</tbody>--}}
                                 </table>
 
                             </div>
@@ -215,32 +214,72 @@
     <script src="{{ url('js/jquery.confirm-action.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('.image-grid-item .{!! btnDeleteHtmlClass() !!}').confirmAction({
-                title: {
-                    text: 'Deletion confirm!!'
-                },
-                message: {
-                    html: 'You are about to delete an item.<br><br> Are you sure?'
-                }
-            });
-
-            $('.btnToEdit').click(function () {
-                var container = $('#modalEditPortfolioItem');
-
-                container.find('input[name="title"]').val($(this).data('title'))
-                container.find('input[name="id"]').val($(this).data('id'));
-
-                $('#editPortfolioImagePreview').html($(this).closest('.image-grid-item').find('img').clone());
-
-                tinymce.get('portFolioItemDescription').setContent($(this).data('description'));
-            });
-
             $('.cd-select').each(function () {
                 $(this).dropdown({
                     gutter: 0,
                     stack: false
                 });
             });
+
+            /*
+             * Create job listing datatable
+             */
+            $('#job-listing-table').DataTable({
+                processing: true,
+                serverSide: true,
+                order: [[ 0, "desc" ]],
+                ajax: '{!! backendUrl('module/' . $module->id . '/job-listing/item-data') !!}',
+                columns: [
+                    {data: 'id'},
+                    {data: 'job_title'},
+                    {data: 'company'},
+                    {
+                        data: 'close_on',
+                        render: function (date, type, full, meta) {
+                            var close_on = moment(date);
+                            var now = moment();
+
+                            var diffDates = close_on.diff(now, 'days');
+
+                            if(diffDates <= 0) {
+                                close_on = '<span class="text-danger">' + moment(date).format("MMMM Do, YYYY") + ' (overdue)</span>';
+                            } else if (diffDates < 7) {
+                                close_on = '<span class="text-warning">' +
+                                        moment(date).format("MMMM Do, YYYY") +
+                                        ' (' + diffDates + ' days left)</span>';
+                            } else {
+                                close_on = '<span>' + moment(date).format("MMMM Do, YYYY") + '</span>';
+                            }
+
+                            return close_on;
+                        }
+                    },
+                    {
+                        data: null,
+                        className: 'text-right',
+                        sortable: false,
+                        render: function (data, type, full, meta) {
+                            var btn = " ";
+
+                            btn += helper.btnToEdit('module/{{ $module->id }}/job-listing/item/' + data.id + '/edit');
+                            btn += ' ' + helper.btnDelete('module/{{ $module->id }}/job-listing/delete-item', data.id);
+
+                            return btn;
+                        }
+                    }
+                ],
+                fnDrawCallback: function () {
+                    $('.{!! btnDeleteHtmlClass() !!}').confirmAction({
+                        title: {
+                            text: 'Deletion confirm!!'
+                        },
+                        message: {
+                            html: 'Are you sure to delete this job?'
+                        }
+                    });
+                }
+            });
+
         });
     </script>
 

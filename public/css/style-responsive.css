@@ -519,6 +519,11 @@ Table of contents
         margin-top: 50px;
     }
 
+    .page-content p {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
 }
 
 @media screen and (max-width: 767px) {

@@ -22,45 +22,17 @@
                             </div>
 
                         </div>
-                        <div class="content table-responsive table-full-width">
-                            <table class="table table-hover">
+                        <div class="content table-responsive table-full-width  has-datatable">
+                            <table class="table table-hover" id="modules-table">
                                 <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>#</th>
                                     <th>Display Name</th>
                                     <th>Name</th>
-                                    <th>Description</th>
+                                    <th>Created At</th>
                                     <th></th>
                                 </tr>
                                 </thead>
-                                <tbody>
-
-                                @foreach($modules as $key => $module)
-
-                                    <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td>
-                                            {{ $module->display_name }}
-                                        </td>
-                                        <td>
-                                            {{ $module->name }}
-                                        </td>
-                                        <td>{{ $module->description }}</td>
-                                        <td class="text-right">
-
-                                            @if( hasPermission('edit-module', $permissions) )
-                                                {!! btnToEdit($module->widget_name . '/module/' . $module->id) !!}
-                                            @endif
-
-                                            @if( hasPermission('delete-module', $permissions) )
-                                                {!! btnDelete('modules', $module->id) !!}
-                                            @endif
-                                        </td>
-                                    </tr>
-
-                                @endforeach
-
-                                </tbody>
                             </table>
 
                         </div>
@@ -85,6 +57,40 @@
                 message: {
                     html: 'You are about to delete a module.<br><br>This module will also be deleted from any page. <br><br> Are you sure?'
                 }
+            });
+
+            /*
+             * Create modules datatable
+             */
+            $('#modules-table').DataTable({
+                processing: true,
+                serverSide: true,
+                order: [[ 0, "desc" ]],
+                ajax: '{!! backendUrl('modules/data') !!}',
+                columns: [
+                    {data: 'id'},
+                    {data: 'display_name'},
+                    {data: 'name'},
+                    {data: 'created_at'},
+                    {
+                        data: null,
+                        className: 'text-right',
+                        sortable: false,
+                        render: function (data, type, full, meta) {
+                            var btn = " ";
+
+                            @if( hasPermission('edit-module', $permissions) )
+                                btn += helper.btnToEdit(data.widget_name + '/module/' + data.id);
+                            @endif
+
+                            @if( hasPermission('delete-module', $permissions) )
+                                btn += ' ' + helper.btnDelete('modules', data.id);
+                            @endif
+
+                            return btn;
+                        }
+                    }
+                ]
             });
         });
     </script>
